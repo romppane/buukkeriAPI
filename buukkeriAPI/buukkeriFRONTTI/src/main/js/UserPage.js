@@ -8,22 +8,22 @@ import {
 	} from 'react-router-dom';
 	import LocalizedStrings from 'react-localization';
 	import {strings} from './LocalizationStrings';
-	
+
 export default class UserPage extends React.Component{
 	constructor(props)
 	{
 		super(props)
 	}
-	
+
 	render(){
 		return(
 			<app>
 			<ul>
 			<li></li>
 			</ul>
-			
+
 			</app>
-		
+
 		)
 	}
 }

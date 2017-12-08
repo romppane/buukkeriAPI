@@ -29,8 +29,32 @@ import {
 	} from 'react-router-dom';
 import SPRegistration from "./SPRegistration";
 class AuthRoute extends React.Component {
+	constructor(props){
+    super(props);
+    this.state = {
+			id: 0,
+			fname:"",
+			lname:"",
+	    email: "",
+	    pass: "",
+			phone: "",
+			user:false
+    };
+}
+  componentWillMount() {
+  const user = localStorage.getItem('someSavedState')
+  this.setState({id: user.id,
+  fname: user.fname,
+  lname: user.lname,
+  email: user.email,
+  pass: user.password,
+  phone: user.phone,
+  user: true
+  })
+	console.log(user)
+}
   render() {
-    if (!this.props.auth) {
+    if (!this.state.user) {
 
       return <Redirect to={this.props.redirectToLogin} />
     }
@@ -83,10 +107,8 @@ class AuthRoute extends React.Component {
 							<Route path="/assets/SPRegistration" component={SPRegistration}/>
 							<Route path="/assets/login" component={Login} handler={this.handler}/>
 							<AuthRoute redirectToLogin="/assets/login" path="/assets/piilo" auth={true} component={Piilo} />
-							<Route component={RequireLogin}>
 							<Route path="assets/UserPage" component={UserPage}/>
-						    <Route path="assets/BookingPage" component={BookingPage}/>
-							</Route>
+						  <Route path="assets/BookingPage" component={BookingPage}/>
 							<Route component={NoMatch}/>
 							</Switch>
 	    	    <Footer />
