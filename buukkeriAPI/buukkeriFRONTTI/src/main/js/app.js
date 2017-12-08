@@ -15,7 +15,7 @@ import Login from './LoginSivu';
 import NoMatch from './NoMatch';
 import Registration from './Registration';
 import Language from './Language';
-
+import Piilo from './Piilo';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import BookingPage from './BookingPage';
 import RequireLogin from './RequireLogin';
@@ -24,11 +24,19 @@ import {
 	  BrowserRouter as Router,
 	  Route,
 	  Link,
-		Switch
+		Switch,
+		Redirect
 	} from 'react-router-dom';
 import SPRegistration from "./SPRegistration";
+class AuthRoute extends React.Component {
+  render() {
+    if (!true) {
 
-
+      return <Redirect to={this.props.redirectToLogin} />
+    }
+    return <Route path="/assets/piilo" component={this.props.component}/>
+  }
+}
 
 
 
@@ -63,6 +71,7 @@ import SPRegistration from "./SPRegistration";
 							<img src="/src/main/img/vapaatvuorot.png" alt="Vapaatvuorot.fi" className="logo"></img>
 						</Link>
 						<Link className="btn btn-success btn-lg" to="/assets/login">{strings.login}</Link>
+						<Link className="btn btn-success btn-lg" to="/assets/piilo">piilo</Link>
 
 						<Language />
 						</header>
@@ -73,6 +82,7 @@ import SPRegistration from "./SPRegistration";
 							<Route path="/assets/Registration" component={Registration}/>
 							<Route path="/assets/SPRegistration" component={SPRegistration}/>
 							<Route path="/assets/login" component={Login} handler={this.handler}/>
+							<AuthRoute redirectToLogin="/assets/login" component={Piilo} />
 							<Route component={RequireLogin}>
 							<Route path="assets/UserPage" component={UserPage}/>
 						    <Route path="assets/BookingPage" component={BookingPage}/>
