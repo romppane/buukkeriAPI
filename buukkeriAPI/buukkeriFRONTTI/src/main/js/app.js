@@ -30,11 +30,11 @@ import {
 import SPRegistration from "./SPRegistration";
 class AuthRoute extends React.Component {
   render() {
-    if (!true) {
+    if (!this.props.auth) {
 
       return <Redirect to={this.props.redirectToLogin} />
     }
-    return <Route path="/assets/piilo" component={this.props.component}/>
+    return <Route path={this.props.path} component={this.props.component}/>
   }
 }
 
@@ -82,7 +82,7 @@ class AuthRoute extends React.Component {
 							<Route path="/assets/Registration" component={Registration}/>
 							<Route path="/assets/SPRegistration" component={SPRegistration}/>
 							<Route path="/assets/login" component={Login} handler={this.handler}/>
-							<AuthRoute redirectToLogin="/assets/login" component={Piilo} />
+							<AuthRoute redirectToLogin="/assets/login" path="/assets/piilo" auth={true} component={Piilo} />
 							<Route component={RequireLogin}>
 							<Route path="assets/UserPage" component={UserPage}/>
 						    <Route path="assets/BookingPage" component={BookingPage}/>
