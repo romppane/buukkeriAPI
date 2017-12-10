@@ -90,7 +90,9 @@ export default class SPRegistration extends React.Component{
 		  console.log("pläää")
 		  console.log(sp.password)
 		  console.log(JSON.stringify(sp))
-		  console.log(callUser("POST","SP/",JSON.stringify(sp)))
+		  callUser("POST","SP/",JSON.stringify(sp)).then((response)=>{
+			  console.log(response.response);
+		  })
 		  
 		  }
 		  
