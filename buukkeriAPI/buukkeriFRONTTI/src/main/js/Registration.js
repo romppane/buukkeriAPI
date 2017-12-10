@@ -19,10 +19,8 @@ export default class Registration extends React.Component{
 			phone: "",
 			password: "",
 			passwordconfirmation: "",
-			emailIsValid: false,
-			PohneIsValid: false,
-			PasswordIsValid: false
-				
+			success: ""
+			
 	    };
 
 
@@ -60,6 +58,7 @@ export default class Registration extends React.Component{
 	  
 
 	  handleSubmit(){
+		  
 		  if(this.state.fname == ""
 			  || this.state.lname == "" 
 				  || this.state.email == "" 
@@ -96,11 +95,27 @@ export default class Registration extends React.Component{
 		  console.log("pläää")
 		  console.log(user.password)
 		  console.log(JSON.stringify(user))
-		  console.log(callUser("POST","users/",JSON.stringify(user)))  
+		  callUser("POST","users/",JSON.stringify(user)).then((response)=>{
+			  if(response == "true"){
+				  this.setState({success: "true"})
+			  }
+		  })
 		  }
 		  
 	  }
 render(){
+	console.log(this.state.success);
+	if(this.state.success=="true"){
+		return(
+		 <app>
+	      <ul className="list-group">
+	      <li className="list-group-item"><h1>{strings.regsuccess +""+ this.state.fname} </h1></li>
+	      <li className="list-group-item"><Link to="/assets/login"><button className="btn btn-success btn-block">{strings.tologin}</button></Link>  </li>
+	      </ul>
+	     </app>
+		)
+		
+	}
 		return (
 			 <app className="modalDialog">
 		        

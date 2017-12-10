@@ -36,7 +36,7 @@ export  let strings = new LocalizedStrings({
 		serveiceproviders: "Palveluntarjoajat",
 		spname: "Toiminimi",
 		tologin: "Kirjautumiseen",
-		regsuccess: "Tilinne on luotu.",
+		regsuccess: "Tilinne on luotu ",
 		regfail:"Sähköposti tai puhelinnumero on jo käytössä",
 		forgotpassword:"Unohditko salasanan?",
 	},
@@ -63,7 +63,7 @@ export  let strings = new LocalizedStrings({
 		serveiceproviders: "Serviceproviders",
 		spname:"Commercial name",
 		tologin:"To Login",
-		regsuccess:"You have an account now. Congratulations",
+		regsuccess:"You have an account now. Congratulations ",
 		regfail:"email or phone is already in use",
 		forgotpassword:"Forgot password?",
 	}

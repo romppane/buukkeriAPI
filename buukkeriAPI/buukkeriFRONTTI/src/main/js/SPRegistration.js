@@ -107,7 +107,16 @@ render(){
 	console.log(this.state.success);
 	if(this.state.success=="true"){
 		
-		return <li className="list-group-item"><Link to="/assets/login"><button className="btn btn-success btn-block">{strings.tologin}</button></Link>  </li>
+		return(
+		 <app>
+	      <ul className="list-group">
+	      <li className="list-group-item"><h1>{strings.regsuccess +""+ this.state.name} </h1></li>
+	      <li className="list-group-item"><Link to="/assets/SPlogin"><button className="btn btn-success btn-block">{strings.tologin}</button></Link>  </li>
+				
+	     </ul>
+	     </app>
+		)
+			
 	}
 		return (
 			 <app className="modalDialog">

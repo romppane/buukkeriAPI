@@ -28,6 +28,7 @@ import {
 		Redirect
 	} from 'react-router-dom';
 import SPRegistration from "./SPRegistration";
+import SPLogin from "./SPLogin";
 class AuthRoute extends React.Component {
 	constructor(props){
     super(props);
@@ -106,7 +107,7 @@ class AuthRoute extends React.Component {
 							<Route path="/assets/Registration" component={Registration}/>
 							<Route path="/assets/SPRegistration" component={SPRegistration}/>
 							<Route path="/assets/login" component={Login} handler={this.handler}/>
-							<Route path="/assets/SPlogin" component={Login} handler={this.handler}/>
+							<Route path="/assets/SPlogin" component={SPLogin} handler={this.handler}/>
 							<AuthRoute redirectToLogin="/assets/login" path="/assets/piilo" auth={true} component={Piilo} />
 							<Route path="/assets/UserPage" component={UserPage}/>
 						  <Route path="/assets/BookingPage" component={BookingPage}/>
