@@ -98,6 +98,8 @@ export default class Registration extends React.Component{
 		  callUser("POST","users/",JSON.stringify(user)).then((response)=>{
 			  if(response == "true"){
 				  this.setState({success: "true"})
+			  }else{
+				  alert(strings.regfail)
 			  }
 		  })
 		  }

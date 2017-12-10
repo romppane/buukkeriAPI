@@ -44,7 +44,7 @@ export default class Login extends React.Component{
     this.setState({pass: value})
   }
 	handleLogin(){
-		let promise = callBookker("users/"+this.state.email+"&"+this.state.pass).then((data)=>{
+		let promise = callBookker("SP/"+this.state.email+"&"+this.state.pass).then((data)=>{
 			if(data!=""){
 				data = JSON.parse(data);
 				let user=data;
@@ -90,8 +90,8 @@ export default class Login extends React.Component{
       <ul className="list-group">
        <Input label={strings.email} type="text" onChange={this.handleEmail} />
       <Input label={strings.password} type="password" onChange={this.handlePass} />
-      <li className="list-group-item"><button className="btn btn-success" onClick={this.handleLogin}>{strings.login}</button> <Link to="/assets/SPlogin"><button className="btn btn-success btn pull-right btn-sm">{strings.serveiceproviders}</button></Link> </li>  
-      <li className="list-group-item"><Link to="/assets/Registration"><button className="btn btn-primary">{strings.register}</button></Link> <Link to="/assets/SPRegistration"><button className="btn btn-primary btn pull-right btn-sm">{strings.serveiceproviders}</button></Link> </li>
+      <li className="list-group-item"><button className="btn btn-success" onClick={this.handleLogin}>{strings.login}</button> </li>  
+      
       <li className="list-group-item"><Link to="/assets"><button className="btn btn-default btn-small">{strings.close}</button></Link>  </li>
 
       </ul>

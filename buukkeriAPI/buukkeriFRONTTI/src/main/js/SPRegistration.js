@@ -96,6 +96,8 @@ export default class SPRegistration extends React.Component{
 			  console.log(response);
 			  if(response=="true"){
 				 this.setState({success:"true"})
+			  }else{
+				  alert(strings.regfail)
 			  }
 			  
 		  })
