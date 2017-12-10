@@ -6,8 +6,11 @@ import {
 	  BrowserRouter as Router,
 	  Route,
 	  Link,
-		Switch
+	  Switch,
+	  Redirect,
+	  browserHistory
 	} from 'react-router-dom';
+	
 export default class SPRegistration extends React.Component{
 	  constructor(props){
 	    super(props);
@@ -18,9 +21,8 @@ export default class SPRegistration extends React.Component{
 			phone: "",
 			password: "",
 			passwordconfirmation: "",
-			emailIsValid: false,
-			PohneIsValid: false,
-			PasswordIsValid: false
+			success: ""
+			
 				
 	    };
 
@@ -91,13 +93,22 @@ export default class SPRegistration extends React.Component{
 		  console.log(sp.password)
 		  console.log(JSON.stringify(sp))
 		  callUser("POST","SP/",JSON.stringify(sp)).then((response)=>{
-			  console.log(response.response);
+			  console.log(response);
+			  if(response=="true"){
+				 this.setState({success:"true"})
+			  }
+			  
 		  })
 		  
 		  }
 		  
 	  }
 render(){
+	console.log(this.state.success);
+	if(this.state.success=="true"){
+		
+		return <li className="list-group-item"><Link to="/assets/login"><button className="btn btn-success btn-block">{strings.tologin}</button></Link>  </li>
+	}
 		return (
 			 <app className="modalDialog">
 		        

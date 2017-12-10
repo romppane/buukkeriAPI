@@ -35,7 +35,10 @@ export  let strings = new LocalizedStrings({
 		loginstatus: "Käyttäjää ei löytynyt!",
 		serveiceproviders: "Palveluntarjoajat",
 		spname: "Toiminimi",
-
+		tologin: "Kirjautumiseen",
+		regsuccess: "Tilinne on luotu.",
+		regfail:"Sähköposti tai puhelinnumero on jo käytössä",
+		forgotpassword:"Unohditko salasanan?",
 	},
 	en: {
 		picture:"THIS IS NOT WORKING",
@@ -59,5 +62,9 @@ export  let strings = new LocalizedStrings({
 		loginstatus: "User was not found!",
 		serveiceproviders: "Serviceproviders",
 		spname:"Commercial name",
+		tologin:"To Login",
+		regsuccess:"You have an account now. Congratulations",
+		regfail:"email or phone is already in use",
+		forgotpassword:"Forgot password?",
 	}
 });

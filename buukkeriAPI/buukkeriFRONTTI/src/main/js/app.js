@@ -15,7 +15,7 @@ import Login from './LoginSivu';
 import NoMatch from './NoMatch';
 import Registration from './Registration';
 import Language from './Language';
-
+import Piilo from './Piilo';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import BookingPage from './BookingPage';
 import RequireLogin from './RequireLogin';
@@ -24,11 +24,43 @@ import {
 	  BrowserRouter as Router,
 	  Route,
 	  Link,
-		Switch
+		Switch,
+		Redirect
 	} from 'react-router-dom';
 import SPRegistration from "./SPRegistration";
+class AuthRoute extends React.Component {
+	constructor(props){
+    super(props);
+    this.state = {
+			id: 0,
+			fname:"",
+			lname:"",
+	    email: "",
+	    pass: "",
+			phone: "",
+			user:false
+    };
+}
+  componentWillMount() {
+  const user = localStorage.getItem('someSavedState')
+  this.setState({id: user.id,
+  fname: user.fname,
+  lname: user.lname,
+  email: user.email,
+  pass: user.password,
+  phone: user.phone,
+  user: true
+  })
+	console.log(user)
+}
+  render() {
+    if (!this.state.user) {
 
-
+      return <Redirect to={this.props.redirectToLogin} />
+    }
+    return <Route path={this.props.path} component={this.props.component}/>
+  }
+}
 
 
 
@@ -63,6 +95,7 @@ import SPRegistration from "./SPRegistration";
 							<img src="/src/main/img/vapaatvuorot.png" alt="Vapaatvuorot.fi" className="logo"></img>
 						</Link>
 						<Link className="btn btn-success btn-lg" to="/assets/login">{strings.login}</Link>
+						<Link className="btn btn-success btn-lg" to="/assets/piilo">piilo</Link>
 
 						<Language />
 						</header>
@@ -73,10 +106,11 @@ import SPRegistration from "./SPRegistration";
 							<Route path="/assets/Registration" component={Registration}/>
 							<Route path="/assets/SPRegistration" component={SPRegistration}/>
 							<Route path="/assets/login" component={Login} handler={this.handler}/>
-							<Route component={RequireLogin}>
+							<Route path="/assets/SPlogin" component={Login} handler={this.handler}/>
+							<AuthRoute redirectToLogin="/assets/login" path="/assets/piilo" auth={true} component={Piilo} />
 							<Route path="/assets/UserPage" component={UserPage}/>
-						    <Route path="/assets/BookingPage" component={BookingPage}/>
-							</Route>
+						  <Route path="/assets/BookingPage" component={BookingPage}/>
+
 							<Route component={NoMatch}/>
 							</Switch>
 	    	    <Footer />
