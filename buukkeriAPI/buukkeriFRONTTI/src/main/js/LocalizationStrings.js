@@ -40,6 +40,8 @@ export  let strings = new LocalizedStrings({
 		regfail:"Sähköposti tai puhelinnumero on jo käytössä",
 		forgotpassword:"Unohditko salasanan?",
 		logout:"Kirjaudu ulos",
+		tooshort: "Salasana liian lyhyt",
+		passwordlenght: "Salana vähintään 6 merkkiä"
 	},
 	en: {
 		picture:"THIS IS NOT WORKING",
@@ -68,5 +70,7 @@ export  let strings = new LocalizedStrings({
 		regfail:"email or phone is already in use",
 		forgotpassword:"Forgot password?",
 		logout:"Logout",
+		tooshort:"Password too short",
+		passwordlenght: "Password must be atleast 6 characters",
 	}
 });

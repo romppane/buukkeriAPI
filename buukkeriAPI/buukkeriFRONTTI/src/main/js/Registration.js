@@ -2,17 +2,22 @@ const React = require ('react');
 const ReactDOM = require ('react-dom');
 import {callUser} from "./ajaxPutPostDelete";
 import { strings } from "./LocalizationStrings";
+import Input from './Components/Input';
 import {
 	  BrowserRouter as Router,
 	  Route,
 	  Link,
 		Switch
 	} from 'react-router-dom';
+	let passStatus=strings.passwordlenght;
+	let passconfStatus="";
+	let emailStatus="";
+	let telStatus="";
 export default class Registration extends React.Component{
 	  constructor(props){
 	    super(props);
 	    this.state = {
-	     
+
 	      fname: "",
 			lname: "",
 			email: "",
@@ -20,12 +25,8 @@ export default class Registration extends React.Component{
 			password: "",
 			passwordconfirmation: "",
 			success: ""
-			
+
 	    };
-
-
-
-	   
 	    this.handleSubmit = this.handleSubmit.bind(this);
 	    this.handleFname = this.handleFname.bind(this);
 	    this.handleLname = this.handleLname.bind(this);
@@ -35,55 +36,55 @@ export default class Registration extends React.Component{
 	    this.handlePasswordConfirm= this.handlePasswordConfirm.bind(this);
 
 	  }
-	 
-	  handleFname(e){
-		  this.setState({fname: e.target.value})
+
+	  handleFname(value){
+		  this.setState({fname: value})
 	  }
-	  handleLname(e){
-		  this.setState({lname: e.target.value})
+	  handleLname(value){
+		  this.setState({lname: value})
 	  }
-	  handleEmail(e){
-		  this.setState({email: e.target.value})
-		  
+	  handleEmail(value){
+		  this.setState({email: value})
+			if( /^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/.test(this.state.email) ==false) {
+			  emailStatus=trings.errdialcheckemail;
+		  }
+
 	  }
-	  handlePhone(e){
-		  this.setState({phone: e.target.value})
+	  handlePhone(value){
+		  this.setState({phone: value})
+			if(/^\d{10}$/.test(this.state.phone)==false){
+			  telStatus=strings.errdialcheckphone;
+			}
 	  }
-	  handlePassword(e){
-		  this.setState({password: e.target.value})
+	  handlePassword(value){
+		  this.setState({password: value})
+			if(/^[a-zA-Z0-9!@#$%^&*]{6,16}$/.test(this.state.password)==false){
+				passStatus=strings.tooshort;
+		  }else{
+				passStatus="";
+			}
 	  }
-	  handlePasswordConfirm(e){
-		  this.setState({passwordconfirmation: e.target.value})
-	  }
-	  
+	  handlePasswordConfirm(value){
+		  this.setState({passwordconfirmation: value})
+			if(this.state.password != this.state.passwordconfirmation){
+			  passconfStatus=strings.errdialpasswdmatch;
+		  }
+	  }	
+
 
 	  handleSubmit(){
-		  
+
 		  if(this.state.fname == ""
-			  || this.state.lname == "" 
-				  || this.state.email == "" 
-					  || this.state.phone == "" 
-						  || this.state.password == "" 
+			  || this.state.lname == ""
+				  || this.state.email == ""
+					  || this.state.phone == ""
+						  || this.state.password == ""
 							 || this.state.passworconfirmation =="" ){
 			  alert(strings.errdialfillall);
 		  }
-		  
-		  
-		  else if( /^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/.test(this.state.email) ==false) {
-			  alert(strings.errdialcheckemail)
-		  }
-			  
-		  else if(/^\d{10}$/.test(this.state.phone)==false){
-			  alert(strings.errdialcheckphone)
-		  }
-		  else if(/^[a-zA-Z0-9!@#$%^&*]{6,16}$/.test(this.state.password)==false){
-			  
-		  }
-		  else if(this.state.password != this.state.passwordconfirmation){
-			  alert(strings.errdialpasswdmatch)
-		  }
-		  
-		  
+
+
+
 		  else{
 		  let user = {
 				  fname : this.state.fname,
@@ -98,12 +99,10 @@ export default class Registration extends React.Component{
 		  callUser("POST","users/",JSON.stringify(user)).then((response)=>{
 			  if(response == "true"){
 				  this.setState({success: "true"})
-			  }else{
-				  alert(strings.regfail)
 			  }
 		  })
 		  }
-		  
+
 	  }
 render(){
 	console.log(this.state.success);
@@ -116,37 +115,20 @@ render(){
 	      </ul>
 	     </app>
 		)
-		
+
 	}
 		return (
 			 <app className="modalDialog">
-		        
-		        <div id="form-submit-data" className="modal-visible" >
-		        <form name="form" className="form-inline" id="form-submit-data" onSubmit={this.handleSubmit}>
-				          <div className="form-group">
-							<input key="forname" type="text" placeholder={strings.firstname} ref="fname"  onChange={this.handleFname} value={this.state.fname}/>
-						</div>,
-							<div className="form-group">
-							<input key="lastname" type="text" placeholder={strings.surname} ref="lname" onChange={this.handleLname}  value={this.state.lname}/>
-						</div>,
-							<div className="form-group">
-							<input key="email" type="text" placeholder={strings.email} ref="email" onChange={this.handleEmail}  value={this.state.email}/>
-						</div>,
-							<div className="form-group">
-							<input key="phone" type="text" placeholder={strings.telnum} ref="phone" onChange={this.handlePhone}  value={this.state.phone}/>
-						</div>,
-							<div className="form-group">
-							<input key="password" type="password" placeholder={strings.password} ref="password" onChange={this.handlePassword}  value={this.state.pass}/>
-						</div>
-							<div className="form-group">
-							<input key="password" type="password" placeholder={strings.confirm} ref="passwordconfirm" onChange={this.handlePasswordConfirm}  value={this.state.passwordconfirmation}/>
-						</div>
-				          	<button type="button" className="btn btn-success" value="Submit"  onClick={this.handleSubmit}>{strings.submit}</button>
-				          	
-		          </form>
-
-		        </div>
-		      </app>
+			 		<ul className="list-group">
+					<Input label={strings.firstname} type="text" onChange={this.handleFname} />
+					<Input label={strings.surname} type="text" onChange={this.handleLname} />
+					<Input label={strings.email} type="text" onChange={this.handleEmail} status={emailStatus}/>
+					<Input label={strings.telnum} type="text" onChange={this.handlePhone} status={telStatus}/>
+					<Input label={strings.password} type="password" onChange={this.handlePassword} status={passStatus} />
+					<Input label={strings.confirm} type="password" onChange={this.handlePasswordConfirm} status={passconfStatus} />
+					<li className="list-group-item"><button className="btn btn-success btn-block">{strings.submit}</button></li>
+		      </ul>
+		   </app>
 	    )
 	  }
 
