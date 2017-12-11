@@ -26,7 +26,7 @@ export default class AuthRoute extends React.Component {
   user: user.user
   })
   console.log(user.email);
-	console.log(user.user)
+	console.log(user.user);
 }
   render() {
 
