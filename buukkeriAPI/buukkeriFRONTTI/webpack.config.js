@@ -24,7 +24,7 @@ module.exports = {
     module: {
 
 			devServer: {
-				historyApiFallback:true
+				historyApiFallback:false
 },
         loaders: [
             {

@@ -31,8 +31,11 @@ export default class Login extends React.Component{
     this.handleEmail = this.handleEmail.bind(this);
     this.handlePass = this.handlePass.bind(this);
     this.handleLogin = this.handleLogin.bind(this);
-
+    
   }
+ 
+	
+  
 	componentWillUnmount() {
   localStorage.setItem('someSavedState', JSON.stringify(this.state))
 	console.log(JSON.stringify(this.state))

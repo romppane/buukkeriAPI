@@ -125,24 +125,32 @@ class AuthRoute extends React.Component {
 						<Language />
 						</header>
 							<Switch>
-
+							
 							<Route exact path="/assets" component={App}/>
-
+	
 							<Route path="/assets/Registration" component={Registration}/>
 							<Route path="/assets/SPRegistration" component={SPRegistration}/>
 							<Route path="/assets/login" component={Login} handler={this.handler} />
 							<Route path="/assets/SPlogin" component={SPLogin} handler={this.handler}/>
-							<AuthRoute redirectToLogin="/assets/login" path="/assets/piilo" auth={true} component={Piilo} />
-							<Route path="/assets/UserPage" component={UserPage}/>
-							<Route path="/assets/BookingPage" component={BookingPage}/>
 							
+							
+							//Auth Route
+							<Route component={RequireLogin} >
+								
+							//<AuthRoute redirectToLogin="/assets/login" path="/assets/piilo" auth={true} component={Piilo} />
+								<Route path="/assets/UserPage" component={UserPage}/>
+								<Route path="/assets/BookingPage" component={BookingPage}/>
+							</Route>
 							<Route component={NoMatch}/>
+						
+							
 							</Switch>
+							
 	    	    <Footer />
 	    		 </main>
 
 	    	  </Router>
-
+	    	  
 	    );
 	  }
 	}

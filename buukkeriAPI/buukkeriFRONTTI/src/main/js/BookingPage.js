@@ -14,7 +14,7 @@ import {
 	} from 'react-router-dom';
 
 	
-export default class extends React.Component{
+export default class BookingPage extends React.Component{
 	constructor(props)
 	{
 		super(props)

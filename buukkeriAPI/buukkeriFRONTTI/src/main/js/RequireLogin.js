@@ -16,7 +16,8 @@ import {
 	  BrowserRouter as Router,
 	  Route,
 	  Link,
-		Switch
+		Switch,
+		Redirect
 	} from 'react-router-dom';
 
 
@@ -27,19 +28,25 @@ export default class RequireLogin extends React.Component{
 		super(props);
 	}
 	componentDidMount(){
-	
-	
-	if(lsLoggedIn){
+		
+		console.log(JSON.parse(localStorage.getItem('someSavedState')).user);
+		
+	if(!JSON.parse(localStorage.getItem('someSavedState')).user){
+		console.log(this.props)
+		this.props.history.push("/assets/login")
+		
+	}else {
+		
+		console.log(this.props)
 		
 	}
 	}
 	render(){
-		return (
-			<div>
-			mikä täälläkin nyt on
-			</div>
-		
-		)
+		if(JSON.parse(localStorage.getItem('someSavedState')).user){
+	return <Redirect to={this.props.location.pathname}/>
+	}else{
+	return	null
+	}
 	}
 }
 
