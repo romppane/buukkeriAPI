@@ -29,6 +29,9 @@ import {
 	} from 'react-router-dom';
 import SPRegistration from "./SPRegistration";
 import SPLogin from "./SPLogin";
+
+
+
 class AuthRoute extends React.Component {
 	constructor(props){
     super(props);
@@ -39,7 +42,8 @@ class AuthRoute extends React.Component {
 	    email: "",
 	    pass: "",
 			phone: "",
-			user:false
+			user:false,
+			
     };
 }
   componentWillMount() {
@@ -70,11 +74,30 @@ class AuthRoute extends React.Component {
 		constructor(props)
 		{
 			super(props)
-			this.state={loggedin:false}
+			this.state={
+				loggedin:false,
+				loginbtntext: strings.login,
+				loginbtncolor: "btn-success",
+				user: ""
+					
+			}
 			this.handler = this.handler.bind(this)
+			
 		}
-		handler() {
+		componentDidMount(){
+			this.state.user = JSON.parse(localStorage.getItem('someSavedState'));
+			console.log(this.state.user.user)
+			if(this.state.user.user==true){
+				this.setState({loginbtntext: strings.logout, loginbtncolor: "btn-warning"});
+			}else{
+				this.setState({loginbtntext: strings.login, loginbtncolor: "btn-success"});
+			}
 
+		}
+			
+			
+		handler() {
+			
 		    this.setState({
 		      loggedin: true
 
@@ -82,10 +105,11 @@ class AuthRoute extends React.Component {
 		    console.log(this.state.loggedin)
 		    console.log("täällä")
 		  }
-
+		 
+		
 	  render() {
-
-
+		
+		  
 	    return (
 	    		<Router>
 
@@ -95,7 +119,7 @@ class AuthRoute extends React.Component {
 						<Link to="/assets/">
 							<img src="/src/main/img/vapaatvuorot.png" alt="Vapaatvuorot.fi" className="logo"></img>
 						</Link>
-						<Link className="btn btn-success btn-lg" to="/assets/login">{strings.login}</Link>
+						<Link className={"btn btn-success btn-lg"} to="/assets/login">{this.state.loginbtntext}</Link>
 						<Link className="btn btn-success btn-lg" to="/assets/piilo">piilo</Link>
 
 						<Language />
@@ -106,12 +130,12 @@ class AuthRoute extends React.Component {
 
 							<Route path="/assets/Registration" component={Registration}/>
 							<Route path="/assets/SPRegistration" component={SPRegistration}/>
-							<Route path="/assets/login" component={Login} handler={this.handler}/>
+							<Route path="/assets/login" component={Login} handler={this.handler} />
 							<Route path="/assets/SPlogin" component={SPLogin} handler={this.handler}/>
 							<AuthRoute redirectToLogin="/assets/login" path="/assets/piilo" auth={true} component={Piilo} />
 							<Route path="/assets/UserPage" component={UserPage}/>
-						  <Route path="/assets/BookingPage" component={BookingPage}/>
-
+							<Route path="/assets/BookingPage" component={BookingPage}/>
+							
 							<Route component={NoMatch}/>
 							</Switch>
 	    	    <Footer />
@@ -122,4 +146,5 @@ class AuthRoute extends React.Component {
 	    );
 	  }
 	}
+	
 ReactDOM.render(<Main />, document.getElementById("react"));

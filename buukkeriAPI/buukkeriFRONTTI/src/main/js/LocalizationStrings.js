@@ -39,6 +39,7 @@ export  let strings = new LocalizedStrings({
 		regsuccess: "Tilinne on luotu ",
 		regfail:"Sähköposti tai puhelinnumero on jo käytössä",
 		forgotpassword:"Unohditko salasanan?",
+		logout:"Kirjaudu ulos",
 	},
 	en: {
 		picture:"THIS IS NOT WORKING",
@@ -66,5 +67,6 @@ export  let strings = new LocalizedStrings({
 		regsuccess:"You have an account now. Congratulations ",
 		regfail:"email or phone is already in use",
 		forgotpassword:"Forgot password?",
+		logout:"Logout",
 	}
 });
