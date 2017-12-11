@@ -29,44 +29,9 @@ import {
 	} from 'react-router-dom';
 import SPRegistration from "./SPRegistration";
 import SPLogin from "./SPLogin";
+import AuthRoute from "./Components/AuthRoute";
 
 
-
-class AuthRoute extends React.Component {
-	constructor(props){
-    super(props);
-    this.state = {
-			id: 0,
-			fname:"",
-			lname:"",
-	    email: "",
-	    pass: "",
-			phone: "",
-			user:false,
-			pena:"pena"
-			
-    };
-}
-  componentWillMount() {
-  const user = localStorage.getItem('someSavedState')
-  this.setState({id: user.id,
-  fname: user.fname,
-  lname: user.lname,
-  email: user.email,
-  pass: user.password,
-  phone: user.phone,
-  user: true
-  })
-	console.log(user)
-}
-  render() {
-    if (!this.state.user) {
-
-      return <Redirect to={this.props.redirectToLogin} />
-    }
-    return <Route path={this.props.path} component={this.props.component}/>
-  }
-}
 
 
 
@@ -127,9 +92,9 @@ class AuthRoute extends React.Component {
 							<Route path="/assets/login" component={Login} handler={this.handler} pena={this.state.pena} />
 							<Route path="/assets/SPlogin" component={SPLogin} handler={this.handler}/>
 							
-							<AuthRoute redirectToLogin="/assets/login" path="/assets/piilo" auth={true} component={Piilo} />
+							<AuthRoute redirectToLogin="/assets/login" path="/assets/piilo" component={Piilo} />
 							<AuthRoute redirectToLogin="/assets/login" path="/assets/UserPage" component={UserPage}/>
-							<AuthRoute redirectTologin="/assets/login" path="/assets/BookingPage" component={BookingPage}/>
+							<AuthRoute redirectToLogin="/assets/login" path="/assets/BookingPage" component={BookingPage}/>
 							//Auth Route
 							/*<Route component={RequireLogin} >
 								

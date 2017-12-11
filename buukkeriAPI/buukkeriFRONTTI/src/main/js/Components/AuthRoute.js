@@ -1,5 +1,6 @@
-import React, {PropTypes} from "react"
+import React from "react"
 import {Route, Redirect} from "react-router-dom"
+
 import Piilo from './../Piilo';
 export default class AuthRoute extends React.Component {
 	constructor(props){
@@ -33,7 +34,8 @@ export default class AuthRoute extends React.Component {
     if (!this.state.user) {
 
       return <Redirect to={this.props.redirectToLogin} />
-    }
+    }else{
     return <Route path={this.props.path} component={this.props.component}/>
+  }
   }
 }

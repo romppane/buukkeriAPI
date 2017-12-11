@@ -17,7 +17,7 @@ export default class Header extends React.Component {
 		}
 	}
 	componenWillMount(){
-		console.log(JSON.parse(localStorage.getItem('someSavedState')));
+		console.log("jeeejeee");
 		
 		
 	}
