@@ -16,7 +16,7 @@ export default class App extends React.Component {
 	  constructor(props){
 	    super(props);
 	    this.state={
-	    		sportid: 10,
+	    		sportid: 0,
 	    		sports:[],
 	    		activities: []
 
@@ -43,13 +43,13 @@ export default class App extends React.Component {
 
 
 		  });
-
+		  
 	  }
 	  render() {
 	    return (
 	      <app id="app" className="Appcomponent">
 	      	<SportButton sportid={this.state.sportid} onClick={this.handleState} sports={this.state.sports}/>
-
+	      	
 	      	<Schedule activities={this.state.activities} / >
 	      </app>
 	    );
@@ -69,8 +69,9 @@ export default class App extends React.Component {
 		}
 	  render() {
 		 const availableActivities = this.props.activities.map((item)=> <li key={item.id} value={item.id} id="lists"  className="act-list"><a>{item.name}</a>{"	"+item.location+"		" + item.description}<Link to="/assets/BookingPage"><button onClick={this.onClick} className="btn btn-primary btn pull-right" >{strings.book}</button></Link> </li>)
-	    return (
-	        <div id='schedule1' className="well">
+	    console.log(this.props.activities)
+		 return (
+	        <div id='x' className="">
 	        	<ul>
 	        	{availableActivities}
 	        	</ul>

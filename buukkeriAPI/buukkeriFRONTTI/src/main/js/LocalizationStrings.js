@@ -40,7 +40,9 @@ export  let strings = new LocalizedStrings({
 		forgotpassword:"Unohditko salasanan?",
 		logout:"Kirjaudu ulos",
 		tooshort: "Salasana liian lyhyt",
-		passwordlenght: "Salana vähintään 6 merkkiä"
+		passwordlenght: "Salana vähintään 6 merkkiä",
+		profile: "Profiili",
+			
 	},
 	en: {
 		picture:"THIS IS NOT WORKING",
@@ -70,5 +72,6 @@ export  let strings = new LocalizedStrings({
 		logout:"Logout",
 		tooshort:"Password too short",
 		passwordlenght: "Password must be atleast 6 characters",
+		profile:"Profile",
 	}
 });

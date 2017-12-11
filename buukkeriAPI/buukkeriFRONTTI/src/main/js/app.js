@@ -21,7 +21,7 @@ import BookingPage from './BookingPage';
 import RequireLogin from './RequireLogin';
 import UserPage from './UserPage';
 import {
-	  BrowserRouter as Router,
+	  HashRouter as Router,
 	  Route,
 	  Link,
 		Switch,

@@ -17,20 +17,22 @@ export default class Header extends React.Component {
 		}
 	}
 	componenWillMount(){
-		console.log("jeeejeee");
+		
 		
 		
 	}
 	
 	  render() {
+		  
+		  
 	    return (
 	    		<header>
 
 				<Link to="/assets/">
 					<img src="/src/main/img/vapaatvuorot.png" alt="Vapaatvuorot.fi" className="logo"></img>
 				</Link>
-				<Link className="btn btn-warning btn-lg" to="/assets/login">{strings.login}</Link>
-				<Link className="btn btn-success btn-lg" to="/assets/piilo">{strings.telnum}</Link>
+				<Link className="btn btn-success btn-lg" to="/assets/login">{strings.login}</Link>
+				<Link className="btn btn-success btn-lg" to="/assets/UserPage">{strings.profile}</Link>
 				
 				
 				</header>

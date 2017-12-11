@@ -8,7 +8,7 @@ import {
 	} from 'react-router-dom';
 import LocalizedStrings from 'react-localization';
 import {strings} from './LocalizationStrings';
-import callBookker from "./ajaxGet";
+import {callBookker} from "./ajaxGet";
 export default class UserPage extends React.Component{
 	constructor(props){
 	    super(props);
@@ -25,7 +25,7 @@ export default class UserPage extends React.Component{
 	    this.getData=this.getData.bind(this);
 	}
 	  componentWillMount() {
-	  const user = localStorage.getItem('someSavedState')
+	  const user = JSON.parse(localStorage.getItem('someSavedState'))
 	  this.setState({id: user.id,
 	  fname: user.fname,
 	  lname: user.lname,
@@ -35,17 +35,17 @@ export default class UserPage extends React.Component{
 	  user: true
 	  })
 		console.log(user)
-		
-		
-		
-	}
-	  getData(){
-		 let promise = callBookker("shifts/user_id="+this.state.id).then((data)=>{
+		//With this we get the shifts that user has
+		let promise = callBookker("shifts/user_id="+this.state.id).then((data)=>{
 			 if(data!=""){
 				 data=JSON.parse(data);
 				 console.log(data)
 			 }
 		 })
+		
+	}
+	  getData(id){
+		 
 	  }
 	render(){
 		return(
