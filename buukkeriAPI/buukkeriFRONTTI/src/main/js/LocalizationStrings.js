@@ -15,7 +15,6 @@ import LocalizedStrings from 'react-localization';
 export  let strings = new LocalizedStrings({
 	fin:{
 		picture:"TÄMÄ KUVA EI TOIMI",
-		login: "Kirjaudu sisään",
 		register: "Rekisteröidy",
 		firstname: "Etunimi",
 		surname: "Sukunimi",
@@ -44,7 +43,6 @@ export  let strings = new LocalizedStrings({
 	en: {
 		picture:"THIS IS NOT WORKING",
 		register: "Register",
-		login: "Login",
 		firstname: "Firstname",
 		surname: "Surname",
 		email: "Email",

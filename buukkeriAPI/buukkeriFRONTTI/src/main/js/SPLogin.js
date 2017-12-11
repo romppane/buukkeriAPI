@@ -4,7 +4,7 @@ import {callBookker} from "./ajaxGet";
 import {strings} from "./LocalizationStrings";
 import Registration from "./Registration";
 //import RequireLogin from "./RequireLogin";
-import UserProfile from './User';
+
 import UserPage from './UserPage';
 import {
 	  BrowserRouter as Router,
