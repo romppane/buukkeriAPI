@@ -43,6 +43,7 @@ class AuthRoute extends React.Component {
 	    pass: "",
 			phone: "",
 			user:false,
+			pena:"pena"
 			
     };
 }
@@ -86,7 +87,7 @@ class AuthRoute extends React.Component {
 		}
 		componentDidMount(){
 			this.state.user = JSON.parse(localStorage.getItem('someSavedState'));
-			console.log(this.state.user.user)
+			
 			if(this.state.user.user==true){
 				this.setState({loginbtntext: strings.logout, loginbtncolor: "btn-warning"});
 			}else{
@@ -112,35 +113,30 @@ class AuthRoute extends React.Component {
 		  
 	    return (
 	    		<Router>
-
+	    		
 	    	    <main>
-	    	    	<header>
-
-						<Link to="/assets/">
-							<img src="/src/main/img/vapaatvuorot.png" alt="Vapaatvuorot.fi" className="logo"></img>
-						</Link>
-						<Link className={"btn btn-success btn-lg"} to="/assets/login">{this.state.loginbtntext}</Link>
-						<Link className="btn btn-success btn-lg" to="/assets/piilo">piilo</Link>
-
-						<Language />
-						</header>
+	    	   
+	    	    	<Header/>
+						 <Language />
 							<Switch>
 							
 							<Route exact path="/assets" component={App}/>
 	
 							<Route path="/assets/Registration" component={Registration}/>
 							<Route path="/assets/SPRegistration" component={SPRegistration}/>
-							<Route path="/assets/login" component={Login} handler={this.handler} />
+							<Route path="/assets/login" component={Login} handler={this.handler} pena={this.state.pena} />
 							<Route path="/assets/SPlogin" component={SPLogin} handler={this.handler}/>
 							
-							
+							<AuthRoute redirectToLogin="/assets/login" path="/assets/piilo" auth={true} component={Piilo} />
+							<AuthRoute redirectToLogin="/assets/login" path="/assets/UserPage" component={UserPage}/>
+							<AuthRoute redirectTologin="/assets/login" path="/assets/BookingPage" component={BookingPage}/>
 							//Auth Route
-							<Route component={RequireLogin} >
+							/*<Route component={RequireLogin} >
 								
-							//<AuthRoute redirectToLogin="/assets/login" path="/assets/piilo" auth={true} component={Piilo} />
+							
 								<Route path="/assets/UserPage" component={UserPage}/>
 								<Route path="/assets/BookingPage" component={BookingPage}/>
-							</Route>
+							</Route>*/
 							<Route component={NoMatch}/>
 						
 							

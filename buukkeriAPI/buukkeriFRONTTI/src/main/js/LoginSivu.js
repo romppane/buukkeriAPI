@@ -4,7 +4,7 @@ import {callBookker} from "./ajaxGet";
 import {strings} from "./LocalizationStrings";
 import Registration from "./Registration";
 //import RequireLogin from "./RequireLogin";
-import UserProfile from './User';
+
 import UserPage from './UserPage';
 import {
 	  BrowserRouter as Router,
@@ -90,12 +90,13 @@ export default class Login extends React.Component{
 	  }
     return(
     <app>
+    	
       <ul className="list-group">
        <Input label={strings.email} type="text" onChange={this.handleEmail} />
       <Input label={strings.password} type="password" onChange={this.handlePass} />
       <li className="list-group-item"><button className="btn btn-success" onClick={this.handleLogin}>{strings.login}</button> <Link to="/assets/SPlogin"><button className="btn btn-success btn pull-right btn-sm">{strings.serveiceproviders}</button></Link> </li>  
-      <li className="list-group-item"><Link to="/assets/Registration"><button className="btn btn-primary">{strings.register}</button></Link> <Link to="/assets/SPRegistration"><button className="btn btn-primary btn pull-right btn-sm">{strings.serveiceproviders}</button></Link> </li>
-      <li className="list-group-item"><Link to="/assets"><button className="btn btn-default btn-small">{strings.close}</button></Link>  </li>
+      <li className="list-group-item"><Link to="/assets/Registration" className="btn btn-primary">{strings.register}</Link> <Link to="/assets/SPRegistration" className="btn btn-primary btn pull-right btn-sm">{strings.serveiceproviders}</Link> </li>
+      <li className="list-group-item"><Link to="/assets" className="btn btn-default btn-small">{strings.close}</Link>  </li>
 
       </ul>
 
