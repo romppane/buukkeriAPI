@@ -3,6 +3,8 @@ const ReactDOM = require ('react-dom');
 import {callUser} from "./ajaxPutPostDelete";
 import { strings } from "./LocalizationStrings";
 import Input from './Components/Input';
+import Header from "./Header";
+import Footer from "./Footer";
 import {
 	  BrowserRouter as Router,
 	  Route,
@@ -69,7 +71,7 @@ export default class Registration extends React.Component{
 			if(this.state.password != this.state.passwordconfirmation){
 			  passconfStatus=strings.errdialpasswdmatch;
 		  }
-	  }	
+	  }
 
 
 	  handleSubmit(){
@@ -108,16 +110,22 @@ render(){
 	console.log(this.state.success);
 	if(this.state.success=="true"){
 		return(
+			<main>
+			<Header user={this.state.user} />
 		 <app>
 	      <ul className="list-group">
 	      <li className="list-group-item"><h1>{strings.regsuccess +""+ this.state.fname} </h1></li>
 	      <li className="list-group-item"><Link to="/assets/login"><button className="btn btn-success btn-block">{strings.tologin}</button></Link>  </li>
 	      </ul>
 	     </app>
+			 <Footer />
+			 </main>
 		)
 
 	}
 		return (
+			<main>
+			<Header user={this.state.user} />
 			 <app className="modalDialog">
 			 		<ul className="list-group">
 					<Input label={strings.firstname} type="text" onChange={this.handleFname} />
@@ -129,6 +137,8 @@ render(){
 					<li className="list-group-item"><button className="btn btn-success btn-block">{strings.submit}</button></li>
 		      </ul>
 		   </app>
+			 <Footer />
+			 </main>
 	    )
 	  }
 

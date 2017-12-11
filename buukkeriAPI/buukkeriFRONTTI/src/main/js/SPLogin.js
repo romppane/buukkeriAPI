@@ -3,6 +3,8 @@ import Input from './Components/Input';
 import {callBookker} from "./ajaxGet";
 import {strings} from "./LocalizationStrings";
 import Registration from "./Registration";
+import Header from "./Header";
+import Footer from "./Footer";
 //import RequireLogin from "./RequireLogin";
 
 import UserPage from './UserPage';
@@ -21,7 +23,7 @@ export default class Login extends React.Component{
     this.state = {
 			id: 0,
 			name:"",
-			
+
 	    email: "",
 	    pass: "",
 			phone: "",
@@ -51,7 +53,7 @@ export default class Login extends React.Component{
 				status="";
 				this.setState({id: user.id,
 				name: user.name,
-				
+
 				email: user.email,
 				pass: user.password,
 				phone: user.phone,
@@ -72,6 +74,8 @@ export default class Login extends React.Component{
   render(){
 	  if(this.state.user){
 		  return (
+				<main>
+				<Header user={this.state.user} />
 				  <app>
 
 			      <ul className="list-group">
@@ -83,15 +87,19 @@ export default class Login extends React.Component{
 
 
 			    </app>
+					<Footer />
+					</main>
 		  )
 	  }
     return(
+			<main>
+			<Header user={this.state.user} />
     <app>
       <ul className="list-group">
        <Input label={strings.email} type="text" onChange={this.handleEmail} />
       <Input label={strings.password} type="password" onChange={this.handlePass} />
-      <li className="list-group-item"><button className="btn btn-success" onClick={this.handleLogin}>{strings.login}</button> </li>  
-      
+      <li className="list-group-item"><button className="btn btn-success" onClick={this.handleLogin}>{strings.login}</button> </li>
+
       <li className="list-group-item"><Link to="/assets"><button className="btn btn-default btn-small">{strings.close}</button></Link>  </li>
 
       </ul>
@@ -99,6 +107,8 @@ export default class Login extends React.Component{
 
 
     </app>
+		<Footer />
+		</main>
     );
   }
 }

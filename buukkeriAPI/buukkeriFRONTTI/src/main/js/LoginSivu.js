@@ -3,6 +3,8 @@ import Input from './Components/Input';
 import {callBookker} from "./ajaxGet";
 import {strings} from "./LocalizationStrings";
 import Registration from "./Registration";
+import Header from "./Header";
+import Footer from "./Footer";
 //import RequireLogin from "./RequireLogin";
 
 import UserPage from './UserPage';
@@ -31,11 +33,11 @@ export default class Login extends React.Component{
     this.handleEmail = this.handleEmail.bind(this);
     this.handlePass = this.handlePass.bind(this);
     this.handleLogin = this.handleLogin.bind(this);
-    
+
   }
- 
-	
-  
+
+
+
 	componentWillUnmount() {
   localStorage.setItem('someSavedState', JSON.stringify(this.state))
 	console.log(JSON.stringify(this.state))
@@ -75,34 +77,42 @@ export default class Login extends React.Component{
   render(){
 	  if(this.state.user){
 		  return (
+				<main>
+				<Header user={this.state.user} />
 				  <app>
 
 			      <ul className="list-group">
-			      <li className="list-group-item"><Link to="/assets/UserPage"><button className="btn btn-default btn-small">oma sivu</button></Link>  </li>
-			      <li className="list-group-item"><Link to="/assets"><button className="btn btn-default btn-small">{strings.close}</button></Link>  </li>
+			      <li className="list-group-item"><Link className="btn btn-default btn-small" to="/UserPage">oma sivu</Link>  </li>
+			      <li className="list-group-item"><Link className="btn btn-default btn-small" to="/">{strings.close}</Link>  </li>
 
 			      </ul>
 
 
 
 			    </app>
+					<Footer />
+					</main>
 		  )
 	  }
     return(
-    <app>
-    	
+			<main>
+			<Header user={this.state.user} />
+    	<app>
+
       <ul className="list-group">
        <Input label={strings.email} type="text" onChange={this.handleEmail} />
       <Input label={strings.password} type="password" onChange={this.handlePass} />
-      <li className="list-group-item"><button className="btn btn-success" onClick={this.handleLogin}>{strings.login}</button> <Link to="/assets/SPlogin"><button className="btn btn-success btn pull-right btn-sm">{strings.serveiceproviders}</button></Link> </li>  
-      <li className="list-group-item"><Link to="/assets/Registration" className="btn btn-primary">{strings.register}</Link> <Link to="/assets/SPRegistration" className="btn btn-primary btn pull-right btn-sm">{strings.serveiceproviders}</Link> </li>
-      <li className="list-group-item"><Link to="/assets" className="btn btn-default btn-small">{strings.close}</Link>  </li>
+      <li className="list-group-item"><button className="btn btn-success" onClick={this.handleLogin}>{strings.login}</button> <Link to="/assets/SPlogin"><button className="btn btn-success btn pull-right btn-sm">{strings.serveiceproviders}</button></Link> </li>
+      <li className="list-group-item"><Link to="/Registration" className="btn btn-primary">{strings.register}</Link> <Link to="/assets/SPRegistration" className="btn btn-primary btn pull-right btn-sm">{strings.serveiceproviders}</Link> </li>
+      <li className="list-group-item"><Link to="/" className="btn btn-default btn-small">{strings.close}</Link>  </li>
 
       </ul>
 
 
 
     </app>
+		<Footer />
+		</main>
     );
   }
 }
