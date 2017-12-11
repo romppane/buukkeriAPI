@@ -1,7 +1,9 @@
 var packageJSON = require('./package.json');
 var path = require('path');
 var webpack = require('webpack');
-
+var express = require('express');
+var app = express();
+var path = require('path')
 
 
 const PATHS = {
@@ -24,7 +26,7 @@ module.exports = {
     module: {
 
 			devServer: {
-				historyApiFallback:false
+				historyApiFallback:true
 },
         loaders: [
             {
