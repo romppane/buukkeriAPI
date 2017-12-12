@@ -27,7 +27,8 @@ export default class Login extends React.Component{
 	    email: "",
 	    pass: "",
 			phone: "",
-			user:false
+			user:false,
+			sp:false,
 
     };
     this.handleEmail = this.handleEmail.bind(this);
@@ -36,15 +37,29 @@ export default class Login extends React.Component{
 		this.logout = this.logout.bind(this);
   }
 	componentWillMount() {
-		const state = JSON.parse(localStorage.getItem('someSavedState'))
-			this.setState({id: state.id,
-			fname: state.fname,
-			lname: state.lname,
-			email: state.email,
-			pass: state.password,
-			phone: state.phone,
-			user: state.user
-			})
+		  const state = JSON.parse(localStorage.getItem('someSavedState'))
+		  if(state.user){
+		  this.setState({id: state.id,
+		  fname: state.fname,
+		  lname: state.lname,
+		  email: state.email,
+		  pass: state.password,
+		  phone: state.phone,
+		  user: state.user
+		  })
+			console.log(state.user)
+		  }else if (state.sp){
+			  this.setState({id: state.id,
+				  name: state.name,
+				  email: state.email,
+				  pass: state.password,
+				  phone: state.phone,
+				  sp: state.sp
+
+				  })
+				  console.log(user.sp)
+		  }
+
 }
 	logout(value){
 			this.setState({id: 0,
@@ -114,7 +129,7 @@ export default class Login extends React.Component{
 	  }
     return(
 			<main>
-			<Header user={this.state.user} logout={this.logout} />
+			<Header sp={this.state.sp} user={this.state.user} logout={this.logout} />
     	<app>
 
       <ul className="list-group">

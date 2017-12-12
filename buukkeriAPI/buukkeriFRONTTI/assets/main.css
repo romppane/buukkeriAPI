@@ -31,9 +31,9 @@ main{
 
   /*assaigning grid roles*/
   grid-template-rows: 150px auto 60px;
-  grid-template-columns: 1fr auto auto 1fr;
+  grid-template-columns: 10% 40% 40% 10%;
   grid-template-areas:
-    "appisleft header signin appisright"
+    "appisleft header header language"
     "appisleft appis appis appisrigth"
     "footer footer  footer footer ";
 }
@@ -41,9 +41,12 @@ main{
 
 
 header{
-  grid-area: header;
+ 
   /*background-color: #F50057 ;*/
-  padding-top: 5%;
+  grid-area: header;
+  display: inline-flex;
+  height:50px;
+ 
   padding-left: 10%;
   padding-right: 5%;
 
@@ -68,6 +71,7 @@ footer{
   grid-area: footer ;
   margin-right:auto;
   margin-left:auto;
+  margin-bottom: 0;
   /*background-color: #0288D1 ;*/
 }
 

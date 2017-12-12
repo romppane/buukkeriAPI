@@ -112,7 +112,7 @@ export default class UserPage extends React.Component{
 		if(this.state.user){
 		return(
 			<main>
-			<Header user={this.state.user} logout={this.logout} />
+			<Header sp={this.state.sp} user={this.state.user} logout={this.logout} />
 			<app>
 		      <ul className="list-group">
 			<li className="list-group-item">{this.state.fname}</li>
