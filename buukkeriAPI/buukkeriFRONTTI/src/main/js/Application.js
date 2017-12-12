@@ -1,6 +1,7 @@
 import SportButton from './Components/SportButton';
 import {callBookker} from "./ajaxGet";
 import Header from "./Header";
+import Language from './Language';
 import Footer from "./Footer";
 import {
 	  BrowserRouter as Router,
@@ -39,16 +40,19 @@ export default class App extends React.Component {
 	  }
 		componentWillMount() {
 			const state = JSON.parse(localStorage.getItem('someSavedState'))
+
 				this.setState({
 				user: state.user
+
 				})
+				console.log(state.user)
 		}
 		componentWillUnmount() {
 	  localStorage.setItem('someSavedState', JSON.stringify(this.state))
 		}
 		logout(value){
 				this.setState({
-			  user: value
+			  user:value
 			  })
 		}
 
@@ -65,9 +69,9 @@ export default class App extends React.Component {
 	    return (
 				<main>
 				<Header user={this.state.user} logout={this.logout} />
+				<Language />
 	      <app id="app" className="Appcomponent">
 	      	<SportButton sportid={this.state.sportid} onClick={this.handleState} sports={this.state.sports}/>
-
 	      	<Schedule activities={this.state.activities} / >
 	      </app>
 				<Footer />
@@ -95,12 +99,14 @@ export default class App extends React.Component {
 		 <Link className="btn btn-primary btn pull-right" to={this.omgolen(item.id)}>
 		 {strings.book}</Link> </li>)
 
+
+
 		 return (
-	        <div id='x' className="">
+	        <app>
 	        	<ul>
 	        	{availableActivities}
 	        	</ul>
-	        </div>
+	        </app>
 	    );
 	  }
 	}

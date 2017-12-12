@@ -50,16 +50,7 @@ import AuthRoute from "./Components/AuthRoute";
 			this.handler = this.handler.bind(this)
 
 		}
-		componentDidMount(){
-			this.state.user = JSON.parse(localStorage.getItem('someSavedState'));
 
-			if(this.state.user.user==true){
-				this.setState({loginbtntext: strings.logout, loginbtncolor: "btn-warning"});
-			}else{
-				this.setState({loginbtntext: strings.login, loginbtncolor: "btn-success"});
-			}
-
-		}
 
 
 		handler() {
@@ -78,8 +69,6 @@ import AuthRoute from "./Components/AuthRoute";
 
 	    return (
 	    		<Router>
-
-	    	    <main>
 
 							<Switch>
 
@@ -108,8 +97,6 @@ import AuthRoute from "./Components/AuthRoute";
 
 							</Switch>
 
-
-	    		 </main>
 
 	    	  </Router>
 
