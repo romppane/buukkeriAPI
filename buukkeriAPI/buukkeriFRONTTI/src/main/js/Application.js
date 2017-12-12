@@ -42,16 +42,15 @@ export default class App extends React.Component {
 				this.setState({
 				user: state.user
 				})
-				console.log(state);
-	}
-	componentWillUnmount() {
-  localStorage.setItem('someSavedState', JSON.stringify(this.state))
-	}
+		}
+		componentWillUnmount() {
+	  localStorage.setItem('someSavedState', JSON.stringify(this.state))
+		}
 		logout(value){
 				this.setState({
 			  user: value
 			  })
-			}
+		}
 
 	  handleState(newState){
 		  this.setState({sportid: newState });

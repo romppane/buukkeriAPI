@@ -9,6 +9,9 @@ import {
 import LocalizedStrings from 'react-localization';
 import {strings} from './LocalizationStrings';
 import {callBookker} from "./ajaxGet";
+import Header from "./Header";
+import Footer from "./Footer";
+
 export default class UserPage extends React.Component{
 	constructor(props){
 	    super(props);
@@ -22,12 +25,13 @@ export default class UserPage extends React.Component{
 				phone: "",
 				user:false,
 				sp: false,
-				
+
 	    };
 	    this.getData=this.getData.bind(this);
+			this.logout=this.logout.bind(this);
 	}
 	  componentWillMount() {
-		  
+
 	  const user = JSON.parse(localStorage.getItem('someSavedState'))
 	  if(user.user){
 	  this.setState({id: user.id,
@@ -36,7 +40,7 @@ export default class UserPage extends React.Component{
 	  email: user.email,
 	  pass: user.password,
 	  phone: user.phone,
-	  user: true
+	  user: user.user
 	  })
 		console.log(user.user)
 	  }else if (user.sp){
@@ -46,28 +50,38 @@ export default class UserPage extends React.Component{
 			  pass: user.password,
 			  phone: user.phone,
 			  sp: true
-			  
+
 			  })
 			  console.log(user.sp)
 	  }
-	  
+
 		//With this we get the shifts that user has
 		let promise = callBookker("shifts/user_id="+this.state.id).then((data)=>{
 			 if(data!=""){
 				 data=JSON.parse(data);
-				 console.log(data)
 			 }
 		 })
-		
 	}
+		componentWillUnmount() {
+	  localStorage.setItem('someSavedState', JSON.stringify(this.state))
+		}
+
+		logout(value){
+				this.setState({
+			  user: value
+			  })
+		}
+
+
+
 	  getData(id){
-		 
+
 	  }
 	render(){
 		if(this.state.user){
-			
-		
 		return(
+			<main>
+			<Header user={this.state.user} logout={this.logout} />
 			<app>
 		      <ul className="list-group">
 			<li className="list-group-item">{this.state.fname}</li>
@@ -76,12 +90,15 @@ export default class UserPage extends React.Component{
 			<li className="list-group-item">{this.state.phone}</li>
 			<li className="list-group-item">{}</li>
 			</ul>
-			
-			
+
+
 			</app>
-		
-		)}else if(this.state.sp){
+			</main>
+		)
+		}else if(this.state.sp){
 			return(
+			<main>
+			<Header user={this.state.user} logout={this.logout} />
 			<app>
 		      <ul className="list-group">
 			<li className="list-group-item">{this.state.name}</li>
@@ -90,9 +107,11 @@ export default class UserPage extends React.Component{
 			<li className="list-group-item">{this.state.phone}</li>
 			<li className="list-group-item"></li>
 			</ul>
-			
-			
+
+
 			</app>
+			<Footer />
+			</main>
 		)}
+		}
 	}
-}

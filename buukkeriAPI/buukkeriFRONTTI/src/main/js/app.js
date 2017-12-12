@@ -45,14 +45,14 @@ import AuthRoute from "./Components/AuthRoute";
 				loginbtntext: strings.login,
 				loginbtncolor: "btn-success",
 				user: ""
-					
+
 			}
 			this.handler = this.handler.bind(this)
-			
+
 		}
 		componentDidMount(){
 			this.state.user = JSON.parse(localStorage.getItem('someSavedState'));
-			
+
 			if(this.state.user.user==true){
 				this.setState({loginbtntext: strings.logout, loginbtncolor: "btn-warning"});
 			}else{
@@ -60,10 +60,10 @@ import AuthRoute from "./Components/AuthRoute";
 			}
 
 		}
-			
-			
+
+
 		handler() {
-			
+
 		    this.setState({
 		      loggedin: true
 
@@ -71,19 +71,18 @@ import AuthRoute from "./Components/AuthRoute";
 		    console.log(this.state.loggedin)
 		    console.log("täällä")
 		  }
-		 
-		
+
+
 	  render() {
-		
-		  
+
+
 	    return (
 	    		<Router>
-	    		
+
 	    	    <main>
-	    	   
-	    	    	
-						 <Language />
+	   
 							<Switch>
+<<<<<<< HEAD
 							
 							<Route exact path="/" component={App}/>
 	
@@ -96,25 +95,39 @@ import AuthRoute from "./Components/AuthRoute";
 							<AuthRoute redirectToLogin="/login" path="/UserPage" component={UserPage}/>
 							<AuthRoute redirectToLogin="/login" path="/BookingPage" component={BookingPage}/>
 							<AuthRoute redirectToSPLogin="/SPlogin" path="/SPpage" component={UserPage}/>
+=======
+
+							<Route exact path="/assets" component={App}/>
+
+							<Route path="/assets/Registration" component={Registration}/>
+							<Route path="/assets/SPRegistration" component={SPRegistration}/>
+							<Route path="/assets/login" component={Login} handler={this.handler} pena={this.state.pena} />
+							<Route path="/assets/SPlogin" component={SPLogin} handler={this.handler}/>
+
+							<AuthRoute redirectToLogin="/assets/login" path="/assets/piilo" component={Piilo} />
+							<AuthRoute redirectToLogin="/assets/login" path="/assets/UserPage" component={UserPage}/>
+							<AuthRoute redirectToLogin="/assets/login" path="/assets/BookingPage" component={BookingPage}/>
+							<AuthRoute redirectToSPLogin="/assets/SPlogin" path="/assets/SPpage" component={UserPage}/>
+>>>>>>> branch 'master' of https://github.com/romppane/buukkeriAPI.git
 							//Auth Route
 							/*<Route component={RequireLogin} >
-								
-							
+
+
 								<Route path="/assets/UserPage" component={UserPage}/>
 								<Route path="/assets/BookingPage" component={BookingPage}/>
 							</Route>*/
 							<Route component={NoMatch}/>
-						
-							
+
+
 							</Switch>
-							
-	    	   
+
+
 	    		 </main>
 
 	    	  </Router>
-	    	  
+
 	    );
 	  }
 	}
-	
+
 ReactDOM.render(<Main />, document.getElementById("react"));
