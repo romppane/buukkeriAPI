@@ -31,6 +31,7 @@ export default class App extends React.Component {
 				this.setState({sports: data});
 
 		  });
+		  
 
 	  }
 
@@ -40,10 +41,16 @@ export default class App extends React.Component {
 		  callBookker("/act/sportID="+newState).then((data)=>{
 				data = JSON.parse(data);
 				this.setState({activities: data});
-
+				console.log(data)
+				
+		  });
+		  let activity_id=this.state.activities.id;
+		  callBookker("/shift/actid="+this.state.activities.id).then((shiftdata)=>{
+				shiftdata = JSON.parse(shiftdata);
+				this.setState({activities: shiftdata});
+				console.log(data)
 
 		  });
-		  
 	  }
 	  render() {
 	    return (
@@ -68,6 +75,7 @@ export default class App extends React.Component {
 		//tähän toiminnalisuutta sitten
 		}
 	  render() {
+		 
 		 const availableActivities = this.props.activities.map((item)=> <li key={item.id} value={item.id} id="lists"  className="act-list"><a>{item.name}</a>{"	"+item.location+"		" + item.description}<Link to="/assets/BookingPage"><button onClick={this.onClick} className="btn btn-primary btn pull-right" >{strings.book}</button></Link> </li>)
 	    console.log(this.props.activities)
 		 return (

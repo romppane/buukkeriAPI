@@ -95,6 +95,7 @@ import AuthRoute from "./Components/AuthRoute";
 							<AuthRoute redirectToLogin="/assets/login" path="/assets/piilo" component={Piilo} />
 							<AuthRoute redirectToLogin="/assets/login" path="/assets/UserPage" component={UserPage}/>
 							<AuthRoute redirectToLogin="/assets/login" path="/assets/BookingPage" component={BookingPage}/>
+							<AuthRoute redirectToSPLogin="/assets/SPlogin" path="/assets/SPpage" component={UserPage}/>
 							//Auth Route
 							/*<Route component={RequireLogin} >
 								
