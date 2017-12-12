@@ -80,20 +80,20 @@ import AuthRoute from "./Components/AuthRoute";
 	    		<Router>
 
 	    	    <main>
-	   
+
 							<Switch>
 
-							
+
 							<Route exact path="/" component={App}/>
-	
+
 							<Route path="/Registration" component={Registration}/>
 							<Route path="/SPRegistration" component={SPRegistration}/>
 							<Route path="/login" component={Login} handler={this.handler} pena={this.state.pena} />
 							<Route path="/SPlogin" component={SPLogin} handler={this.handler}/>
-							
+
 							<AuthRoute redirectToLogin="/login" path="/piilo" component={Piilo} />
 							<AuthRoute redirectToLogin="/login" path="/UserPage" component={UserPage}/>
-							<AuthRoute redirectToLogin="/login" path="/BookingPage" component={BookingPage}/>
+							<AuthRoute redirectToLogin="/login" path="/Booking:id" component={BookingPage}/>
 							<AuthRoute redirectToSPLogin="/SPlogin" path="/SPpage" component={UserPage}/>
 
 							//Auth Route

@@ -82,14 +82,18 @@ export default class App extends React.Component {
 		{
 			super(props);
 			this.state={sports: []}
-			this.onClick = this.onClick.bind(this);
+			this.omgolen = this.omgolen.bind(this);
 		}
-		onClick(){
-		//tähän toiminnalisuutta sitten
+		omgolen(id){
+		return "/Booking"+id.toString();
 		}
 	  render() {
 
-		 const availableActivities = this.props.activities.map((item)=> <li key={item.id} value={item.id} id="lists"  className="act-list"><a>{item.name}</a>{"	"+item.location+"		" + item.description}<Link to="/BookingPage"><button onClick={this.onClick} className="btn btn-primary btn pull-right" >{strings.book}</button></Link> </li>)
+		 const availableActivities = this.props.activities.map((item)=>
+		  <li key={item.id} value={item.id} id="lists"  className="act-list">
+		 <a>{item.name}</a>{"	"+item.location+"		" + item.description}
+		 <Link className="btn btn-primary btn pull-right" to={this.omgolen(item.id)}>
+		 {strings.book}</Link> </li>)
 
 		 return (
 	        <div id='x' className="">
