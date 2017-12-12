@@ -20,7 +20,9 @@ export default class BookingPage extends React.Component{
 	constructor(props){
 		super(props)
 		this.state={
-				user:false
+				user:false,
+				shifts: [],
+				act:[]
 		};
 		this.logout=this.logout.bind(this);
 	}
@@ -29,7 +31,16 @@ export default class BookingPage extends React.Component{
 			this.setState({
 			user: state.user
 			})
-	}
+			let data=[];
+			callBookker("/shifts/actid="+parseInt(this.props.match.params.id)).then((data)=>{
+				data = JSON.parse(data);
+				this.setState({shifts: data});
+	})
+			callBookker("/act/"+parseInt(this.props.match.params.id)).then((data)=>{
+				data = JSON.parse(data);
+				this.setState({act: data});
+		})
+}
 	componentWillUnmount() {
 	localStorage.setItem('someSavedState', JSON.stringify(this.state))
 	}
@@ -39,18 +50,23 @@ export default class BookingPage extends React.Component{
 			})
 	}
 	render(){
+		const availableshifts = this.state.shifts.map((item)=>
+		 <li key={item.id} value={item.id} id="lists"  className="list-group-item">
+		{strings.shifttime}:{item.shift_time} {strings.shiftdate}:{item.shift_date} {strings.price}:{item.price}€
+		<Link className="btn btn-primary btn pull-right btn-sm" to="/">
+		{strings.book}</Link> </li>)
+
+
+
 		return(
 			<main>
 			<Header user={this.state.user} logout={this.logout} />
 		<app>
-			<ul>
-			<li>pläää</li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
+		<h3>{this.state.act.name}</h3>
+		<p>{this.state.act.location}</p>
+		<p>{this.state.act.description}</p>
+			<ul className="list-group">
+			{availableshifts}
 			</ul>
 		</app>
 		<Footer />

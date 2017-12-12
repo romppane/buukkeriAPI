@@ -29,7 +29,10 @@ export  let strings = new LocalizedStrings({
 		logout:"Kirjaudu ulos",
 		tooshort: "Salasana liian lyhyt",
 		passwordlenght: "Salana vähintään 6 merkkiä",
-		profile: "Profiili"
+		profile: "Profiili",
+		shifttime: "aika",
+		shiftdate: "päivä",
+		price: "Hinta"
 	},
 	en: {
 		register: "Register",
@@ -58,6 +61,9 @@ export  let strings = new LocalizedStrings({
 		logout:"Logout",
 		tooshort:"Password too short",
 		passwordlenght: "Password must be atleast 6 characters",
-		profile:"Profile"
+		profile:"Profile",
+		shifttime: "time",
+		shiftdate: "date",
+		price: "Price"
 	}
 });
