@@ -19,6 +19,7 @@ export default class AuthRoute extends React.Component {
     };
 }
   componentWillMount() {
+
 	  
 	  	const user = JSON.parse(localStorage.getItem('someSavedState'))
 	  if(user.user){
@@ -43,6 +44,8 @@ export default class AuthRoute extends React.Component {
 			  
 				console.log(user.sp)
 	  }
+
+  
 }
   render() {
 

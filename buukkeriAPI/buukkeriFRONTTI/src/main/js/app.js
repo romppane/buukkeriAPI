@@ -81,7 +81,7 @@ import AuthRoute from "./Components/AuthRoute";
 	    		
 	    	    <main>
 	    	   
-	    	    	<Header/>
+	    	    	
 						 <Language />
 							<Switch>
 							
@@ -108,7 +108,7 @@ import AuthRoute from "./Components/AuthRoute";
 							
 							</Switch>
 							
-	    	    <Footer />
+	    	   
 	    		 </main>
 
 	    	  </Router>

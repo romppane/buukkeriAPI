@@ -1,5 +1,7 @@
 import SportButton from './Components/SportButton';
 import {callBookker} from "./ajaxGet";
+import Header from "./Header";
+import Footer from "./Footer";
 import {
 	  BrowserRouter as Router,
 	  Route,
@@ -18,10 +20,11 @@ export default class App extends React.Component {
 	    this.state={
 	    		sportid: 0,
 	    		sports:[],
-	    		activities: []
-
+	    		activities: [],
+					user:false
 	    };
 	    this.handleState=this.handleState.bind(this);
+			this.logout = this.logout.bind(this);
 
 	  }
 	  componentDidMount() {
@@ -34,6 +37,21 @@ export default class App extends React.Component {
 		  
 
 	  }
+		componentWillMount() {
+			const state = JSON.parse(localStorage.getItem('someSavedState'))
+				this.setState({
+				user: state.user
+				})
+				console.log(state);
+	}
+	componentWillUnmount() {
+  localStorage.setItem('someSavedState', JSON.stringify(this.state))
+	}
+		logout(value){
+				this.setState({
+			  user: value
+			  })
+			}
 
 	  handleState(newState){
 		  this.setState({sportid: newState });
@@ -41,24 +59,20 @@ export default class App extends React.Component {
 		  callBookker("/act/sportID="+newState).then((data)=>{
 				data = JSON.parse(data);
 				this.setState({activities: data});
-				console.log(data)
-				
-		  });
-		  let activity_id=this.state.activities.id;
-		  callBookker("/shift/actid="+this.state.activities.id).then((shiftdata)=>{
-				shiftdata = JSON.parse(shiftdata);
-				this.setState({activities: shiftdata});
-				console.log(data)
 
 		  });
 	  }
 	  render() {
 	    return (
+				<main>
+				<Header user={this.state.user} logout={this.logout} />
 	      <app id="app" className="Appcomponent">
 	      	<SportButton sportid={this.state.sportid} onClick={this.handleState} sports={this.state.sports}/>
 	      	
 	      	<Schedule activities={this.state.activities} / >
 	      </app>
+				<Footer />
+				</main>
 	    );
 	  }
 	}
@@ -77,7 +91,7 @@ export default class App extends React.Component {
 	  render() {
 		 
 		 const availableActivities = this.props.activities.map((item)=> <li key={item.id} value={item.id} id="lists"  className="act-list"><a>{item.name}</a>{"	"+item.location+"		" + item.description}<Link to="/assets/BookingPage"><button onClick={this.onClick} className="btn btn-primary btn pull-right" >{strings.book}</button></Link> </li>)
-	    console.log(this.props.activities)
+
 		 return (
 	        <div id='x' className="">
 	        	<ul>
