@@ -19,6 +19,8 @@ main{
 
 header{
   grid-area: header;
+  display: inline-flex;
+  height:50px;
   /*background-color: #F50057 ;*/
 }
 
