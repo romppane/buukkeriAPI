@@ -94,12 +94,14 @@ export default class App extends React.Component {
 		 
 		 const availableActivities = this.props.activities.map((item)=> <li key={item.id} value={item.id} id="lists"  className="act-list"><a>{item.name}</a>{"	"+item.location+"		" + item.description}<Link to="/BookingPage"><button onClick={this.onClick} className="btn btn-primary btn pull-right" >{strings.book}</button></Link> </li>)
 
+		 
+
 		 return (
-	        <div id='x' className="">
+	        <app>
 	        	<ul>
 	        	{availableActivities}
 	        	</ul>
-	        </div>
+	        </app>
 	    );
 	  }
 	}
