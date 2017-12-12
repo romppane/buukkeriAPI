@@ -30,7 +30,7 @@ public class SPDAO extends DAO implements SPDAO_IF {
 			myStatement.setString(3, sp.getEmail());
 			myStatement.setString(4, sp.getPhone());
 			count = myStatement.executeUpdate();
-			System.out.println("SP has been created");
+			
 
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -44,9 +44,11 @@ public class SPDAO extends DAO implements SPDAO_IF {
 			}
 		}
 		if(count!=1){
+			System.out.println("Dublicated Email or Phone");
 			return false;
 		}
 		else{
+			System.out.println("SP has been created");
 			return true;
 		}
 	}

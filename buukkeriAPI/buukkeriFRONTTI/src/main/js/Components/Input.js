@@ -3,7 +3,7 @@ const styles = {
   width: "14rem"
 };
 const styles2 = {
-  width: "7rem"
+  width: "10rem"
 };
 
 export default class Input extends React.Component {

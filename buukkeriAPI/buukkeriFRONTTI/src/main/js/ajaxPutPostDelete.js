@@ -10,5 +10,6 @@ export function callUser(method,url,data){
 		call.onerror = ()=> reject(call.statusText);
 		call.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
 		call.send(data);
+		
 	});
 }

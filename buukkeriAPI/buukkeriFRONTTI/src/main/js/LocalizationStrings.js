@@ -17,13 +17,22 @@ export  let strings = new LocalizedStrings({
 		errdialfillall: "Täytä kaikki kentät ja yritä uudelleen",
 		errdialcheckemail: "Tarkasta sähköposti",
 		errdialcheckphone: "Virheellinen puhelin numero",
-		nomatch: "Osoiteelle ei löytnyt sivua.",
+		nomatch: "Osoiteelle ei löytynyt sivua.",
 		book: "Varaa!",
-		loginstatus: "Käyttäjää ei löytynyt!"
+		loginstatus: "Käyttäjää ei löytynyt!",
+		serveiceproviders: "Palveluntarjoajat",
+		spname: "Toiminimi",
+		tologin: "Kirjautumiseen",
+		regsuccess: "Tilinne on luotu ",
+		regfail:"Sähköposti tai puhelinnumero on jo käytössä",
+		forgotpassword:"Unohditko salasanan?",
+		logout:"Kirjaudu ulos",
+		tooshort: "Salasana liian lyhyt",
+		passwordlenght: "Salana vähintään 6 merkkiä",
+		profile: "Profiili"
 	},
 	en: {
 		register: "Register",
-		login: "Login",
 		firstname: "Firstname",
 		surname: "Surname",
 		email: "Email",
@@ -39,6 +48,16 @@ export  let strings = new LocalizedStrings({
 		errdialcheckphone: "Phone number is incorrect",
 		nomatch: "404 page was not found.",
 		book: "book now!",
-		loginstatus: "User was not found!"
+		loginstatus: "User was not found!",
+		serveiceproviders: "Serviceproviders",
+		spname:"Commercial name",
+		tologin:"To Login",
+		regsuccess:"You have an account now. Congratulations ",
+		regfail:"email or phone is already in use",
+		forgotpassword:"Forgot password?",
+		logout:"Logout",
+		tooshort:"Password too short",
+		passwordlenght: "Password must be atleast 6 characters",
+		profile:"Profile"
 	}
 });
