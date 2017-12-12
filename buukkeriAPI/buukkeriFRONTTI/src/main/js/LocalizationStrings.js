@@ -1,20 +1,8 @@
-
-
-
 import LocalizedStrings from 'react-localization';
-
-
-
-
-
-
-
-
-
 
 export  let strings = new LocalizedStrings({
 	fin:{
-		picture:"TÄMÄ KUVA EI TOIMI",
+		login: "Kirjaudu sisään",
 		register: "Rekisteröidy",
 		firstname: "Etunimi",
 		surname: "Sukunimi",
@@ -29,7 +17,7 @@ export  let strings = new LocalizedStrings({
 		errdialfillall: "Täytä kaikki kentät ja yritä uudelleen",
 		errdialcheckemail: "Tarkasta sähköposti",
 		errdialcheckphone: "Virheellinen puhelin numero",
-		nomatch: "Osoiteelle ei löytnyt sivua.",
+		nomatch: "Osoiteelle ei löytynyt sivua.",
 		book: "Varaa!",
 		loginstatus: "Käyttäjää ei löytynyt!",
 		serveiceproviders: "Palveluntarjoajat",
@@ -41,11 +29,9 @@ export  let strings = new LocalizedStrings({
 		logout:"Kirjaudu ulos",
 		tooshort: "Salasana liian lyhyt",
 		passwordlenght: "Salana vähintään 6 merkkiä",
-		profile: "Profiili",
-			
+		profile: "Profiili"
 	},
 	en: {
-		picture:"THIS IS NOT WORKING",
 		register: "Register",
 		firstname: "Firstname",
 		surname: "Surname",
@@ -72,6 +58,6 @@ export  let strings = new LocalizedStrings({
 		logout:"Logout",
 		tooshort:"Password too short",
 		passwordlenght: "Password must be atleast 6 characters",
-		profile:"Profile",
+		profile:"Profile"
 	}
 });
