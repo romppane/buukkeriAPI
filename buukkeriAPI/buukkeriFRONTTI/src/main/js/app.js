@@ -85,17 +85,17 @@ import AuthRoute from "./Components/AuthRoute";
 						 <Language />
 							<Switch>
 							
-							<Route exact path="/assets" component={App}/>
+							<Route exact path="/" component={App}/>
 	
-							<Route path="/assets/Registration" component={Registration}/>
-							<Route path="/assets/SPRegistration" component={SPRegistration}/>
-							<Route path="/assets/login" component={Login} handler={this.handler} pena={this.state.pena} />
-							<Route path="/assets/SPlogin" component={SPLogin} handler={this.handler}/>
+							<Route path="/Registration" component={Registration}/>
+							<Route path="/SPRegistration" component={SPRegistration}/>
+							<Route path="/login" component={Login} handler={this.handler} pena={this.state.pena} />
+							<Route path="/SPlogin" component={SPLogin} handler={this.handler}/>
 							
-							<AuthRoute redirectToLogin="/assets/login" path="/assets/piilo" component={Piilo} />
-							<AuthRoute redirectToLogin="/assets/login" path="/assets/UserPage" component={UserPage}/>
-							<AuthRoute redirectToLogin="/assets/login" path="/assets/BookingPage" component={BookingPage}/>
-							<AuthRoute redirectToSPLogin="/assets/SPlogin" path="/assets/SPpage" component={UserPage}/>
+							<AuthRoute redirectToLogin="/login" path="/piilo" component={Piilo} />
+							<AuthRoute redirectToLogin="/login" path="/UserPage" component={UserPage}/>
+							<AuthRoute redirectToLogin="/login" path="/BookingPage" component={BookingPage}/>
+							<AuthRoute redirectToSPLogin="/SPlogin" path="/SPpage" component={UserPage}/>
 							//Auth Route
 							/*<Route component={RequireLogin} >
 								

@@ -60,7 +60,7 @@ export default class Login extends React.Component{
 				sp: true
 				})
 				console.log(this.state.name)
-				this.props.handler
+				
 
 			}else{
 
@@ -79,8 +79,8 @@ export default class Login extends React.Component{
 				  <app>
 
 			      <ul className="list-group">
-			      <li className="list-group-item"><Link to="/assets/UserPage"><button className="btn btn-default btn-small">oma sivu</button></Link>  </li>
-			      <li className="list-group-item"><Link to="/assets"><button className="btn btn-default btn-small">{strings.close}</button></Link>  </li>
+			      <li className="list-group-item"><Link to="/UserPage"><button className="btn btn-default btn-small">oma sivu</button></Link>  </li>
+			      <li className="list-group-item"><Link to="/"><button className="btn btn-default btn-small">{strings.close}</button></Link>  </li>
 
 			      </ul>
 
@@ -100,7 +100,7 @@ export default class Login extends React.Component{
       <Input label={strings.password} type="password" onChange={this.handlePass} />
       <li className="list-group-item"><button className="btn btn-success" onClick={this.handleLogin}>{strings.login}</button> </li>
 
-      <li className="list-group-item"><Link to="/assets"><button className="btn btn-default btn-small">{strings.close}</button></Link>  </li>
+      <li className="list-group-item"><Link to="/"><button className="btn btn-default btn-small">{strings.close}</button></Link>  </li>
 
       </ul>
 

@@ -33,7 +33,7 @@ export default class RequireLogin extends React.Component{
 		
 	if(!JSON.parse(localStorage.getItem('someSavedState')).user){
 		console.log(this.props)
-		this.props.history.push("/assets/login")
+		this.props.history.push("/login")
 		
 	}else {
 		
@@ -56,7 +56,7 @@ export default class RequireLogin extends React.Component{
 
 /*const requireLoggin = (nextState, replace)=>{
 	if (!user.isLogged()){
-		replace({path:'/assets/login'})
+		replace({path:'/login'})
 	}
 	
 }

@@ -120,8 +120,8 @@ export default class Login extends React.Component{
       <ul className="list-group">
        <Input label={strings.email} type="text" onChange={this.handleEmail} />
       <Input label={strings.password} type="password" onChange={this.handlePass} />
-      <li className="list-group-item"><button className="btn btn-success" onClick={this.handleLogin}>{strings.login}</button> <Link to="/assets/SPlogin"><button className="btn btn-success btn pull-right btn-sm">{strings.serveiceproviders}</button></Link> </li>
-      <li className="list-group-item"><Link to="/Registration" className="btn btn-primary">{strings.register}</Link> <Link to="/assets/SPRegistration" className="btn btn-primary btn pull-right btn-sm">{strings.serveiceproviders}</Link> </li>
+      <li className="list-group-item"><button className="btn btn-success" onClick={this.handleLogin}>{strings.login}</button> <Link to="/SPlogin"><button className="btn btn-success btn pull-right btn-sm">{strings.serveiceproviders}</button></Link> </li>
+      <li className="list-group-item"><Link to="/Registration" className="btn btn-primary">{strings.register}</Link> <Link to="/SPRegistration" className="btn btn-primary btn pull-right btn-sm">{strings.serveiceproviders}</Link> </li>
       <li className="list-group-item"><Link to="/" className="btn btn-default btn-small">{strings.close}</Link>  </li>
 
       </ul>
