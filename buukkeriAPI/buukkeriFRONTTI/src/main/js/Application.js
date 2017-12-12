@@ -34,6 +34,7 @@ export default class App extends React.Component {
 				this.setState({sports: data});
 
 		  });
+		  
 
 	  }
 		componentWillMount() {
@@ -58,9 +59,7 @@ export default class App extends React.Component {
 				data = JSON.parse(data);
 				this.setState({activities: data});
 
-
 		  });
-
 	  }
 	  render() {
 	    return (
@@ -68,7 +67,7 @@ export default class App extends React.Component {
 				<Header user={this.state.user} logout={this.logout} />
 	      <app id="app" className="Appcomponent">
 	      	<SportButton sportid={this.state.sportid} onClick={this.handleState} sports={this.state.sports}/>
-
+	      	
 	      	<Schedule activities={this.state.activities} / >
 	      </app>
 				<Footer />
@@ -89,6 +88,7 @@ export default class App extends React.Component {
 		//tähän toiminnalisuutta sitten
 		}
 	  render() {
+		 
 		 const availableActivities = this.props.activities.map((item)=> <li key={item.id} value={item.id} id="lists"  className="act-list"><a>{item.name}</a>{"	"+item.location+"		" + item.description}<Link to="/assets/BookingPage"><button onClick={this.onClick} className="btn btn-primary btn pull-right" >{strings.book}</button></Link> </li>)
 
 		 return (

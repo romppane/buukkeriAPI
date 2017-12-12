@@ -27,7 +27,7 @@ export default class Login extends React.Component{
 	    email: "",
 	    pass: "",
 			phone: "",
-			user:false
+			sp:false
 
     };
     this.handleEmail = this.handleEmail.bind(this);
@@ -57,7 +57,7 @@ export default class Login extends React.Component{
 				email: user.email,
 				pass: user.password,
 				phone: user.phone,
-				user: true
+				sp: true
 				})
 				console.log(this.state.name)
 				this.props.handler
@@ -72,7 +72,7 @@ export default class Login extends React.Component{
 		});
 	}
   render(){
-	  if(this.state.user){
+	  if(this.state.sp){
 		  return (
 				<main>
 				<Header user={this.state.user} />

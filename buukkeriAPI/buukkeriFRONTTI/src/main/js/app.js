@@ -7,8 +7,10 @@ const ReactDOM = require ('react-dom');
 
 import LocalizedStrings from 'react-localization';
 import {strings} from './LocalizationStrings';
+import Header from "./Header";
 import LogReg from "./Signin";
 import App from "./Application";
+import Footer from "./Footer";
 import Login from './LoginSivu';
 import NoMatch from './NoMatch';
 import Registration from './Registration';
@@ -78,18 +80,20 @@ import AuthRoute from "./Components/AuthRoute";
 	    		<Router>
 
 	    	    <main>
+	   
 							<Switch>
 
-							<Route exact path="/" component={App}/>
+							<Route exact path="/assets" component={App}/>
 
-							<Route path="/Registration" component={Registration}/>
-							<Route path="/SPRegistration" component={SPRegistration}/>
-							<Route path="/login" component={Login} handler={this.handler} pena={this.state.pena} />
+							<Route path="/assets/Registration" component={Registration}/>
+							<Route path="/assets/SPRegistration" component={SPRegistration}/>
+							<Route path="/assets/login" component={Login} handler={this.handler} pena={this.state.pena} />
 							<Route path="/assets/SPlogin" component={SPLogin} handler={this.handler}/>
 
-							<AuthRoute redirectToLogin="/login" path="/piilo" component={Piilo} />
-							<AuthRoute redirectToLogin="/login" path="/UserPage" component={UserPage}/>
-							<AuthRoute redirectToLogin="/login" path="/BookingPage" component={BookingPage}/>
+							<AuthRoute redirectToLogin="/assets/login" path="/assets/piilo" component={Piilo} />
+							<AuthRoute redirectToLogin="/assets/login" path="/assets/UserPage" component={UserPage}/>
+							<AuthRoute redirectToLogin="/assets/login" path="/assets/BookingPage" component={BookingPage}/>
+							<AuthRoute redirectToSPLogin="/assets/SPlogin" path="/assets/SPpage" component={UserPage}/>
 							//Auth Route
 							/*<Route component={RequireLogin} >
 
@@ -101,6 +105,8 @@ import AuthRoute from "./Components/AuthRoute";
 
 
 							</Switch>
+
+
 	    		 </main>
 
 	    	  </Router>
