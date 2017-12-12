@@ -33,14 +33,33 @@ export default class Login extends React.Component{
     this.handleEmail = this.handleEmail.bind(this);
     this.handlePass = this.handlePass.bind(this);
     this.handleLogin = this.handleLogin.bind(this);
-
+		this.logout = this.logout.bind(this);
   }
-
+	componentWillMount() {
+		const state = JSON.parse(localStorage.getItem('someSavedState'))
+			this.setState({id: state.id,
+			fname: state.fname,
+			lname: state.lname,
+			email: state.email,
+			pass: state.password,
+			phone: state.phone,
+			user: state.user
+			})
+}
+	logout(value){
+			this.setState({id: 0,
+			fname:"",
+			lname:"",
+	    email: "",
+	    pass: "",
+			phone: "",
+		  user: value
+		  })
+		}
 
 
 	componentWillUnmount() {
   localStorage.setItem('someSavedState', JSON.stringify(this.state))
-	console.log(JSON.stringify(this.state))
 	}
   handleEmail(value){
     this.setState({email: value})
@@ -52,17 +71,16 @@ export default class Login extends React.Component{
 		let promise = callBookker("users/"+this.state.email+"&"+this.state.pass).then((data)=>{
 			if(data!=""){
 				data = JSON.parse(data);
-				let user=data;
+				let state=data;
 				status="";
-				this.setState({id: user.id,
-				fname: user.fname,
-				lname: user.lname,
-				email: user.email,
-				pass: user.password,
-				phone: user.phone,
+				this.setState({id: state.id,
+				fname: state.fname,
+				lname: state.lname,
+				email: state.email,
+				pass: state.password,
+				phone: state.phone,
 				user: true
 				})
-				console.log(this.state.fname)
 				this.props.handler
 
 			}else{
@@ -78,7 +96,7 @@ export default class Login extends React.Component{
 	  if(this.state.user){
 		  return (
 				<main>
-				<Header user={this.state.user} />
+				<Header user={this.state.user} logout={this.logout} />
 				  <app>
 
 			      <ul className="list-group">
@@ -96,7 +114,7 @@ export default class Login extends React.Component{
 	  }
     return(
 			<main>
-			<Header user={this.state.user} />
+			<Header user={this.state.user} logout={this.logout} />
     	<app>
 
       <ul className="list-group">

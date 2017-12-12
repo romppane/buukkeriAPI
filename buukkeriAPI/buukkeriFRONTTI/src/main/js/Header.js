@@ -13,12 +13,29 @@ export default class Header extends React.Component {
 	{
 		super(props);
 		this.state={
-
+			id: 0,
+			fname:"",
+			lname:"",
+	    email: "",
+	    pass: "",
+			phone: "",
 			user:false
 		}
+		this.logout = this.logout.bind(this);
 	}
 componentWillReceiveProps(nextProps){
 	this.setState({user:nextProps.user});
+}
+logout(){
+	this.props.logout(false);
+	this.setState({id: 0,
+	fname:"",
+	lname:"",
+	email: "",
+	pass: "",
+	phone: "",
+	user:false});
+	localStorage.setItem('someSavedState', JSON.stringify(this.state))
 }
 	  render() {
 
@@ -29,7 +46,7 @@ componentWillReceiveProps(nextProps){
 			<Link to="/">
 				<img src="/src/main/img/vapaatvuorot.png" alt="Vapaatvuorot.fi" className="logo"></img>
 			</Link>
-			<button className="btn btn-danger btn-lg">{strings.logout}</button>
+			<button className="btn btn-danger btn-lg" onClick={this.logout} >{strings.logout}</button>
 			<Link className="btn btn-success btn-lg" to="/UserPage">{strings.profile}</Link>
 			<Language />
 
@@ -43,7 +60,7 @@ componentWillReceiveProps(nextProps){
 					<img src="/src/main/img/vapaatvuorot.png" alt="Vapaatvuorot.fi" className="logo"></img>
 				</Link>
 				<Link className="btn btn-success btn-lg" to="/login">{strings.login}</Link>
-				<Link className="btn btn-success btn-lg" to="/UserPage">{strings.profile}</Link>
+				<Link className="btn btn-success btn-lg" to="/Registration">{strings.register}</Link>
 				<Language />
 
 				</header>
