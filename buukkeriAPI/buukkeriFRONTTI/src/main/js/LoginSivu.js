@@ -59,7 +59,7 @@ export default class Login extends React.Component{
 				  })
 				  console.log(user.sp)
 		  }
-
+		 
 }
 	logout(value){
 			this.setState({id: 0,
