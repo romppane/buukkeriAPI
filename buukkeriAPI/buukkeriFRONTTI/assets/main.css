@@ -1,7 +1,58 @@
+/*setting grid grid*/
+main{
+  background-color: none;
+
+  display: grid;
+  width: 100%;
+  height: 100%;
+  margin-right:auto;
+  margin-left:auto;
+
+  /*assaigning grid roles*/
+  grid-template-rows: auto;
+  grid-template-columns: 10% 40% 40% 10%;
+  grid-template-areas:
+    "header header header language"
+    "appisleft appis appis appisrigth"
+    "footer footer  footer footer ";
+}
+
+header{
+  grid-area: header;
+  /*background-color: #F50057 ;*/
+}
+
+footer{
+  grid-area: footer ;
+  margin-right:auto;
+  margin-left:auto;
+  margin-bottom: 0;
+  /*background-color: #0288D1 ;*/
+}
+
+input{
+	border-radius: 10px;
+
+}
+
+signin{
+  grid-area: signin;
+  display: inline-flex;
+  height: 50px;
+}
+
+app{
+  grid-area: appis;
+}
+
 
 .language{
-  margin-right: 10;
-  display:inline;
+  grid-area: language;
+}
+
+.flag{
+  width: 30px;
+  margin: 10px;
 }
 
 .logo{
@@ -17,84 +68,8 @@
 
 .btn-group{
   color: grey;
+  margin-top: 0;
 }
-
-/*setting grid grid*/
-main{
-  background-color: none;
-
-  display: grid;
-  width: 100%;
-  height: 100%;
-  margin-right:auto;
-  margin-left:auto;
-
-  /*assaigning grid roles*/
-  grid-template-rows: 150px auto 60px;
-  grid-template-columns: 1fr auto auto 1fr;
-  grid-template-areas:
-    "appisleft header signin appisright"
-    "appisleft appis appis appisrigth"
-    "footer footer  footer footer ";
-}
-
-
-
-header{
-  grid-area: header;
-  /*background-color: #F50057 ;*/
-  padding-top: 5%;
-  padding-left: 10%;
-  padding-right: 5%;
-
-}
-
-signin{
-  grid-area: signin ;
-  display: inline-flex;
-  height: 50px;
-
-  /*background-color: #64DD17 ;*/
-
-}
-
-app{
-  grid-area: appis ;
-
-  padding:10%;
-}
-
-footer{
-  grid-area: footer ;
-  margin-right:auto;
-  margin-left:auto;
-  /*background-color: #0288D1 ;*/
-}
-
-
-#headerlink{
-  font-family: fantasy;
-  color:#B0BEC5;
-
-}
-#buttongroup{
-	margin-right: 
-
-}
-#button{
-  border-radius: 20px;
-  width: 25%;
-  height: 80px;
-  margin:4%;
-  white-space:normal;
-  font-size: 10px;
-
-  word-wrap: break-word;
-  padding:0;
-
-
-}
-
 
 .modal.visible{
   display:inline;
@@ -112,15 +87,36 @@ footer{
   border:solid 1px #ddd;
   box-shadow: 0 0 2px rgba(0,0,0,.17),0 0 3px rgba(0,0,0,.2);
 }
+
 .modal.hidden{
   display:none;
 }
 
-#form-submit-data{
-	display:inline;
+#headerlink{
+  font-family: fantasy;
+  color:#B0BEC5;
+
+}
+#buttongroup{
+  margin-top: 5%;
+  width: 100%;
 }
 
-input{
-	border-radius: 10px;
+#button{
+  border-radius: 20px;
+  width: 30%;
+  height: 80px;
+  margin:1.655%;
+  white-space:normal;
+  font-size: 14px;
+  word-wrap: break-word;
+  padding:0;
+}
 
+#btn{
+  font-size: 14px;
+}
+
+#form-submit-data{
+	display:inline;
 }

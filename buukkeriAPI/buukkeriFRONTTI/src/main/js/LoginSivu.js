@@ -5,6 +5,7 @@ import {strings} from "./LocalizationStrings";
 import Registration from "./Registration";
 import Header from "./Header";
 import Footer from "./Footer";
+import Language from './Language';
 //import RequireLogin from "./RequireLogin";
 
 import UserPage from './UserPage';
@@ -97,24 +98,21 @@ export default class Login extends React.Component{
 		  return (
 				<main>
 				<Header user={this.state.user} logout={this.logout} />
+				<Language />
 				  <app>
-
 			      <ul className="list-group">
-			      <li className="list-group-item"><Link className="btn btn-default btn-small" to="/UserPage">oma sivu</Link>  </li>
-			      <li className="list-group-item"><Link className="btn btn-default btn-small" to="/">{strings.close}</Link>  </li>
-
+			      	<li className="list-group-item"><Link className="btn btn-default btn-small" to="/UserPage">oma sivu</Link>  </li>
+			      	<li className="list-group-item"><Link className="btn btn-default btn-small" to="/">{strings.close}</Link>  </li>
 			      </ul>
-
-
-
 			    </app>
 					<Footer />
-					</main>
+				</main>
 		  )
 	  }
     return(
 			<main>
 			<Header user={this.state.user} logout={this.logout} />
+			<Language />
     	<app>
 
       <ul className="list-group">

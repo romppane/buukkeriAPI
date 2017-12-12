@@ -50,16 +50,7 @@ import AuthRoute from "./Components/AuthRoute";
 			this.handler = this.handler.bind(this)
 
 		}
-		componentDidMount(){
-			this.state.user = JSON.parse(localStorage.getItem('someSavedState'));
 
-			if(this.state.user.user==true){
-				this.setState({loginbtntext: strings.logout, loginbtncolor: "btn-warning"});
-			}else{
-				this.setState({loginbtntext: strings.login, loginbtncolor: "btn-success"});
-			}
-
-		}
 
 
 		handler() {
@@ -79,18 +70,16 @@ import AuthRoute from "./Components/AuthRoute";
 	    return (
 	    		<Router>
 
-	    	    <main>
-	   
 							<Switch>
 
-							
+
 							<Route exact path="/" component={App}/>
-	
+
 							<Route path="/Registration" component={Registration}/>
 							<Route path="/SPRegistration" component={SPRegistration}/>
 							<Route path="/login" component={Login} handler={this.handler} pena={this.state.pena} />
 							<Route path="/SPlogin" component={SPLogin} handler={this.handler}/>
-							
+
 							<AuthRoute redirectToLogin="/login" path="/piilo" component={Piilo} />
 							<AuthRoute redirectToLogin="/login" path="/UserPage" component={UserPage}/>
 							<AuthRoute redirectToLogin="/login" path="/BookingPage" component={BookingPage}/>
@@ -108,8 +97,6 @@ import AuthRoute from "./Components/AuthRoute";
 
 							</Switch>
 
-
-	    		 </main>
 
 	    	  </Router>
 

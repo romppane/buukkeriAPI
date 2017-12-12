@@ -48,7 +48,6 @@ logout(){
 			</Link>
 			<button className="btn btn-danger btn-lg" onClick={this.logout} >{strings.logout}</button>
 			<Link className="btn btn-success btn-lg" to="/UserPage">{strings.profile}</Link>
-			<Language />
 
 			</header>
 			)	;
@@ -61,7 +60,6 @@ logout(){
 				</Link>
 				<Link className="btn btn-success btn-lg" to="/login">{strings.login}</Link>
 				<Link className="btn btn-success btn-lg" to="/Registration">{strings.register}</Link>
-				<Language />
 
 				</header>
 	    );

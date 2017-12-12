@@ -1,6 +1,7 @@
 import SportButton from './Components/SportButton';
 import {callBookker} from "./ajaxGet";
 import Header from "./Header";
+import Language from './Language';
 import Footer from "./Footer";
 import {
 	  BrowserRouter as Router,
@@ -34,21 +35,16 @@ export default class App extends React.Component {
 				this.setState({sports: data});
 
 		  });
-		  
+
 
 	  }
-		componentWillMount() {
-			const state = JSON.parse(localStorage.getItem('someSavedState'))
-				this.setState({
-				user: state.user
-				})
-		}
+
 		componentWillUnmount() {
 	  localStorage.setItem('someSavedState', JSON.stringify(this.state))
 		}
 		logout(value){
 				this.setState({
-			  user: value
+			  user:value
 			  })
 		}
 
@@ -65,9 +61,9 @@ export default class App extends React.Component {
 	    return (
 				<main>
 				<Header user={this.state.user} logout={this.logout} />
+				<Language />
 	      <app id="app" className="Appcomponent">
 	      	<SportButton sportid={this.state.sportid} onClick={this.handleState} sports={this.state.sports}/>
-	      	
 	      	<Schedule activities={this.state.activities} / >
 	      </app>
 				<Footer />
@@ -88,8 +84,8 @@ export default class App extends React.Component {
 		//tähän toiminnalisuutta sitten
 		}
 	  render() {
-		 
-		 const availableActivities = this.props.activities.map((item)=> <li key={item.id} value={item.id} id="lists"  className="act-list"><a>{item.name}</a>{"	"+item.location+"		" + item.description}<Link to="/assets/BookingPage"><button onClick={this.onClick} className="btn btn-primary btn pull-right" >{strings.book}</button></Link> </li>)
+
+		 const availableActivities = this.props.activities.map((item)=> <li key={item.id} value={item.id} id="lists"  className="act-list"><a>{item.name}</a>{"	"+item.location+"		" + item.description}<Link to="/BookingPage"><button onClick={this.onClick} className="btn btn-primary btn pull-right" >{strings.book}</button></Link> </li>)
 
 		 return (
 	        <div id='x' className="">

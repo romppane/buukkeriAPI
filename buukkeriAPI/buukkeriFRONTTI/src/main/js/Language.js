@@ -30,9 +30,9 @@ export default class Language extends React.Component {
   }
   render() {
     return(
-      <div className="btn-group">
-        <button type="button" className="btn btn-default" onClick={this.handleFIN}>FIN</button>
-        <button type="button" className="btn btn-default" onClick={this.handleEN}>ENG</button>
+      <div className="language">
+        <img src="/src/main/img/finland.png" alt="FI" className="flag" onClick={this.handleFIN}></img>
+        <img src="/src/main/img/united-kingdom.png" alt="FI" className="flag" onClick={this.handleEN}></img>
       </div>
     );
   }
