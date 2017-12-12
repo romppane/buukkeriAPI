@@ -21,16 +21,20 @@ export default class BookingPage extends React.Component{
 		super(props)
 		this.state={
 				user:false,
+				sp: false,
 				shifts: [],
-				act:[]
+				act:[],
+				id:0
 		};
 		this.logout=this.logout.bind(this);
 	}
 	componentWillMount() {
 		const state = JSON.parse(localStorage.getItem('someSavedState'))
 			this.setState({
-			user: state.user
+			user: state.user,
+			id:state.id
 			})
+			console.log(state)
 			let data=[];
 			callBookker("/shifts/actid="+parseInt(this.props.match.params.id)).then((data)=>{
 				data = JSON.parse(data);
@@ -49,18 +53,21 @@ export default class BookingPage extends React.Component{
 			user: value
 			})
 	}
+	bookshift(e){
+
+	}
 	render(){
 		const availableshifts = this.state.shifts.map((item)=>
 		 <li key={item.id} value={item.id} id="lists"  className="list-group-item">
 		{strings.shifttime}:{item.shift_time} {strings.shiftdate}:{item.shift_date} {strings.price}:{item.price}€
-		<Link className="btn btn-primary btn pull-right btn-sm" to="/">
-		{strings.book}</Link> </li>)
+		<button className="btn btn-primary btn pull-right btn-sm">
+		{strings.book}</button> </li>)
 
 
 
 		return(
 			<main>
-			<Header user={this.state.user} logout={this.logout} />
+			<Header sp={this.state.sp} user={this.state.user} logout={this.logout} />
 		<app>
 		<h3>{this.state.act.name}</h3>
 		<p>{this.state.act.location}</p>
