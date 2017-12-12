@@ -9,6 +9,9 @@ import {
 import LocalizedStrings from 'react-localization';
 import {strings} from './LocalizationStrings';
 import {callBookker} from "./ajaxGet";
+import Header from "./Header";
+import Footer from "./Footer";
+
 export default class UserPage extends React.Component{
 	constructor(props){
 	    super(props);
@@ -20,35 +23,47 @@ export default class UserPage extends React.Component{
 		    pass: "",
 				phone: "",
 				user:false,
-				
+
 	    };
 	    this.getData=this.getData.bind(this);
+			this.logout=this.logout.bind(this);
 	}
 	  componentWillMount() {
-	  const user = JSON.parse(localStorage.getItem('someSavedState'))
-	  this.setState({id: user.id,
-	  fname: user.fname,
-	  lname: user.lname,
-	  email: user.email,
-	  pass: user.password,
-	  phone: user.phone,
-	  user: true
+	  const state = JSON.parse(localStorage.getItem('someSavedState'))
+	  this.setState({id: state.id,
+	  fname: state.fname,
+	  lname: state.lname,
+	  email: state.email,
+	  pass: state.password,
+	  phone: state.phone,
+	  user: state.user
 	  })
-		console.log(user)
 		//With this we get the shifts that user has
 		let promise = callBookker("shifts/user_id="+this.state.id).then((data)=>{
 			 if(data!=""){
 				 data=JSON.parse(data);
-				 console.log(data)
 			 }
 		 })
-		
 	}
+		componentWillUnmount() {
+	  localStorage.setItem('someSavedState', JSON.stringify(this.state))
+		}
+
+		logout(value){
+				this.setState({
+			  user: value
+			  })
+		}
+
+
+
 	  getData(id){
-		 
+
 	  }
 	render(){
 		return(
+			<main>
+			<Header user={this.state.user} logout={this.logout} />
 			<app>
 		      <ul className="list-group">
 			<li className="list-group-item">{this.state.fname}</li>
@@ -59,6 +74,8 @@ export default class UserPage extends React.Component{
 			</ul>
 
 			</app>
+			<Footer />
+			</main>
 
 		)
 	}

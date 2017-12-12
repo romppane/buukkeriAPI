@@ -15,6 +15,8 @@ import {
 	let passconfStatus="";
 	let emailStatus="";
 	let telStatus="";
+	let pass="";
+	let passconf="";
 export default class Registration extends React.Component{
 	  constructor(props){
 	    super(props);
@@ -47,20 +49,24 @@ export default class Registration extends React.Component{
 	  }
 	  handleEmail(value){
 		  this.setState({email: value})
-			if( /^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/.test(this.state.email) ==false) {
-			  emailStatus=trings.errdialcheckemail;
-		  }
+			if( /^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/.test(value) ==false) {
+			  emailStatus=strings.errdialcheckemail;
+		  }else{
+				emailStatus="";
+			}
 
 	  }
 	  handlePhone(value){
 		  this.setState({phone: value})
-			if(/^\d{10}$/.test(this.state.phone)==false){
+			if(/^\d{10}$/.test(value)==false){
 			  telStatus=strings.errdialcheckphone;
+			}else{
+				telStatus="";
 			}
 	  }
 	  handlePassword(value){
-		  this.setState({password: value})
-			if(/^[a-zA-Z0-9!@#$%^&*]{6,16}$/.test(this.state.password)==false){
+		  this.setState({password: value},)
+			if(/^[a-zA-Z0-9!@#$%^&*]{6,16}$/.test(value)==false){
 				passStatus=strings.tooshort;
 		  }else{
 				passStatus="";
@@ -68,14 +74,16 @@ export default class Registration extends React.Component{
 	  }
 	  handlePasswordConfirm(value){
 		  this.setState({passwordconfirmation: value})
-			if(this.state.password != this.state.passwordconfirmation){
+			if(this.state.password != value){
 			  passconfStatus=strings.errdialpasswdmatch;
-		  }
+
+		  }else{
+				passconfStatus="";
+			}
 	  }
 
 
 	  handleSubmit(){
-
 		  if(this.state.fname == ""
 			  || this.state.lname == ""
 				  || this.state.email == ""
@@ -83,11 +91,15 @@ export default class Registration extends React.Component{
 						  || this.state.password == ""
 							 || this.state.passworconfirmation =="" ){
 			  alert(strings.errdialfillall);
-		  }
-
-
-
-		  else{
+		  }else if( /^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/.test(this.state.email) ==false) {
+				console.log(1)
+			}else if(/^\d{10}$/.test(this.state.phone)==false){
+				console.log(2)
+			}else if(/^[a-zA-Z0-9!@#$%^&*]{6,16}$/.test(this.state.password)==false){
+				console.log(3)
+			}else if(this.state.password !== this.state.passwordconfirmation){
+				console.log(4)
+			}else{
 		  let user = {
 				  fname : this.state.fname,
 				  lname : this.state.lname,
@@ -99,6 +111,7 @@ export default class Registration extends React.Component{
 		  console.log(user.password)
 		  console.log(JSON.stringify(user))
 		  callUser("POST","users/",JSON.stringify(user)).then((response)=>{
+				console.log(response)
 			  if(response == "true"){
 				  this.setState({success: "true"})
 			  }
@@ -134,7 +147,7 @@ render(){
 					<Input label={strings.telnum} type="text" onChange={this.handlePhone} status={telStatus}/>
 					<Input label={strings.password} type="password" onChange={this.handlePassword} status={passStatus} />
 					<Input label={strings.confirm} type="password" onChange={this.handlePasswordConfirm} status={passconfStatus} />
-					<li className="list-group-item"><button className="btn btn-success btn-block">{strings.submit}</button></li>
+					<li className="list-group-item"><button className="btn btn-success btn-block" onClick={this.handleSubmit} >{strings.submit}</button></li>
 		      </ul>
 		   </app>
 			 <Footer />
