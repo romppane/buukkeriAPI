@@ -42,10 +42,11 @@ logout(){
 			if (this.state.user){
 			return(
 				<header>
-
+				
 			<Link to="/">
 				<img src="/src/main/img/vapaatvuorot.png" alt="Vapaatvuorot.fi" className="logo"></img>
 			</Link>
+			
 			<button className="btn btn-danger btn-lg" onClick={this.logout} >{strings.logout}</button>
 			<Link className="btn btn-success btn-lg" to="/UserPage">{strings.profile}</Link>
 			<Language />
