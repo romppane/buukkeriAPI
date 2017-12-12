@@ -63,6 +63,17 @@ public class SPTests {
 				"555-5555555", sp.getPhone());
 		assertEquals("readSP(): Password is not correct.",
 				"passu555", sp.getPassword());
+		SP_IF[] sps = null;
+		SP_IF tempsp = null;
+		assertTrue("readSPs(): Reading all Serice Providers returned empty set", (sps = spDAO.readSPs()).length> 0);
+		System.out.println(sps.length);
+		for (int i = 0; i<sps.length; i++) {
+			if(sps[i].getEmail().equals(sp.getEmail())) {
+				tempsp = sps[i];
+				System.out.println("SP Found");
+			}
+		}
+		assertEquals("readSPs(): Reading all Service Providers has wrong information in them", tempsp.getId(), sp.getId());
 	}
 	
 	@Test
