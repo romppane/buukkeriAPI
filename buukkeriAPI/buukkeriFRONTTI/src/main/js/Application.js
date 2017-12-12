@@ -41,11 +41,15 @@ export default class App extends React.Component {
 		componentWillMount() {
 			const state = JSON.parse(localStorage.getItem('someSavedState'))
 
+			if(state != null) {
 				this.setState({
-				user: state.user
+					user: state.user
 
-				})
-				console.log(state.user)
+					})
+					console.log(state.user)
+			}
+				
+				
 		}
 		componentWillUnmount() {
 	  localStorage.setItem('someSavedState', JSON.stringify(this.state))
