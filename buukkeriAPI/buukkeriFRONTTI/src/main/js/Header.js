@@ -19,7 +19,8 @@ export default class Header extends React.Component {
 	    email: "",
 	    pass: "",
 			phone: "",
-			user:false
+			user:false,
+			sp: false,
 		}
 		this.logout = this.logout.bind(this);
 	}
@@ -34,12 +35,14 @@ logout(){
 	email: "",
 	pass: "",
 	phone: "",
+	sp:false,
 	user:false});
+	l
 	localStorage.setItem('someSavedState', JSON.stringify(this.state))
 }
 	  render() {
 
-			if (this.state.user){
+			if (this.state.user || this.state.sp){
 			return(
 				<header>
 

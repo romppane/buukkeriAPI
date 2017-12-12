@@ -12,10 +12,13 @@ import {callBookker} from "./ajaxGet";
 import Header from "./Header";
 import Footer from "./Footer";
 import Input from "./Components/Input";
+import {userCheck} from "./userCheck";
+
 export default class UserPage extends React.Component{
 	constructor(props){
 	    super(props);
 	    this.state = {
+	    		userObject:{},
 				id: 0,
 				name: "",
 				fname:"",
@@ -40,38 +43,27 @@ export default class UserPage extends React.Component{
 		this.handleDescription=this.handleDescription.bind(this);
 	}
 	  componentWillMount() {
-
+		  
+		  
+		  
 	  const user = JSON.parse(localStorage.getItem('someSavedState'))
-	  if(user.user){
-	  this.setState({id: user.id,
-	  fname: user.fname,
-	  lname: user.lname,
-	  email: user.email,
-	  pass: user.password,
-	  phone: user.phone,
-	  user: user.user
-	  })
-		console.log(user.user)
-	  }else if (user.sp){
-		  this.setState({id: user.id,
-			  name: user.name,
-			  email: user.email,
-			  pass: user.password,
-			  phone: user.phone,
-			  sp: user.sp
-
-			  })
-			  console.log(user.sp)
-	  }
-
-	  if(this.state.user){
+	 
+	 console.log(userCheck(user));
+	  this.setState({userObject: userCheck(user)})
+	  
+	
+	  
+	  
+	  
+	  
+	  if(this.state.userObject.user){
 		  	let userShifts = callBookker("shifts/user_id="+this.state.id).then((data)=>{
 		   			 if(data!=""){
 		   				 data=JSON.parse(data);
 		  				 
 		   			 }
 		   		 });
-	  }else if(this.state.sp) {
+	  }else if(this.state.userObject.sp) {
 			 let spActs = callBookker("act/spid="+this.state.id).then((data)=>{
 				 if(data!=""){
 	   				 data=JSON.parse(data);
@@ -109,16 +101,16 @@ export default class UserPage extends React.Component{
 	render(){
 		console.log(this.state.fname)
 		
-		if(this.state.user){
+		if(this.state.userObject.user){
 		return(
 			<main>
-			<Header user={this.state.user} logout={this.logout} />
+			<Header sp={this.state.sp} user={this.state.user} logout={this.logout} />
 			<app>
 		      <ul className="list-group">
-			<li className="list-group-item">{this.state.fname}</li>
-			<li className="list-group-item">{this.state.lname}</li>
-			<li className="list-group-item">{this.state.email}</li>
-			<li className="list-group-item">{this.state.phone}</li>
+			<li className="list-group-item">{this.state.userObject.fname}</li>
+			<li className="list-group-item">{this.state.userObject.lname}</li>
+			<li className="list-group-item">{this.state.userObject.email}</li>
+			<li className="list-group-item">{this.state.userObject.phone}</li>
 			<li className="list-group-item">{}</li>
 			</ul>
 
@@ -126,16 +118,16 @@ export default class UserPage extends React.Component{
 			</app>
 			</main>
 		)
-		}else if(this.state.sp){
+		}else if(this.state.userObject.sp){
 			return(
 			<main>
 			<Header user={this.state.user} logout={this.logout} />
 			<app>
 		      <ul className="list-group">
-			<li className="list-group-item">{this.state.name}</li>
+			<li className="list-group-item">{this.state.userObject.name}</li>
 			<li className="list-group-item"></li>
-			<li className="list-group-item">{this.state.email}</li>
-			<li className="list-group-item">{this.state.phone}</li>
+			<li className="list-group-item">{this.state.userObject.email}</li>
+			<li className="list-group-item">{this.state.userObject.phone}</li>
 			<li className="list-group-item"><label>{strings.addactivity}</label></li>
 			 		
 			<Input label={strings.activityname} type="text" onChange={this.handleName} />
