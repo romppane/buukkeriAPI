@@ -11,7 +11,7 @@ import {strings} from './LocalizationStrings';
 import {callBookker} from "./ajaxGet";
 import Header from "./Header";
 import Footer from "./Footer";
-
+import Input from "./Components/Input";
 export default class UserPage extends React.Component{
 	constructor(props){
 	    super(props);
@@ -25,10 +25,19 @@ export default class UserPage extends React.Component{
 				phone: "",
 				user:false,
 				sp: false,
-
+				actid: "",
+				actname:"",
+				actspid:"",
+				actlocation: "",
+				actDescription: "",
+				actsportid: "",
 	    };
 	    this.getData=this.getData.bind(this);
-			this.logout=this.logout.bind(this);
+		this.logout=this.logout.bind(this);
+		this.handleSubmit=this.handleSubmit.bind(this);
+		this.handleLocation=this.handleLocation.bind(this);
+		this.handleDescription=this.handleDescription.bind(this);
+		this.handleDescription=this.handleDescription.bind(this);
 	}
 	  componentWillMount() {
 
@@ -49,18 +58,26 @@ export default class UserPage extends React.Component{
 			  email: user.email,
 			  pass: user.password,
 			  phone: user.phone,
-			  sp: true
+			  sp: user.sp
 
 			  })
 			  console.log(user.sp)
 	  }
 
-		//With this we get the shifts that user has
-		let promise = callBookker("shifts/user_id="+this.state.id).then((data)=>{
-			 if(data!=""){
-				 data=JSON.parse(data);
-			 }
-		 })
+	  if(this.state.user){
+		  	let userShifts = callBookker("shifts/user_id="+this.state.id).then((data)=>{
+		   			 if(data!=""){
+		   				 data=JSON.parse(data);
+		  				 
+		   			 }
+		   		 });
+	  }else if(this.state.sp) {
+			 let spActs = callBookker("act/spid="+this.state.id).then((data)=>{
+				 if(data!=""){
+	   				 data=JSON.parse(data);
+	   			 }
+			 });
+	  }
 	}
 		componentWillUnmount() {
 	  localStorage.setItem('someSavedState', JSON.stringify(this.state))
@@ -71,13 +88,27 @@ export default class UserPage extends React.Component{
 			  user: value
 			  })
 		}
-
+		handleName(){
+			 			
+		}
+		handleSubmit(){
+			 			
+		}
+			 		
+		handleLocation(){
+			 			
+		}
+		handleDescription(){
+				
+		}
 
 
 	  getData(id){
 
 	  }
 	render(){
+		console.log(this.state.fname)
+		
 		if(this.state.user){
 		return(
 			<main>
@@ -105,9 +136,16 @@ export default class UserPage extends React.Component{
 			<li className="list-group-item"></li>
 			<li className="list-group-item">{this.state.email}</li>
 			<li className="list-group-item">{this.state.phone}</li>
-			<li className="list-group-item"></li>
-			</ul>
-
+			<li className="list-group-item"><label>{strings.addactivity}</label></li>
+			 		
+			<Input label={strings.activityname} type="text" onChange={this.handleName} />
+		 	<Input label={strings.location} type="text" onChange={this.handleLocation}  />
+		 	<Input label={strings.location} type="radio" onChange={this.handleLocation} value="1" />
+		 	<li className="list-group-item"><label>{strings.description}</label></li>			 	<li className="list-group-item"><textarea onChange={this.handleDescription}></textarea></li>
+			<li className="list-group-item"><button className="btn btn-success btn-block"  onClick={this.handleSubmit}>{strings.submit}</button></li>
+			 		
+			  			</ul>
+			
 
 			</app>
 			<Footer />

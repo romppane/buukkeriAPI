@@ -21,7 +21,7 @@ export default class Input extends React.Component {
 	    return (
           <li className="list-group-item">
           <label style={styles}>{this.props.label}</label>
-          <input key="name" type={this.props.type}onChange={this.onChange} style={styles} ></input>
+          <input key="name" type={this.props.type}onChange={this.onChange} style={styles}placeholder={this.props.placeholder} value={this.props.value} ></input>
           <label style={styles}>{this.props.status}</label>
           </li>
 	    );

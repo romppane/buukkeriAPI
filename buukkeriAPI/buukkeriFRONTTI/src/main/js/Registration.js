@@ -128,7 +128,7 @@ render(){
 		 <app>
 	      <ul className="list-group">
 	      <li className="list-group-item"><h1>{strings.regsuccess +""+ this.state.fname} </h1></li>
-	      <li className="list-group-item"><Link to="/assets/login"><button className="btn btn-success btn-block">{strings.tologin}</button></Link>  </li>
+	      <li className="list-group-item"><Link to="/login"><button className="btn btn-success btn-block">{strings.tologin}</button></Link>  </li>
 	      </ul>
 	     </app>
 			 <Footer />
