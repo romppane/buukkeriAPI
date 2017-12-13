@@ -7,6 +7,11 @@ import main.dao.ShiftDAO;
 import main.entity.Shift;
 import main.entity.Shift_IF;
 
+/**
+ * Routes the REST api calls made to ShiftController to ShiftDAO.
+ * @author Ville
+ *
+ */
 @Service
 public class ShiftService {
 

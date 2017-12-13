@@ -2,7 +2,7 @@ package main.entity;
 /**
  * Activity Object
  * @author Roni, Tommi, Marika, Ville
- *
+ * 
  */
 
 public class Activity implements Activity_IF{

@@ -8,9 +8,22 @@ import org.springframework.stereotype.Repository;
 
 import main.entity.Sport;
 import main.entity.Sport_IF;
+
+/**
+ * This class consists of CRUD methods for Sport class objects.
+ * Class is a subclass of an abstract DAO.
+ * 
+ * 
+ * @author Roni, Ville
+ *
+ */
 @Repository
 public class SportDAO extends DAO implements SportDAO_IF {
 
+	/**
+	 * Fetches all the Sports categories from the database.
+	 * @return Sport_IF[] with all the Sports categories in the database.
+	 */
 	@Override
 	public Sport_IF[] getSports() {
 		ArrayList<Sport_IF> sports = new ArrayList();
@@ -49,7 +62,14 @@ public class SportDAO extends DAO implements SportDAO_IF {
 		Sport[] palautus = new Sport[sports.size()];
 		return (Sport_IF[])sports.toArray(palautus);
 	}
+	
+	
 
+	/**
+	 * Creates an Sport object to the database by inserting the object without an ID.
+	 * @param sport the Sport to be added to the database.
+	 * @return true if the Sport was successfully added to the database, false if something went wrong.
+	 */
 	@Override
 	public boolean newsport(Sport_IF sport) {
 		PreparedStatement myStatement = null;
@@ -81,6 +101,11 @@ public class SportDAO extends DAO implements SportDAO_IF {
 		}
 	}
 
+	/**
+	 * Deletes an existing Sport by comparing the name between the object and database data.
+	 * @param sport the Sport to be removed.
+	 * @return true if the Sport was successfully removed, false if something went wrong.
+	 */
 	@Override
 	public boolean delsport(Sport_IF sport) {
 		PreparedStatement myStatement = null;

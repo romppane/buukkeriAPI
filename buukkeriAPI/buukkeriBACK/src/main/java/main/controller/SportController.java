@@ -12,6 +12,11 @@ import main.entity.Sport;
 import main.entity.Sport_IF;
 import main.service.SportService;
 
+/**
+ * Controls the received REST API calls made for Sports and maps them forward to service layer.
+ * @author Ville
+ *
+ */
 @RestController
 @RequestMapping("/sports")
 public class SportController {
