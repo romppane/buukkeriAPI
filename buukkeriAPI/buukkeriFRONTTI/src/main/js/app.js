@@ -78,7 +78,7 @@ import AuthRoute from "./Components/AuthRoute";
 
 							<AuthRoute redirectToLogin="/login" path="/piilo" component={Piilo} />
 							<AuthRoute redirectToLogin="/login" path="/UserPage" component={UserPage}/>
-							<AuthRoute redirectToLogin="/login" path="/BookingPage" component={BookingPage}/>
+							<AuthRoute redirectToLogin="/login" path="/Booking:id" component={BookingPage}/>
 							<AuthRoute redirectToSPLogin="/SPlogin" path="/SPpage" component={UserPage}/>
 
 							//Auth Route
