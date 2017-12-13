@@ -1,7 +1,6 @@
 const React = require ('react');
 import {strings} from "./LocalizationStrings";
 import { Link } from 'react-router-dom';
-import Language from './Language';
 
 
 
@@ -40,27 +39,26 @@ logout(){
 
 			if (this.state.user || this.state.sp){
 			return(
-				<header>
-
-			<Link to="/">
-				<img src="/src/main/img/vapaatvuorot.png" alt="Vapaatvuorot.fi" className="logo"></img>
-			</Link>
-
-			<button className="btn btn-danger btn-lg" onClick={this.logout} >{strings.logout}</button>
-			<Link className="btn btn-success btn-lg" to="/UserPage">{strings.profile}</Link>
-
+			<header>
+				<Link to="/" className="logoarea">
+					<img src="/src/main/img/vapaatvuorot.png" alt="Vapaatvuorot.fi" className="logo"></img>
+				</Link>
+				<div className="loginarea">
+					<Link className="btn btn-lg btn-logout" onClick={this.logout} >{strings.logout}</Link>
+					<Link className="btn btn-lg btn-user" to="/UserPage">{strings.profile}</Link>
+				</div>
 			</header>
 			)	;
 			}else{
 	    return (
-	    		<header>
-
-				<Link to="/">
-					<img src="/src/main/img/vapaatvuorot.png" alt="Vapaatvuorot.fi" className="logo"></img>
-				</Link>
-				<Link className="btn btn-success btn-lg" to="/login">{strings.login}</Link>
-				<Link className="btn btn-success btn-lg" to="/Registration">{strings.register}</Link>
-
+	    	<header>
+					<Link to="/" className="logoarea">
+						<img src="/src/main/img/vapaatvuorot.png" alt="Vapaatvuorot.fi" className="logo"></img>
+					</Link>
+					<div className="loginarea">
+						<Link className="btn btn-lg" to="/login">{strings.login}</Link>
+						<Link className="btn btn-rg" to="/Registration">{strings.register}</Link>
+					</div>
 				</header>
 	    );
 		}

@@ -4,7 +4,6 @@ const ReactDOM = require ('react-dom');
 import LocalizedStrings from 'react-localization';
 import {strings} from './LocalizationStrings';
 import Header from "./Header";
-import LogReg from "./Signin";
 import App from "./Application";
 import Footer from "./Footer";
 import Login from './LoginSivu';
@@ -14,7 +13,6 @@ import Language from './Language';
 import Piilo from './Piilo';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import BookingPage from './BookingPage';
-import RequireLogin from './RequireLogin';
 import UserPage from './UserPage';
 import {
 	  HashRouter as Router,
@@ -81,11 +79,6 @@ import AuthRoute from "./Components/AuthRoute";
 							<AuthRoute redirectToLogin="/login" path="/Booking:id" component={BookingPage}/>
 							<AuthRoute redirectToSPLogin="/SPlogin" path="/SPpage" component={UserPage}/>
 
-							//Auth Route
-							/*<Route component={RequireLogin} >
-								<Route path="/assets/UserPage" component={UserPage}/>
-								<Route path="/assets/BookingPage" component={BookingPage}/>
-							</Route>*/
 							<Route component={NoMatch}/>
 
 

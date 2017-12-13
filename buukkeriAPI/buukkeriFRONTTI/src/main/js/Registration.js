@@ -126,7 +126,7 @@ render(){
 		return(
 			<main>
 			<Header user={this.state.user} />
-		 <app>
+		 	<app>
 	      <ul className="list-group">
 	      <li className="list-group-item"><h1>{strings.regsuccess +""+ this.state.fname} </h1></li>
 	      <li className="list-group-item"><Link to="/login"><button className="btn btn-success btn-block">{strings.tologin}</button></Link>  </li>
@@ -140,7 +140,6 @@ render(){
 		return (
 			<main>
 			<Header user={this.state.user} />
-			<Language />
 			<app className="modalDialog">
 			 		<ul className="list-group">
 					<Input label={strings.firstname} type="text" onChange={this.handleFname} />

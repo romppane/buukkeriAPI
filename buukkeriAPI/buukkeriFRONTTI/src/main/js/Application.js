@@ -1,7 +1,6 @@
 import SportButton from './Components/SportButton';
 import {callBookker} from "./ajaxGet";
 import Header from "./Header";
-import Language from './Language';
 import Footer from "./Footer";
 import {
 	  BrowserRouter as Router,
@@ -69,7 +68,6 @@ export default class App extends React.Component {
 	    return (
 				<main>
 				<Header user={this.state.user} logout={this.logout} />
-				<Language />
 	      <app id="app" className="Appcomponent">
 	      	<SportButton sportid={this.state.sportid} onClick={this.handleState} sports={this.state.sports}/>
 	      	<Schedule activities={this.state.activities} / >
