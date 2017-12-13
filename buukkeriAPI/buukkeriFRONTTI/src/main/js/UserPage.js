@@ -8,30 +8,46 @@ import {
 	} from 'react-router-dom';
 import {strings} from './LocalizationStrings';
 import {callBookker} from "./ajaxGet";
+
 import Header from "./Header";
 import Footer from "./Footer";
 import Input from "./Components/Input";
 
 let sports;
+const LOCALHOST = 'http://localhost:8090/';
+
+export function callUser(method,url,data){
+	return new Promise((resolve, reject)=>{
+		const call = new XMLHttpRequest();
+		call.open(method,LOCALHOST+url);
+		call.onload = ()=> resolve(call.responseText);
+		call.onerror = ()=> reject(call.statusText);
+		call.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
+		call.send(data);
+		
+	});
+}
 export default class UserPage extends React.Component{
 	constructor(props){
 	    super(props);
 	    this.state = {
 	    		userObject:{},
 	    		sports:[],
+	    		
 				actid: "",
-				actname:"",
-				actspid:"",
+				actname: "",
+				actspid: "",
 				actlocation: "",
 				actdescription: "",
 				actsportid: "",
-				selected:""
+				selected: "",
+				success: ""
 	    };
 	    this.getData=this.getData.bind(this);
 		this.logout=this.logout.bind(this);
 		this.handleSubmit=this.handleSubmit.bind(this);
 		this.handleLocation=this.handleLocation.bind(this);
-		this.handleDescription=this.handleDescription.bind(this);
+		this.handleName=this.handleName.bind(this);
 		this.handleDescription=this.handleDescription.bind(this);
 		this.handleRadios=this.handleRadios.bind(this);
 	
@@ -84,8 +100,8 @@ export default class UserPage extends React.Component{
 				})
 			}
 		}
-		handleName(e){
-			this.setState({actname: e})
+		handleName(value){
+			this.setState({actname: value})
 		}
 		
 
@@ -93,7 +109,7 @@ export default class UserPage extends React.Component{
 			this.setState({actlocation: e})
 		}
 		handleDescription(e){
-			this.setState({actdescription: e})
+			this.setState({actdescription: e.target.value})
 		}
 		
 		handleRadios(e){
@@ -107,11 +123,31 @@ export default class UserPage extends React.Component{
 	  
 	  
 	  
-	  handleSubmit(e){
-			
+	  handleSubmit(){
+		  let act = {
+				  name : this.state.actname,
+				  SP_ID: this.state.userObject.id,
+				  location : this.state.actlocation,
+				  description : this.state.actdescription,
+				 
+				  SPORT_ID : this.state.selected
+		  }
+		  
+		 console.log(act)
+		 	  callUser("POST","act/",JSON.stringify(act)).then((response)=>{
+					  console.log(response)
+					  if(response == "true"){
+						  	this.setState({success: "true"})
+					  }
+		  })
+		 
+		  
+		  
+		  
+		  
 		}
 	render(){
-		console.log(this.state.sports)
+		
 		console.log(this.state.selected)
 		const radios = sports.map((sport)=>
 		<Input name="radsport" key={sport.id} value={sport.id} label={sport.name} type="radio" onChange={this.handleRadios}  />
@@ -135,7 +171,7 @@ export default class UserPage extends React.Component{
 			</main>
 		)
 		}else if(this.state.userObject.sp){
-			console.log(this.state.userObject)
+			console.log(this.state.actdescription)
 			return(
 			<main>
 			<Header sp={this.state.userObject.sp} user={this.state.userObject.user} logout={this.logout} />
@@ -151,7 +187,8 @@ export default class UserPage extends React.Component{
 		 	<Input label={strings.location} type="text" onChange={this.handleLocation}  />
 			<li className="list-group-item"><label>{strings.addactivity}</label></li>
 		 	{radios}
-			<li className="list-group-item"><label>{strings.description}</label></li>			 	<li className="list-group-item"><textarea onChange={this.handleDescription}></textarea></li>
+			<li className="list-group-item"><label>{strings.description}</label></li>			 	
+			<li className="list-group-item"><textarea value={this.state.actdescription} onInput={this.handleDescription}></textarea></li>
 			<li className="list-group-item"><button className="btn btn-success btn-block"  onClick={this.handleSubmit}>{strings.submit}</button></li>
 
 			  			</ul>
