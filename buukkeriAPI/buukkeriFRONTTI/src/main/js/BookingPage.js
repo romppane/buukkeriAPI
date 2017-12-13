@@ -8,6 +8,7 @@ import App from "./Application";
 import {callBookker} from "./ajaxGet";
 import Header from "./Header";
 import Footer from "./Footer";
+import {Redirect} from 'react-router-dom';
 import {
 	  BrowserRouter as Router,
 	  Route,
@@ -64,20 +65,26 @@ export default class BookingPage extends React.Component{
 		{strings.book}</button> </li>)
 
 
+		if(this.state.user){
+			return(
+				<main>
+				<Header sp={this.state.sp} user={this.state.user} logout={this.logout} />
+			<app>
+			<h3>{this.state.act.name}</h3>
+			<p>{this.state.act.location}</p>
+			<p>{this.state.act.description}</p>
+				<ul className="list-group">
+				{availableshifts}
+				</ul>
+			</app>
+			<Footer />
+			</main>
+			)
+		}else{
+			return(
+				<Redirect to="/login" />
+			)
+		}
 
-		return(
-			<main>
-			<Header sp={this.state.sp} user={this.state.user} logout={this.logout} />
-		<app>
-		<h3>{this.state.act.name}</h3>
-		<p>{this.state.act.location}</p>
-		<p>{this.state.act.description}</p>
-			<ul className="list-group">
-			{availableshifts}
-			</ul>
-		</app>
-		<Footer />
-		</main>
-		)
 	}
 }

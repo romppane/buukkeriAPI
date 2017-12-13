@@ -41,15 +41,11 @@ export default class App extends React.Component {
 		componentWillMount() {
 			const state = JSON.parse(localStorage.getItem('someSavedState'))
 
-			if(state != null) {
 				this.setState({
-					user: state.user
+				user: state.user
 
-					})
-					console.log(state.user)
-			}
-				
-				
+				})
+				console.log(state.user)
 		}
 		componentWillUnmount() {
 	  localStorage.setItem('someSavedState', JSON.stringify(this.state))
@@ -93,17 +89,15 @@ export default class App extends React.Component {
 			this.omgolen = this.omgolen.bind(this);
 		}
 		omgolen(id){
-		return "/Booking"+id.toString();
+			return "/Booking"+id.toString();
 		}
 	  render() {
 
-		 const availableActivities = this.props.activities.map((item)=>
-		  <li key={item.id} value={item.id} id="lists"  className="act-list">
-		 <a>{item.name}</a>{"	"+item.location+"		" + item.description}
-		 <Link className="btn btn-primary btn pull-right" to={this.omgolen(item.id)}>
-		 {strings.book}</Link> </li>)
-
-
+			const availableActivities = this.props.activities.map((item)=>
+			<li key={item.id} value={item.id} id="lists"  className="act-list">
+			<a>{item.name}</a>{"	"+item.location+"		" + item.description}
+			<Link className="btn btn-primary btn pull-right" to={this.omgolen(item.id)}>
+			{strings.book}</Link> </li>)
 
 		 return (
 	        <app>
