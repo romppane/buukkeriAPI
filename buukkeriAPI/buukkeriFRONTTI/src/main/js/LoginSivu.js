@@ -41,26 +41,27 @@ export default class Login extends React.Component{
   }
 	componentWillMount() {
 		const user = JSON.parse(localStorage.getItem('someSavedState'))
+			this.setState({userObject: user})
 
-		 this.setState({userObject: user})
-		 console.log(user)
 
 }
-	logout(value){
-			this.setState({id: 0,
-			fname:"",
-			lname:"",
-	    email: "",
-	    pass: "",
-			phone: "",
-		  user: value
-		  })
-		}
+logout(value){
+	if(!this.state.userObject.user&&!this.state.userObject.sp){
+		localStorage.setItem('someSavedState', JSON.stringify(this.state))
+	}else{
+		let logout=[];
+		logout.sp = false;
+		logout.user = false;
+		this.setState({
+			userObject:logout
+		})
+	}
+}
 
 
 	componentWillUnmount() {
 		localStorage.setItem('someSavedState', JSON.stringify(this.state.userObject))
-		console.log(JSON.stringify(this.state.userObject))	}
+	}
 
 
 	handleEmail(value){
@@ -74,7 +75,6 @@ export default class Login extends React.Component{
 	handleLogin(){
 		let sp;
 		let user;
-		console.log(email+pass)
 		let promise = callBookker("users/"+email+"&"+pass).then((data)=>{
 			if(data!=""){
 
@@ -85,7 +85,6 @@ export default class Login extends React.Component{
 				status="";
 				this.setState({userObject: user,
 				})
-				console.log(this.state.userObject);
 			}else{
 				status=strings.loginstatus;
 				console.log(strings.loginstatus)

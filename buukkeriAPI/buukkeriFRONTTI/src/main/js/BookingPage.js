@@ -33,15 +33,13 @@ export default class BookingPage extends React.Component{
 	componentWillMount() {
 		const user = JSON.parse(localStorage.getItem('someSavedState'))
 		 this.setState({userObject: user})
-		 console.log(user)
-		 
-		 
+
+
 		const state = JSON.parse(localStorage.getItem('someSavedState'))
 			this.setState({
 			user: state.user,
 			id:state.id
 			})
-			console.log(state)
 			let data=[];
 			callBookker("/shifts/actid="+parseInt(this.props.match.params.id)).then((data)=>{
 				data = JSON.parse(data);
@@ -53,12 +51,19 @@ export default class BookingPage extends React.Component{
 		})
 }
 	componentWillUnmount() {
-	localStorage.setItem('someSavedState', JSON.stringify(this.state))
+	localStorage.setItem('someSavedState', JSON.stringify(this.state.userObject))
 	}
 	logout(value){
+		if(!this.state.userObject.user&&!this.state.userObject.sp){
+			localStorage.setItem('someSavedState', JSON.stringify(this.state))
+		}else{
+			let logout=[];
+			logout.sp = false;
+			logout.user = false;
 			this.setState({
-			user: value
+				userObject:logout
 			})
+		}
 	}
 	bookshift(e){
 
