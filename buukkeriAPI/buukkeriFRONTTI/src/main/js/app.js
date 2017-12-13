@@ -1,7 +1,3 @@
-/**
- * @author Tommi Rokolampi
- */
-
 const React = require ('react');
 const ReactDOM = require ('react-dom');
 
@@ -82,13 +78,11 @@ import AuthRoute from "./Components/AuthRoute";
 
 							<AuthRoute redirectToLogin="/login" path="/piilo" component={Piilo} />
 							<AuthRoute redirectToLogin="/login" path="/UserPage" component={UserPage}/>
-							<AuthRoute redirectToLogin="/login" path="/Booking:id" component={BookingPage}/>
+							<AuthRoute redirectToLogin="/login" path="/BookingPage" component={BookingPage}/>
 							<AuthRoute redirectToSPLogin="/SPlogin" path="/SPpage" component={UserPage}/>
 
 							//Auth Route
 							/*<Route component={RequireLogin} >
-
-
 								<Route path="/assets/UserPage" component={UserPage}/>
 								<Route path="/assets/BookingPage" component={BookingPage}/>
 							</Route>*/
