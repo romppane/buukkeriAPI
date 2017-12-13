@@ -6,6 +6,7 @@ import LocalizedStrings from 'react-localization';
 import {strings} from './LocalizationStrings';
 import App from "./Application";
 import {callBookker} from "./ajaxGet";
+import {getBookker} from './AjaxPutPostDelete';
 import Header from "./Header";
 import Footer from "./Footer";
 import {Redirect} from 'react-router-dom';
@@ -22,24 +23,17 @@ export default class BookingPage extends React.Component{
 		super(props)
 		this.state={
 			userObject:{},
-				user:false,
-				sp: false,
 				shifts: [],
 				act:[],
-				id:0
+				shiftid:0
 		};
 		this.logout=this.logout.bind(this);
+		this.checkshift=this.checkshift.bind(this);
+		this.checkshift2=this.checkshift2.bind(this);
 	}
 	componentWillMount() {
 		const user = JSON.parse(localStorage.getItem('someSavedState'))
 		 this.setState({userObject: user})
-
-
-		const state = JSON.parse(localStorage.getItem('someSavedState'))
-			this.setState({
-			user: state.user,
-			id:state.id
-			})
 			let data=[];
 			callBookker("/shifts/actid="+parseInt(this.props.match.params.id)).then((data)=>{
 				data = JSON.parse(data);
@@ -65,15 +59,28 @@ export default class BookingPage extends React.Component{
 			})
 		}
 	}
+	checkshift(userid){
+		if(userid==0){
+			return strings.book;
+		}else{
+			return"Vuoro varattu";
+		}
+	}
+	checkshift2(userid){
+		if(userid==0){
+			return this.bookshift;
+		}else{
+			return;
+		}
+	}
 	bookshift(e){
-
+		console.log(e)
 	}
 	render(){
 		const availableshifts = this.state.shifts.map((item)=>
 		 <li key={item.id} value={item.id} id="lists"  className="list-group-item">
 		{strings.shifttime}:{item.shift_time} {strings.shiftdate}:{item.shift_date} {strings.price}:{item.price}€
-		<button className="btn btn-primary btn pull-right btn-sm">
-		{strings.book}</button> </li>)
+		<button className="btn btn-primary btn pull-right btn-sm" onClick={this.checkshift2(item.userId)} >{this.checkshift(item.userId)}</button> </li>)
 
 
 		if(this.state.userObject.user){
