@@ -7,6 +7,11 @@ import main.dao.ActivityDAO;
 import main.entity.Activity;
 import main.entity.Activity_IF;
 
+/**
+ * Routes the REST api calls made to ActivityController to ActivityDAO.
+ * @author Ville
+ *
+ */
 @Service
 public class ActivityService {
 	@Autowired

@@ -3,15 +3,24 @@ package main.dao;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
+/**
+ * This is a abstract class which creates a database connection for it's subclasses.
+ * 
+ * 
+ * @author Roni
+ *
+ */
 public abstract class DAO {
 
 	protected Connection myCon;
 
+	/**
+	 * Creates a database connection
+	 */
 	public DAO() {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 
-			//TUNNELOI TÄMÄ!
 			myCon = DriverManager.getConnection("jdbc:mysql://localhost:2206/vuorot", "pena", "pena");
 		} catch (Exception dBException) {
 			System.err.print(dBException);
@@ -20,7 +29,7 @@ public abstract class DAO {
 		}
 	}
 /**
- * yhteyden sammutus metodi
+ * Closes the database connection
  */
 	@Override
 	protected void finalize() {

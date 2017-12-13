@@ -12,6 +12,11 @@ import main.entity.User;
 import main.entity.User_IF;
 import main.service.UserService;
 
+/**
+ * Controls the received REST API calls made for Users and maps them forward to service layer.
+ * @author Ville
+ *
+ */
 @RestController
 @RequestMapping("/users")
 public class UserController {

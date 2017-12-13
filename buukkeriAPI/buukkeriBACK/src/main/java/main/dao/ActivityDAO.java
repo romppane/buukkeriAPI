@@ -8,11 +8,21 @@ import org.springframework.stereotype.Repository;
 
 import main.entity.Activity;
 import main.entity.Activity_IF;
+
+/**
+ * This class consists of CRUD methods for Activity class objects.
+ * Class is a subclass of an abstract DAO.
+ * 
+ * 
+ * @author Roni, Ville
+ *
+ */
 @Repository
 public class ActivityDAO extends DAO implements ActivityDAO_IF {
-	/**Creation of activity to database
-	 * @param Activity data
-	 * @return false if fails true if success
+	/**
+	 * Creates an Activity object to the database by inserting the object without an ID.
+	 * @param act the Activity to be added to the database.
+	 * @return true if the Activity was successfully added to the database, false if something went wrong.
 	 */
 	@Override
 	public boolean createActivity(Activity_IF act) {
@@ -47,10 +57,10 @@ public class ActivityDAO extends DAO implements ActivityDAO_IF {
 			return true;
 		}
 	}
-	//Sets location for activity
-	/**updating activity
-	 * @param activity data
-	 * @return false if fails true if success
+	/**
+	 * Sets an existing Activity's location to a new one, by comparing the ID values between the object and database data.
+	 * @param act the Activity to be manipulated.
+	 * @return true if the Activity was successfully manipulated, false if something went wrong.
 	 */
 	@Override
 	public boolean updateActivity(Activity_IF act) {
@@ -83,10 +93,10 @@ public class ActivityDAO extends DAO implements ActivityDAO_IF {
 			return true;
 		}
 	}
-	//Deletes activity by ID
-	/**delete activity
-	 * @param activity data
-	 * @return false if fails true if success
+	/**
+	 * Deletes an existing Activity by comparing the ID values between the object and database data.
+	 * @param act the Activity to be removed.
+	 * @return true if the Activity was successfully removed, false if something went wrong.
 	 */
 	@Override
 	public boolean deleteActivity(Activity_IF act) {
@@ -117,10 +127,10 @@ public class ActivityDAO extends DAO implements ActivityDAO_IF {
 			return true;
 		}
 	}
-	//Returns all activities by spID.
-	/**returns all activities by service provider id
-	 * @param sp_id service provider id
-	 * @return list of activities
+	/** 
+	 * Fetches all Activities which belong to a certain Service Provider from the database, by comparing SPID values.
+	 * @param sp_id Target Service Provider's ID value.
+	 * @return Activity_IF[] with all Activities that belong to the Service Provider.
 	 */
 	@Override
 	public Activity_IF[] readActivitiesBySPId(int sp_id) {
@@ -165,6 +175,12 @@ public class ActivityDAO extends DAO implements ActivityDAO_IF {
 		Activity_IF[] palautus = new Activity[activities.size()];
 		return (Activity_IF[])activities.toArray(palautus);
 	}
+	
+	/** 
+	 * Fetches all Activities which belong to a certain Sport category from the database, by comparing Sport ID values.
+	 * @param sport_id Target Sport's ID value.
+	 * @return Activity_IF[] with all Activities that belong to the Sport category.
+	 */
 	public Activity_IF[] readActivitiesBySportID(int sport_id) {
 		ArrayList<Activity_IF> activities = new ArrayList();
 		PreparedStatement myStatement = null;
@@ -207,9 +223,11 @@ public class ActivityDAO extends DAO implements ActivityDAO_IF {
 		Activity_IF[] palautus = new Activity[activities.size()];
 		return (Activity_IF[])activities.toArray(palautus);
 	}
-	/**activity by id number
-	 * @param ID activitys id number
-	 * @return act activity data
+	
+	/** 
+	 * Fetches an Activity by an ID value.
+	 * @param ID Target Activity's ID value.
+	 * @return Activity_IF which has the inserted ID value.
 	 */
 	@Override
 	public Activity_IF readActivityById(int ID) {
@@ -252,9 +270,9 @@ public class ActivityDAO extends DAO implements ActivityDAO_IF {
 		return act;
 	}
 
-	//Returns all activities
-	/**return all activities
-	 * @return return acitivity list
+	/** 
+	 * Fetches all Activities from the database.
+	 * @return Activity_IF[] with all Activities that are in the database.
 	 */
 	@Override
 	public Activity_IF[] readActivities() {
