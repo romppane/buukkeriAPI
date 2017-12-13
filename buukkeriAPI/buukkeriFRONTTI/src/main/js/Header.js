@@ -37,7 +37,6 @@ logout(){
 	phone: "",
 	sp:false,
 	user:false});
-	l
 	localStorage.setItem('someSavedState', JSON.stringify(this.state))
 }
 	  render() {
