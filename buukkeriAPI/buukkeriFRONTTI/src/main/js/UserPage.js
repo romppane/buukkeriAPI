@@ -6,13 +6,12 @@ import {
 	  Link,
 		Switch
 	} from 'react-router-dom';
-import LocalizedStrings from 'react-localization';
 import {strings} from './LocalizationStrings';
 import {callBookker} from "./ajaxGet";
 import Header from "./Header";
 import Footer from "./Footer";
 import Input from "./Components/Input";
-import {userCheck} from "./userCheck";
+
 
 export default class UserPage extends React.Component{
 	constructor(props){

@@ -4,7 +4,7 @@ import {callUser} from "./ajaxPutPostDelete";
 import { strings } from "./LocalizationStrings";
 import Input from './Components/Input';
 import Header from "./Header";
-import Language from './Language';
+
 import Footer from "./Footer";
 import {
 	  BrowserRouter as Router,
@@ -140,7 +140,7 @@ render(){
 		return (
 			<main>
 			<Header user={this.state.user} />
-			<Language />
+			
 			<app className="modalDialog">
 			 		<ul className="list-group">
 					<Input label={strings.firstname} type="text" onChange={this.handleFname} />

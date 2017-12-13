@@ -1,7 +1,7 @@
 import React from "react"
 import {Route, Redirect} from "react-router-dom"
 
-import Piilo from './../Piilo';
+
 export default class AuthRoute extends React.Component {
 	constructor(props){
     super(props);
