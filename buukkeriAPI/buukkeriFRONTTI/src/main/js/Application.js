@@ -34,6 +34,7 @@ export default class App extends React.Component {
 		  callBookker("sports").then((data)=>{
 				data = JSON.parse(data);
 				this.setState({sports: data});
+				
 
 		  });
 
@@ -47,6 +48,7 @@ export default class App extends React.Component {
 }
 
 		componentWillUnmount() {
+localStorage.setItem('sports', JSON.stringify(this.state.sports))
 	  localStorage.setItem('someSavedState', JSON.stringify(this.state.userObject))
 		}
 

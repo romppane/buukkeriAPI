@@ -34,10 +34,11 @@ export  let strings = new LocalizedStrings({
 		activityname: "Aktiviteetin nimi",
 		description: "Kuvaus",
 		addactivity: "Lisää aktiviteetti",
-		location:"Sijainti",
-		shifttime: "aika",
- 		shiftdate: "päivä",
- 		price: "Hinta"
+		location:"Osoite",
+		shifttime: "Aika",
+ 		shiftdate: "Päivä",
+ 		price: "Hinta",
+ 		sport:"Laji",
 	},
 	en: {
 		register: "Register",
@@ -72,8 +73,10 @@ export  let strings = new LocalizedStrings({
 		description: "Description",
 		addactivity: "Add activity",
 		location:"Location",
-		shifttime: "time",
- 		shiftdate: "date",
- 		price: "Price"
+		shifttime: "Time",
+ 		shiftdate: "Date",
+ 		price: "Price",
+ 		sport:"Sport",
+ 			
 	}
 });
