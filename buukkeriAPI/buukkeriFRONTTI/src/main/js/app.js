@@ -36,55 +36,35 @@ import AuthRoute from "./Components/AuthRoute";
 				loginbtntext: strings.login,
 				loginbtncolor: "btn-success",
 				user: ""
-
 			}
 			this.handler = this.handler.bind(this)
-
 		}
 
-
-
 		handler() {
-
 		    this.setState({
 		      loggedin: true
-
 		    })
 		    console.log(this.state.loggedin)
 		    console.log("täällä")
 		  }
 
-
 	  render() {
-
-
 	    return (
 	    		<Router>
-
 							<Switch>
-
-
-							<Route exact path="/" component={App}/>
-
-							<Route path="/Registration" component={Registration}/>
-							<Route path="/SPRegistration" component={SPRegistration}/>
-							<Route path="/login" component={Login} handler={this.handler} pena={this.state.pena} />
-							<Route path="/SPlogin" component={SPLogin} handler={this.handler}/>
-
-						
-							<AuthRoute redirectToLogin="/login" path="/UserPage" component={UserPage}/>
-							<AuthRoute redirectToLogin="/login" path="/Booking:id" component={BookingPage}/>
-							<AuthRoute redirectToSPLogin="/SPlogin" path="/SPpage" component={UserPage}/>
-
+								<Route exact path="/" component={App}/>
+								<Route path="/Registration" component={Registration}/>
+								<Route path="/SPRegistration" component={SPRegistration}/>
+								<Route path="/login" component={Login} handler={this.handler} pena={this.state.pena} />
+								<Route path="/SPlogin" component={SPLogin} handler={this.handler}/>
+	
 							
-							<Route component={NoMatch}/>
-
-
+								<AuthRoute redirectToLogin="/login" path="/UserPage" component={UserPage}/>
+								<AuthRoute redirectToLogin="/login" path="/Booking:id" component={BookingPage}/>
+								<AuthRoute redirectToSPLogin="/SPlogin" path="/SPpage" component={UserPage}/>
+								<Route component={NoMatch}/>
 							</Switch>
-
-
 	    	  </Router>
-
 	    );
 	  }
 	}

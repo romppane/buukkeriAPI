@@ -1,7 +1,6 @@
 import SportButton from './Components/SportButton';
 import {callBookker} from "./ajaxGet";
 import Header from "./Header";
-import Language from './Language';
 import Footer from "./Footer";
 import {
 	  BrowserRouter as Router,
@@ -19,6 +18,7 @@ export default class App extends React.Component {
 	  constructor(props){
 	    super(props);
 	    this.state={
+	    		userObject:{},
 	    		sportid: 0,
 	    		sports:[],
 	    		activities: [],
@@ -39,13 +39,9 @@ export default class App extends React.Component {
 
 	  }
 		componentWillMount() {
-			const state = JSON.parse(localStorage.getItem('someSavedState'))
-
-				this.setState({
-				user: state.user
-
-				})
-				console.log(state.user)
+			  const user = JSON.parse(localStorage.getItem('someSavedState'))
+				this.setState({userObject: user})
+				console.log(user)
 		}
 		componentWillUnmount() {
 	  localStorage.setItem('someSavedState', JSON.stringify(this.state))
@@ -62,20 +58,18 @@ export default class App extends React.Component {
 		  callBookker("/act/sportID="+newState).then((data)=>{
 				data = JSON.parse(data);
 				this.setState({activities: data});
-
 		  });
 	  }
 	  render() {
 	    return (
-				<main>
-				<Header user={this.state.user} logout={this.logout} />
-				<Language />
-	      <app id="app" className="Appcomponent">
-	      	<SportButton sportid={this.state.sportid} onClick={this.handleState} sports={this.state.sports}/>
-	      	<Schedule activities={this.state.activities} / >
-	      </app>
+			<main>
+				<Header sp={this.state.userObject.sp} user={this.state.userObject.user} logout={this.logout} />										
+				<app id="app" className="Appcomponent">
+					<SportButton sportid={this.state.sportid} onClick={this.handleState} sports={this.state.sports}/>
+					<Schedule activities={this.state.activities} / >
+				</app>
 				<Footer />
-				</main>
+			</main>
 	    );
 	  }
 	}

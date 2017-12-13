@@ -41,7 +41,7 @@ export default class Login extends React.Component{
   }
 	componentWillMount() {
 		const user = JSON.parse(localStorage.getItem('someSavedState'))
-		
+
 		 this.setState({userObject: user})
 		 console.log(user)
 
@@ -61,15 +61,15 @@ export default class Login extends React.Component{
 	componentWillUnmount() {
 		localStorage.setItem('someSavedState', JSON.stringify(this.state.userObject))
 		console.log(JSON.stringify(this.state.userObject))	}
-	
-	
+
+
 	handleEmail(value){
 	    email =	value;
-	    
+
 	  }
 	  handlePass(value){
 	    pass = value;
-	    
+
 	  }
 	handleLogin(){
 		let sp;
@@ -77,19 +77,19 @@ export default class Login extends React.Component{
 		console.log(email+pass)
 		let promise = callBookker("users/"+email+"&"+pass).then((data)=>{
 			if(data!=""){
-				
+
 				data = JSON.parse(data);
-				let user=data;	
+				let user=data;
 				user.sp = false;
-				user.user = true;				
+				user.user = true;
 				status="";
-				this.setState({userObject: user,				
-				})	
+				this.setState({userObject: user,
+				})
 				console.log(this.state.userObject);
 			}else{
-				status=strings.loginstatus;	
+				status=strings.loginstatus;
 				console.log(strings.loginstatus)
-				
+
 			}
 		});
 	}
@@ -97,8 +97,7 @@ export default class Login extends React.Component{
 	  if(this.state.userObject.user){
 		  return (
 				<main>
-				<Header user={this.state.userObject.user} logout={this.logout} />
-				
+				<Header sp={this.state.userObject.sp} user={this.state.userObject.user} logout={this.logout} />
 				  <app>
 			      <ul className="list-group">
 			      	<li className="list-group-item"><Link className="btn btn-default btn-small" to="/UserPage">oma sivu</Link>  </li>
@@ -112,20 +111,15 @@ export default class Login extends React.Component{
     return(
 			<main>
 			<Header sp={this.state.userObject.sp} user={this.state.userObject.user} logout={this.logout} />
-		
-    	<app>
 
+    	<app>
       <ul className="list-group">
        <Input label={strings.email} type="text" onChange={this.handleEmail} />
       <Input label={strings.password} type="password" onChange={this.handlePass} />
       <li className="list-group-item"><button className="btn btn-success" onClick={this.handleLogin}>{strings.login}</button> <Link to="/SPlogin"><button className="btn btn-success btn pull-right btn-sm">{strings.serveiceproviders}</button></Link> </li>
       <li className="list-group-item"><Link to="/Registration" className="btn btn-primary">{strings.register}</Link> <Link to="/SPRegistration" className="btn btn-primary btn pull-right btn-sm">{strings.serveiceproviders}</Link> </li>
       <li className="list-group-item"><Link to="/" className="btn btn-default btn-small">{strings.close}</Link>  </li>
-
       </ul>
-
-
-
     </app>
 		<Footer />
 		</main>

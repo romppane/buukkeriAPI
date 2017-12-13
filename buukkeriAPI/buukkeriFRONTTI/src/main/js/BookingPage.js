@@ -21,6 +21,7 @@ export default class BookingPage extends React.Component{
 	constructor(props){
 		super(props)
 		this.state={
+			userObject:{},
 				user:false,
 				sp: false,
 				shifts: [],
@@ -30,6 +31,11 @@ export default class BookingPage extends React.Component{
 		this.logout=this.logout.bind(this);
 	}
 	componentWillMount() {
+		const user = JSON.parse(localStorage.getItem('someSavedState'))
+		 this.setState({userObject: user})
+		 console.log(user)
+		 
+		 
 		const state = JSON.parse(localStorage.getItem('someSavedState'))
 			this.setState({
 			user: state.user,
@@ -65,10 +71,10 @@ export default class BookingPage extends React.Component{
 		{strings.book}</button> </li>)
 
 
-		if(this.state.user){
+		if(this.state.userObject.user){
 			return(
 				<main>
-				<Header sp={this.state.sp} user={this.state.user} logout={this.logout} />
+				<Header sp={this.state.userObject.sp} user={this.state.userObject.user} logout={this.logout} />
 			<app>
 			<h3>{this.state.act.name}</h3>
 			<p>{this.state.act.location}</p>

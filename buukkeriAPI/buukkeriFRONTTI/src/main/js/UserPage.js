@@ -33,20 +33,11 @@ export default class UserPage extends React.Component{
 		this.handleDescription=this.handleDescription.bind(this);
 	}
 	  componentWillMount() {
-		  
-		  
-		 
-	  
-	const user = JSON.parse(localStorage.getItem('someSavedState'))
-		
-	 this.setState({userObject: user})
-	 console.log(user)
-	  
+	const user = JSON.parse(localStorage.getItem('someSavedState'))	
+	this.setState({userObject: user})
+	console.log(user)
+
 	
-	  
-	  
-	  
-	  
 	  if(this.state.userObject.user){
 		  	let userShifts = callBookker("shifts/user_id="+this.state.userObject.id).then((data)=>{
 		   			 if(data!=""){

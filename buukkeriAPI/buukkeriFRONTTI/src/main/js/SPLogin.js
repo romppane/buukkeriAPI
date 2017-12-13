@@ -46,8 +46,7 @@ export default class Login extends React.Component{
 		let user;
 		console.log(email+pass)
 		let promise = callBookker("SP/"+email+"&"+pass).then((data)=>{
-			if(data!=""){
-				
+			if(data!=""){				
 				data = JSON.parse(data);
 				let user=data;	
 				user.sp = true;
