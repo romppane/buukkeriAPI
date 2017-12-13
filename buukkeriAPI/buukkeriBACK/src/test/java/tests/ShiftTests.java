@@ -113,6 +113,23 @@ public class ShiftTests {
 	public void testBooking() {
 		shift.setUserId(user.getId());
 		assertTrue("UpdateShift: Updating user_id to shift has failed!",shiftDAO.updateShift(shift));
+		Shift_IF tempshift = null;
+		
+		assertEquals("readShiftById(): Fetching a shift by it's ID has returned a wrong shift",(tempshift = shiftDAO.readShiftById(shift.getId())).getId(), shift.getId());
+		shift = tempshift;
+		
+		Shift_IF[] bookings = null;
+		assertTrue("readBookingsByUserId(): Fetching a booked shifts for the user has returned empty set",((bookings = shiftDAO.readBookingsByUserId(user.getId())).length>0));
+		int index = 0;
+		for(int i = 0; i<bookings.length; i++) {
+			if(bookings[i].getId() == shift.getId()) {
+				System.out.println("Booked shift has been found");
+				index = i;
+			}
+		}
+		assertEquals("Booked shift was not found from the database when looking for it",bookings[index].getId(), shift.getId());
+		assertTrue("unbookShift: Unbooking a shift has failed!", shiftDAO.unbookShift(shift));
+		assertTrue("User was not able to make the reservation again!",shiftDAO.updateShift(shift));
 	}
-
+	
 }

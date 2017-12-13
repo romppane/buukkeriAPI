@@ -14,6 +14,8 @@ public class UserDAO extends DAO implements UserDAO_IF {
 	 * @param user luotavan käyttäjän tiedot
 	 * @return false jos luonti epäonnistuu true jos luonti on onnistunut
 	 */
+	
+	
 	@Override
 	public boolean createUser(User_IF user) {
 		PreparedStatement myStatement = null;

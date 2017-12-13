@@ -259,6 +259,36 @@ public class ShiftDAO extends DAO implements ShiftDAO_IF{
 		return (Shift_IF[])shifts.toArray(ret);
 	}
 
+	public boolean unbookShift(Shift_IF shift) {
+		PreparedStatement myStatement = null;
+		String query = null;
+		int count = 0;
+		try{
+			query = "update Shift set User_ID = NULL where ID = ?";
+			myStatement = myCon.prepareStatement(query);
+			myStatement.setInt(1, shift.getId());
+			count = myStatement.executeUpdate();
+	}
+		catch(Exception e) {
+			e.printStackTrace();
+		}
+		finally{
+			try {
+				if (myStatement != null)
+					myStatement.close();
+			}
+			catch(Exception e){
+				e.printStackTrace();
+			}
+		}
+		if(count!=1){
+			return false;
+		}
+		else{
+			return true;
+		}
+	}
+
 
 
 }
