@@ -1,7 +1,3 @@
-/**
- * @author Tommi Rokolampi
- */
-
 const React = require ('react');
 const ReactDOM = require ('react-dom');
 
@@ -87,8 +83,6 @@ import AuthRoute from "./Components/AuthRoute";
 
 							//Auth Route
 							/*<Route component={RequireLogin} >
-
-
 								<Route path="/assets/UserPage" component={UserPage}/>
 								<Route path="/assets/BookingPage" component={BookingPage}/>
 							</Route>*/
