@@ -45,11 +45,12 @@ export default class UserPage extends React.Component{
 	  componentWillMount() {
 		  
 		  
-		  
-	  const user = JSON.parse(localStorage.getItem('someSavedState'))
-	 
-	 console.log(userCheck(user));
-	  this.setState({userObject: userCheck(user)})
+		 
+	  
+	const user = JSON.parse(localStorage.getItem('someSavedState'))
+		
+	 this.setState({userObject: user})
+	 console.log(user)
 	  
 	
 	  
@@ -99,12 +100,12 @@ export default class UserPage extends React.Component{
 
 	  }
 	render(){
-		console.log(this.state.fname)
+		
 		
 		if(this.state.userObject.user){
 		return(
 			<main>
-			<Header sp={this.state.sp} user={this.state.user} logout={this.logout} />
+			<Header sp={this.state.userObject.sp} user={this.state.userObject.user} logout={this.logout} />
 			<app>
 		      <ul className="list-group">
 			<li className="list-group-item">{this.state.userObject.fname}</li>
@@ -121,7 +122,7 @@ export default class UserPage extends React.Component{
 		}else if(this.state.userObject.sp){
 			return(
 			<main>
-			<Header user={this.state.user} logout={this.logout} />
+			<Header sp={this.state.userObject.sp} user={this.state.userObject.user} logout={this.logout} />
 			<app>
 		      <ul className="list-group">
 			<li className="list-group-item">{this.state.userObject.name}</li>
