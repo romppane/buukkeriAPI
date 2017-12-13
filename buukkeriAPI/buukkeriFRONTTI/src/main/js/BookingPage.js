@@ -6,10 +6,10 @@ import LocalizedStrings from 'react-localization';
 import {strings} from './LocalizationStrings';
 import App from "./Application";
 import {callBookker} from "./ajaxGet";
-import {getBookker} from './AjaxPutPostDelete';
 import Header from "./Header";
 import Footer from "./Footer";
 import {Redirect} from 'react-router-dom';
+import Button from './Components/Button';
 import {
 	  BrowserRouter as Router,
 	  Route,
@@ -29,7 +29,6 @@ export default class BookingPage extends React.Component{
 		};
 		this.logout=this.logout.bind(this);
 		this.checkshift=this.checkshift.bind(this);
-		this.checkshift2=this.checkshift2.bind(this);
 	}
 	componentWillMount() {
 		const user = JSON.parse(localStorage.getItem('someSavedState'))
@@ -66,21 +65,14 @@ export default class BookingPage extends React.Component{
 			return"Vuoro varattu";
 		}
 	}
-	checkshift2(userid){
-		if(userid==0){
-			return this.bookshift;
-		}else{
-			return;
-		}
-	}
-	bookshift(e){
-		console.log(e)
+	bookshift(shiet){
+		console.log(shiet)
 	}
 	render(){
 		const availableshifts = this.state.shifts.map((item)=>
 		 <li key={item.id} value={item.id} id="lists"  className="list-group-item">
 		{strings.shifttime}:{item.shift_time} {strings.shiftdate}:{item.shift_date} {strings.price}:{item.price}€
-		<button className="btn btn-primary btn pull-right btn-sm" onClick={this.checkshift2(item.userId)} >{this.checkshift(item.userId)}</button> </li>)
+		<Button className="btn btn-primary btn pull-right btn-sm" userid={this.state.userObject.id} shift={item} onClick={this.bookshift} name={this.checkshift(item.userId)} /> </li>)
 
 
 		if(this.state.userObject.user){
