@@ -102,6 +102,7 @@ public class ActivityTests {
 		assertTrue("ActivityDAO: test Activity was not found from by reading with Sport_ID", test.getId() == temp.getId());
 	}
 	
+	@Test
 	public void testCRUD() {
 		String name = "Käpylän suljettu ringette vuoro";
 		Activity_IF temp = new Activity(name, sp.getId(),sport.getID(), "Käpylän jääkenttä", "Maksu SPn tilille, tervetuloa pelaamaan!");

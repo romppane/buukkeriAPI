@@ -19,15 +19,6 @@ export default class UserPage extends React.Component{
 	    super(props);
 	    this.state = {
 	    		userObject:{},
-				id: 0,
-				name: "",
-				fname:"",
-				lname:"",
-		    email: "",
-		    pass: "",
-				phone: "",
-				user:false,
-				sp: false,
 				actid: "",
 				actname:"",
 				actspid:"",
@@ -58,14 +49,14 @@ export default class UserPage extends React.Component{
 	  
 	  
 	  if(this.state.userObject.user){
-		  	let userShifts = callBookker("shifts/user_id="+this.state.id).then((data)=>{
+		  	let userShifts = callBookker("shifts/user_id="+this.state.userObject.id).then((data)=>{
 		   			 if(data!=""){
 		   				 data=JSON.parse(data);
 		  				 
 		   			 }
 		   		 });
 	  }else if(this.state.userObject.sp) {
-			 let spActs = callBookker("act/spid="+this.state.id).then((data)=>{
+			 let spActs = callBookker("act/spid="+this.state.userObject.id).then((data)=>{
 				 if(data!=""){
 	   				 data=JSON.parse(data);
 	   			 }
@@ -73,7 +64,7 @@ export default class UserPage extends React.Component{
 	  }
 	}
 		componentWillUnmount() {
-	  localStorage.setItem('someSavedState', JSON.stringify(this.state))
+	  localStorage.setItem('someSavedState', JSON.stringify(this.state.userObject))
 		}
 
 		logout(value){

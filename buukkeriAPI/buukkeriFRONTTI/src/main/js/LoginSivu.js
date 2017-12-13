@@ -16,12 +16,14 @@ import {
 		Switch
 	} from 'react-router-dom';
 
-
+	 let email="";
+	 let pass="";
 export default class Login extends React.Component{
   constructor(props){
     super(props);
 		let status="";
     this.state = {
+    		userObject:{},
 			id: 0,
 			fname:"",
 			lname:"",
@@ -38,28 +40,10 @@ export default class Login extends React.Component{
 		this.logout = this.logout.bind(this);
   }
 	componentWillMount() {
-		  const state = JSON.parse(localStorage.getItem('someSavedState'))
-		  if(state.user){
-		  this.setState({id: state.id,
-		  fname: state.fname,
-		  lname: state.lname,
-		  email: state.email,
-		  pass: state.password,
-		  phone: state.phone,
-		  user: state.user
-		  })
-			console.log(state.user)
-		  }else if (state.sp){
-			  this.setState({id: state.id,
-				  name: state.name,
-				  email: state.email,
-				  pass: state.password,
-				  phone: state.phone,
-				  sp: state.sp
+		const user = JSON.parse(localStorage.getItem('someSavedState'))
 
-				  })
-				  console.log(user.sp)
-		  }
+		 this.setState({userObject: user})
+		 console.log(user)
 
 }
 	logout(value){
@@ -75,44 +59,46 @@ export default class Login extends React.Component{
 
 
 	componentWillUnmount() {
-  localStorage.setItem('someSavedState', JSON.stringify(this.state))
-	}
-  handleEmail(value){
-    this.setState({email: value})
-  }
-  handlePass(value){
-    this.setState({pass: value})
-  }
+		localStorage.setItem('someSavedState', JSON.stringify(this.state.userObject))
+		console.log(JSON.stringify(this.state.userObject))	}
+
+
+	handleEmail(value){
+	    email =	value;
+
+	  }
+	  handlePass(value){
+	    pass = value;
+
+	  }
 	handleLogin(){
-		let promise = callBookker("users/"+this.state.email+"&"+this.state.pass).then((data)=>{
+		let sp;
+		let user;
+		console.log(email+pass)
+		let promise = callBookker("users/"+email+"&"+pass).then((data)=>{
 			if(data!=""){
+
 				data = JSON.parse(data);
-				let state=data;
+				let user=data;
+				user.sp = false;
+				user.user = true;
 				status="";
-				this.setState({id: state.id,
-				fname: state.fname,
-				lname: state.lname,
-				email: state.email,
-				pass: state.password,
-				phone: state.phone,
-				user: true
+				this.setState({userObject: user,
 				})
-				this.props.handler
-
+				console.log(this.state.userObject);
 			}else{
-
 				status=strings.loginstatus;
 				console.log(strings.loginstatus)
+
 			}
-
-
 		});
 	}
   render(){
-	  if(this.state.user){
+	  if(this.state.userObject.user){
 		  return (
 				<main>
-				<Header user={this.state.user} logout={this.logout} />
+				<Header user={this.state.userObject.user} logout={this.logout} />
+				
 				  <app>
 			      <ul className="list-group">
 			      	<li className="list-group-item"><Link className="btn btn-default btn-small" to="/UserPage">oma sivu</Link>  </li>
@@ -125,7 +111,8 @@ export default class Login extends React.Component{
 	  }
     return(
 			<main>
-			<Header sp={this.state.sp} user={this.state.user} logout={this.logout} />
+			<Header sp={this.state.userObject.sp} user={this.state.userObject.user} logout={this.logout} />
+
     	<app>
       <ul className="list-group">
        <Input label={strings.email} type="text" onChange={this.handleEmail} />

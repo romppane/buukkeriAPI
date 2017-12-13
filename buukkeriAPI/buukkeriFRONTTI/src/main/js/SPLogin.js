@@ -15,21 +15,14 @@ import {
 		Switch
 	} from 'react-router-dom';
 
-
+	 let email="";
+	 let pass="";
 export default class Login extends React.Component{
   constructor(props){
     super(props);
 		let status="";
     this.state = {
-			id: 0,
-			name:"",
-
-	    email: "",
-	    pass: "",
-			phone: "",
-			user:false,
-			sp:false
-
+    		userObject:{}
     };
     this.handleEmail = this.handleEmail.bind(this);
     this.handlePass = this.handlePass.bind(this);
@@ -37,46 +30,45 @@ export default class Login extends React.Component{
 
   }
 	componentWillUnmount() {
-  localStorage.setItem('someSavedState', JSON.stringify(this.state))
-	console.log(JSON.stringify(this.state))
+  localStorage.setItem('someSavedState', JSON.stringify(this.state.userObject))
+	console.log(JSON.stringify(this.state.userObject))
 	}
   handleEmail(value){
-    this.setState({email: value})
+    email =	value;
+    
   }
   handlePass(value){
-    this.setState({pass: value})
+    pass = value;
+    
   }
 	handleLogin(){
-		let promise = callBookker("SP/"+this.state.email+"&"+this.state.pass).then((data)=>{
+		let sp;
+		let user;
+		console.log(email+pass)
+		let promise = callBookker("SP/"+email+"&"+pass).then((data)=>{
 			if(data!=""){
-				data = JSON.parse(data);
-				let user=data;
-				status="";
-				this.setState({id: user.id,
-				name: user.name,
-
-				email: user.email,
-				pass: user.password,
-				phone: user.phone,
-				sp: true
-				})
-				console.log(this.state.name)
 				
-
+				data = JSON.parse(data);
+				let user=data;	
+				user.sp = true;
+				user.user = false;				
+				status="";
+				this.setState({userObject: user,				
+				})	
+				console.log(this.state.userObject);
 			}else{
-
-				status=strings.loginstatus;
+				status=strings.loginstatus;	
 				console.log(strings.loginstatus)
+				
 			}
-
-
 		});
 	}
   render(){
-	  if(this.state.sp){
+	  console.log(this.state.userObject.sp);
+	  if(this.state.userObject.sp){
 		  return (
 				<main>
-				<Header user={this.state.user} />
+				<Header sp={this.state.userObject.sp} user={this.state.userObject.user} logout={this.logout} />
 				  <app>
 
 			      <ul className="list-group">
@@ -94,7 +86,7 @@ export default class Login extends React.Component{
 	  }
     return(
 			<main>
-			<Header user={this.state.user} />
+			<Header sp={this.state.userObject.sp} user={this.state.userObject.user} logout={this.logout} />
     <app>
       <ul className="list-group">
        <Input label={strings.email} type="text" onChange={this.handleEmail} />
