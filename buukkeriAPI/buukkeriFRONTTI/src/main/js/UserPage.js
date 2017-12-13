@@ -19,15 +19,6 @@ export default class UserPage extends React.Component{
 	    super(props);
 	    this.state = {
 	    		userObject:{},
-				id: 0,
-				name: "",
-				fname:"",
-				lname:"",
-		    email: "",
-		    pass: "",
-				phone: "",
-				user:false,
-				sp: false,
 				actid: "",
 				actname:"",
 				actspid:"",
@@ -45,11 +36,12 @@ export default class UserPage extends React.Component{
 	  componentWillMount() {
 		  
 		  
-		  
-	  const user = JSON.parse(localStorage.getItem('someSavedState'))
-	 
-	 console.log(userCheck(user));
-	  this.setState({userObject: userCheck(user)})
+		 
+	  
+	const user = JSON.parse(localStorage.getItem('someSavedState'))
+		
+	 this.setState({userObject: user})
+	 console.log(user)
 	  
 	
 	  
@@ -57,14 +49,14 @@ export default class UserPage extends React.Component{
 	  
 	  
 	  if(this.state.userObject.user){
-		  	let userShifts = callBookker("shifts/user_id="+this.state.id).then((data)=>{
+		  	let userShifts = callBookker("shifts/user_id="+this.state.userObject.id).then((data)=>{
 		   			 if(data!=""){
 		   				 data=JSON.parse(data);
 		  				 
 		   			 }
 		   		 });
 	  }else if(this.state.userObject.sp) {
-			 let spActs = callBookker("act/spid="+this.state.id).then((data)=>{
+			 let spActs = callBookker("act/spid="+this.state.userObject.id).then((data)=>{
 				 if(data!=""){
 	   				 data=JSON.parse(data);
 	   			 }
@@ -72,7 +64,7 @@ export default class UserPage extends React.Component{
 	  }
 	}
 		componentWillUnmount() {
-	  localStorage.setItem('someSavedState', JSON.stringify(this.state))
+	  localStorage.setItem('someSavedState', JSON.stringify(this.state.userObject))
 		}
 
 		logout(value){
@@ -99,12 +91,12 @@ export default class UserPage extends React.Component{
 
 	  }
 	render(){
-		console.log(this.state.fname)
+		
 		
 		if(this.state.userObject.user){
 		return(
 			<main>
-			<Header sp={this.state.sp} user={this.state.user} logout={this.logout} />
+			<Header sp={this.state.userObject.sp} user={this.state.userObject.user} logout={this.logout} />
 			<app>
 		      <ul className="list-group">
 			<li className="list-group-item">{this.state.userObject.fname}</li>
@@ -121,7 +113,7 @@ export default class UserPage extends React.Component{
 		}else if(this.state.userObject.sp){
 			return(
 			<main>
-			<Header user={this.state.user} logout={this.logout} />
+			<Header sp={this.state.userObject.sp} user={this.state.userObject.user} logout={this.logout} />
 			<app>
 		      <ul className="list-group">
 			<li className="list-group-item">{this.state.userObject.name}</li>
