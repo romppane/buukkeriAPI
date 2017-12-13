@@ -6,15 +6,12 @@ export default class AuthRoute extends React.Component {
 	constructor(props){
     super(props);
     this.state = {
-    		userObject:{},
-			
-			
+    		userObject:{}
     };
 }
   componentWillMount() {
-	  const user = JSON.parse(localStorage.getItem('someSavedState'))	
+	  const user = JSON.parse(localStorage.getItem('someSavedState'))
 		this.setState({userObject: user})
-		console.log(user)
 
 }
   render() {
@@ -23,7 +20,7 @@ export default class AuthRoute extends React.Component {
 
       return <Redirect to={this.props.redirectToLogin} />
     }else{
-    	
+
     return <Route path={this.props.path} component={this.props.component}/>
   }
   }

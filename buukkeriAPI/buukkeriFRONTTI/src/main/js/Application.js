@@ -18,7 +18,8 @@ export default class App extends React.Component {
 	  constructor(props){
 	    super(props);
 	    this.state={
-	    		userObject:{},
+	    		userObject:{sp:false,
+					user:false},
 	    		sportid: 0,
 	    		sports:[],
 	    		activities: [],
@@ -38,18 +39,28 @@ export default class App extends React.Component {
 
 
 	  }
+
 		componentWillMount() {
 			  const user = JSON.parse(localStorage.getItem('someSavedState'))
 				this.setState({userObject: user})
-				console.log(user)
-		}
+
+}
+
 		componentWillUnmount() {
-	  localStorage.setItem('someSavedState', JSON.stringify(this.state))
+	  localStorage.setItem('someSavedState', JSON.stringify(this.state.userObject))
 		}
+
 		logout(value){
+			if(!this.state.userObject.user&&!this.state.userObject.sp){
+				localStorage.setItem('someSavedState', JSON.stringify(this.state))
+			}else{
+				let logout=[];
+				logout.sp = false;
+				logout.user = false;
 				this.setState({
-			  user:value
-			  })
+					userObject:logout
+				})
+			}
 		}
 
 	  handleState(newState){
@@ -63,7 +74,7 @@ export default class App extends React.Component {
 	  render() {
 	    return (
 			<main>
-				<Header sp={this.state.userObject.sp} user={this.state.userObject.user} logout={this.logout} />										
+				<Header sp={this.state.userObject.sp} user={this.state.userObject.user} logout={this.logout} />
 				<app id="app" className="Appcomponent">
 					<SportButton sportid={this.state.sportid} onClick={this.handleState} sports={this.state.sports}/>
 					<Schedule activities={this.state.activities} / >

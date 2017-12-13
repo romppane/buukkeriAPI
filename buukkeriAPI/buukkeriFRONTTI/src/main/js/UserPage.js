@@ -33,16 +33,15 @@ export default class UserPage extends React.Component{
 		this.handleDescription=this.handleDescription.bind(this);
 	}
 	  componentWillMount() {
-	const user = JSON.parse(localStorage.getItem('someSavedState'))	
+	const user = JSON.parse(localStorage.getItem('someSavedState'))
 	this.setState({userObject: user})
-	console.log(user)
 
-	
+
 	  if(this.state.userObject.user){
 		  	let userShifts = callBookker("shifts/user_id="+this.state.userObject.id).then((data)=>{
 		   			 if(data!=""){
 		   				 data=JSON.parse(data);
-		  				 
+
 		   			 }
 		   		 });
 	  }else if(this.state.userObject.sp) {
@@ -58,22 +57,29 @@ export default class UserPage extends React.Component{
 		}
 
 		logout(value){
+			if(!this.state.userObject.user&&!this.state.userObject.sp){
+				localStorage.setItem('someSavedState', JSON.stringify(this.state))
+			}else{
+				let logout=[];
+				logout.sp = false;
+				logout.user = false;
 				this.setState({
-			  user: value
-			  })
+					userObject:logout
+				})
+			}
 		}
 		handleName(){
-			 			
+
 		}
 		handleSubmit(){
-			 			
+
 		}
-			 		
+
 		handleLocation(){
-			 			
+
 		}
 		handleDescription(){
-				
+
 		}
 
 
@@ -81,8 +87,8 @@ export default class UserPage extends React.Component{
 
 	  }
 	render(){
-		
-		
+
+
 		if(this.state.userObject.user){
 		return(
 			<main>
@@ -111,15 +117,15 @@ export default class UserPage extends React.Component{
 			<li className="list-group-item">{this.state.userObject.email}</li>
 			<li className="list-group-item">{this.state.userObject.phone}</li>
 			<li className="list-group-item"><label>{strings.addactivity}</label></li>
-			 		
+
 			<Input label={strings.activityname} type="text" onChange={this.handleName} />
 		 	<Input label={strings.location} type="text" onChange={this.handleLocation}  />
 		 	<Input label={strings.location} type="radio" onChange={this.handleLocation} value="1" />
 		 	<li className="list-group-item"><label>{strings.description}</label></li>			 	<li className="list-group-item"><textarea onChange={this.handleDescription}></textarea></li>
 			<li className="list-group-item"><button className="btn btn-success btn-block"  onClick={this.handleSubmit}>{strings.submit}</button></li>
-			 		
+
 			  			</ul>
-			
+
 
 			</app>
 			<Footer />
