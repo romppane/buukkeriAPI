@@ -27,6 +27,7 @@ export default class Login extends React.Component{
     this.handleEmail = this.handleEmail.bind(this);
     this.handlePass = this.handlePass.bind(this);
     this.handleLogin = this.handleLogin.bind(this);
+		this.logout=this.logout.bind(this);
 
   }
 	componentWillUnmount() {
@@ -35,31 +36,43 @@ export default class Login extends React.Component{
 	}
   handleEmail(value){
     email =	value;
-    
+
   }
   handlePass(value){
     pass = value;
-    
+
   }
+	logout(value){
+		if(!this.state.userObject.user&&!this.state.userObject.sp){
+			localStorage.setItem('someSavedState', JSON.stringify(this.state))
+		}else{
+			let logout=[];
+			logout.sp = false;
+			logout.user = false;
+			this.setState({
+				userObject:logout
+			})
+		}
+	}
+
 	handleLogin(){
 		let sp;
 		let user;
 		console.log(email+pass)
 		let promise = callBookker("SP/"+email+"&"+pass).then((data)=>{
 			if(data!=""){
-				
 				data = JSON.parse(data);
-				let user=data;	
+				let user=data;
 				user.sp = true;
-				user.user = false;				
+				user.user = false;
 				status="";
-				this.setState({userObject: user,				
-				})	
+				this.setState({userObject: user,
+				})
 				console.log(this.state.userObject);
 			}else{
-				status=strings.loginstatus;	
+				status=strings.loginstatus;
 				console.log(strings.loginstatus)
-				
+
 			}
 		});
 	}

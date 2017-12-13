@@ -6,6 +6,7 @@ import LocalizedStrings from 'react-localization';
 import {strings} from './LocalizationStrings';
 import App from "./Application";
 import {callBookker} from "./ajaxGet";
+import {getBookker} from './AjaxPutPostDelete';
 import Header from "./Header";
 import Footer from "./Footer";
 import {Redirect} from 'react-router-dom';
@@ -21,21 +22,18 @@ export default class BookingPage extends React.Component{
 	constructor(props){
 		super(props)
 		this.state={
-				user:false,
-				sp: false,
+			userObject:{},
 				shifts: [],
 				act:[],
-				id:0
+				shiftid:0
 		};
 		this.logout=this.logout.bind(this);
+		this.checkshift=this.checkshift.bind(this);
+		this.checkshift2=this.checkshift2.bind(this);
 	}
 	componentWillMount() {
-		const state = JSON.parse(localStorage.getItem('someSavedState'))
-			this.setState({
-			user: state.user,
-			id:state.id
-			})
-			console.log(state)
+		const user = JSON.parse(localStorage.getItem('someSavedState'))
+		 this.setState({userObject: user})
 			let data=[];
 			callBookker("/shifts/actid="+parseInt(this.props.match.params.id)).then((data)=>{
 				data = JSON.parse(data);
@@ -47,28 +45,48 @@ export default class BookingPage extends React.Component{
 		})
 }
 	componentWillUnmount() {
-	localStorage.setItem('someSavedState', JSON.stringify(this.state))
+	localStorage.setItem('someSavedState', JSON.stringify(this.state.userObject))
 	}
 	logout(value){
+		if(!this.state.userObject.user&&!this.state.userObject.sp){
+			localStorage.setItem('someSavedState', JSON.stringify(this.state))
+		}else{
+			let logout=[];
+			logout.sp = false;
+			logout.user = false;
 			this.setState({
-			user: value
+				userObject:logout
 			})
+		}
+	}
+	checkshift(userid){
+		if(userid==0){
+			return strings.book;
+		}else{
+			return"Vuoro varattu";
+		}
+	}
+	checkshift2(userid){
+		if(userid==0){
+			return this.bookshift;
+		}else{
+			return;
+		}
 	}
 	bookshift(e){
-
+		console.log(e)
 	}
 	render(){
 		const availableshifts = this.state.shifts.map((item)=>
 		 <li key={item.id} value={item.id} id="lists"  className="list-group-item">
 		{strings.shifttime}:{item.shift_time} {strings.shiftdate}:{item.shift_date} {strings.price}:{item.price}€
-		<button className="btn btn-primary btn pull-right btn-sm">
-		{strings.book}</button> </li>)
+		<button className="btn btn-primary btn pull-right btn-sm" onClick={this.checkshift2(item.userId)} >{this.checkshift(item.userId)}</button> </li>)
 
 
-		if(this.state.user){
+		if(this.state.userObject.user){
 			return(
 				<main>
-				<Header sp={this.state.sp} user={this.state.user} logout={this.logout} />
+				<Header sp={this.state.userObject.sp} user={this.state.userObject.user} logout={this.logout} />
 			<app>
 			<h3>{this.state.act.name}</h3>
 			<p>{this.state.act.location}</p>

@@ -4,7 +4,7 @@ import {callUser} from "./ajaxPutPostDelete";
 import { strings } from "./LocalizationStrings";
 import Input from './Components/Input';
 import Header from "./Header";
-import Language from './Language';
+
 import Footer from "./Footer";
 import {
 	  BrowserRouter as Router,
@@ -53,8 +53,8 @@ export default class Registration extends React.Component{
 			if( /^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/.test(value) ==false) {
 			  emailStatus=strings.errdialcheckemail;
 		  }else{
-				emailStatus="";
-			}
+			  emailStatus="";
+		  }
 
 	  }
 	  handlePhone(value){
@@ -70,8 +70,8 @@ export default class Registration extends React.Component{
 			if(/^[a-zA-Z0-9!@#$%^&*]{6,16}$/.test(value)==false){
 				passStatus=strings.tooshort;
 		  }else{
-				passStatus="";
-			}
+			  passStatus="";
+		  }
 	  }
 	  handlePasswordConfirm(value){
 		  this.setState({passwordconfirmation: value})
@@ -79,8 +79,8 @@ export default class Registration extends React.Component{
 			  passconfStatus=strings.errdialpasswdmatch;
 
 		  }else{
-				passconfStatus="";
-			}
+			  passconfStatus="";
+		  }
 	  }
 
 
@@ -101,21 +101,21 @@ export default class Registration extends React.Component{
 			}else if(this.state.password !== this.state.passwordconfirmation){
 				console.log(4)
 			}else{
-		  let user = {
-				  fname : this.state.fname,
-				  lname : this.state.lname,
-				  email : this.state.email,
-				  phone : this.state.phone,
-				  password : this.state.password
-			  }
-		  console.log("pläää")
-		  console.log(user.password)
-		  console.log(JSON.stringify(user))
-		  callUser("POST","users/",JSON.stringify(user)).then((response)=>{
-				console.log(response)
-			  if(response == "true"){
-				  this.setState({success: "true"})
-			  }
+				  let user = {
+						  fname : this.state.fname,
+						  lname : this.state.lname,
+						  email : this.state.email,
+						  phone : this.state.phone,
+						  password : this.state.password
+				  }
+				  console.log("pläää")
+				  console.log(user.password)
+				  console.log(JSON.stringify(user))
+				  callUser("POST","users/",JSON.stringify(user)).then((response)=>{
+					  console.log(response)
+					  if(response == "true"){
+						  	this.setState({success: "true"})
+					  }
 		  })
 		  }
 
@@ -126,7 +126,7 @@ render(){
 		return(
 			<main>
 			<Header user={this.state.user} />
-		 <app>
+		 	<app>
 	      <ul className="list-group">
 	      <li className="list-group-item"><h1>{strings.regsuccess +""+ this.state.fname} </h1></li>
 	      <li className="list-group-item"><Link to="/login"><button className="btn btn-success btn-block">{strings.tologin}</button></Link>  </li>
@@ -140,17 +140,16 @@ render(){
 		return (
 			<main>
 			<Header user={this.state.user} />
-			<Language />
 			<app className="modalDialog">
 			 		<ul className="list-group">
-					<Input label={strings.firstname} type="text" onChange={this.handleFname} />
-					<Input label={strings.surname} type="text" onChange={this.handleLname} />
-					<Input label={strings.email} type="text" onChange={this.handleEmail} status={emailStatus}/>
-					<Input label={strings.telnum} type="text" onChange={this.handlePhone} status={telStatus}/>
-					<Input label={strings.password} type="password" onChange={this.handlePassword} status={passStatus} />
-					<Input label={strings.confirm} type="password" onChange={this.handlePasswordConfirm} status={passconfStatus} />
-					<li className="list-group-item"><button className="btn btn-success btn-block" onClick={this.handleSubmit} >{strings.submit}</button></li>
-		      </ul>
+						<Input label={strings.firstname} type="text" onChange={this.handleFname} />
+						<Input label={strings.surname} type="text" onChange={this.handleLname} />
+						<Input label={strings.email} type="text" onChange={this.handleEmail} status={emailStatus}/>
+						<Input label={strings.telnum} type="text" onChange={this.handlePhone} status={telStatus}/>
+						<Input label={strings.password} type="password" onChange={this.handlePassword} status={passStatus} />
+						<Input label={strings.confirm} type="password" onChange={this.handlePasswordConfirm} status={passconfStatus} />
+						<li className="list-group-item"><button className="btn btn-success btn-block" onClick={this.handleSubmit} >{strings.submit}</button></li>
+					</ul>
 		   </app>
 			 <Footer />
 			 </main>

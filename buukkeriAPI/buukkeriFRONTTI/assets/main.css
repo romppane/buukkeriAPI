@@ -12,7 +12,7 @@ main{
   grid-template-rows: auto;
   grid-template-columns: 10% 40% 40% 10%;
   grid-template-areas:
-    "header header header language"
+    "header header header header"
     "appisleft appis appis appisrigth"
     "footer footer  footer footer ";
 }
@@ -20,7 +20,6 @@ main{
 header{
   grid-area: header;
   display: inline-flex;
-  height:50px;
   /*background-color: #F50057 ;*/
 }
 
@@ -37,19 +36,57 @@ input{
 
 }
 
-signin{
-  grid-area: signin;
-  display: inline-flex;
-  height: 50px;
-}
-
 app{
   grid-area: appis;
+  margin-top: 20px;
+  width: 100%;
 }
 
+language{
+  margin-right: 0;
+}
 
-.language{
-  grid-area: language;
+img:hover{
+  opacity: 0.3;
+}
+
+.btn{
+  width: 170px;
+  text-transform: uppercase;
+  font-size: 14px;
+}
+
+.btn-lg{
+  margin-right: 10%;
+  color: white;
+  background-color: #3CB371;
+  padding: 15px;
+}
+
+.btn-user{
+  margin-right: 10%;
+}
+
+.btn-rg{
+  margin-right: 10%;
+  color: #3CB371;
+  border-width: 1px;
+  border-color: #3CB371;
+  padding: 15px;
+}
+
+.btn-logout{
+  margin-right: 10%;
+}
+
+.logoarea{
+  margin-left: 10%;
+  margin-top: 0;
+  width: 70%;
+}
+
+.loginarea{
+  float: right;
 }
 
 .flag{
@@ -61,16 +98,6 @@ app{
   width: 150px;
   height: auto;
   margin: 20px;
-}
-
-.login{
-  margin-right: 20px;
-  margin-top: 0;
-}
-
-.btn-group{
-  color: grey;
-  margin-top: 0;
 }
 
 .modal.visible{
@@ -94,29 +121,24 @@ app{
   display:none;
 }
 
-#headerlink{
-  font-family: fantasy;
-  color:#B0BEC5;
-
-}
-#buttongroup{
-  margin-top: 5%;
-  width: 100%;
+#logoarea{
+  margin-right: 0;
+  margin-top: 0;
 }
 
 #button{
-  border-radius: 20px;
+  border-radius: 10px;
   width: 30%;
   height: 80px;
   margin:1.655%;
   white-space:normal;
-  font-size: 14px;
   word-wrap: break-word;
   padding:0;
+  font-size: 14px;
 }
 
-#btn{
-  font-size: 14px;
+#buttongroup{
+  width: 100%;
 }
 
 #form-submit-data{
