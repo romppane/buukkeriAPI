@@ -140,17 +140,16 @@ render(){
 		return (
 			<main>
 			<Header user={this.state.user} />
-
 			<app className="modalDialog">
 			 		<ul className="list-group">
-					<Input label={strings.firstname} type="text" onChange={this.handleFname} />
-					<Input label={strings.surname} type="text" onChange={this.handleLname} />
-					<Input label={strings.email} type="text" onChange={this.handleEmail} status={emailStatus}/>
-					<Input label={strings.telnum} type="text" onChange={this.handlePhone} status={telStatus}/>
-					<Input label={strings.password} type="password" onChange={this.handlePassword} status={passStatus} />
-					<Input label={strings.confirm} type="password" onChange={this.handlePasswordConfirm} status={passconfStatus} />
-					<li className="list-group-item"><button className="btn btn-success btn-block" onClick={this.handleSubmit} >{strings.submit}</button></li>
-		      </ul>
+						<Input label={strings.firstname} type="text" onChange={this.handleFname} />
+						<Input label={strings.surname} type="text" onChange={this.handleLname} />
+						<Input label={strings.email} type="text" onChange={this.handleEmail} status={emailStatus}/>
+						<Input label={strings.telnum} type="text" onChange={this.handlePhone} status={telStatus}/>
+						<Input label={strings.password} type="password" onChange={this.handlePassword} status={passStatus} />
+						<Input label={strings.confirm} type="password" onChange={this.handlePasswordConfirm} status={passconfStatus} />
+						<li className="list-group-item"><button className="btn btn-success btn-block" onClick={this.handleSubmit} >{strings.submit}</button></li>
+					</ul>
 		   </app>
 			 <Footer />
 			 </main>
