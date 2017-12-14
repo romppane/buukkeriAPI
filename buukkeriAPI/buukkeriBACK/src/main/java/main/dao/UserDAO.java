@@ -8,14 +8,22 @@ import org.springframework.stereotype.Repository;
 import main.entity.User;
 import main.entity.User_IF;
 
+/**
+ * This class consists of CRUD methods for User class objects.
+ * Class is a subclass of an abstract DAO.
+ * 
+ * 
+ * @author Roni, Ville
+ *
+ */
 @Repository
 public class UserDAO extends DAO implements UserDAO_IF {
-	/** Luo käyttäjän tietokantaan
-	 * @param user luotavan käyttäjän tiedot
-	 * @return false jos luonti epäonnistuu true jos luonti on onnistunut
+	
+	/**
+	 * Creates a User object to the database by inserting the object without an ID.
+	 * @param user the User to be added to the database.
+	 * @return true if the User was successfully added to the database, false if something went wrong.
 	 */
-	
-	
 	@Override
 	public boolean createUser(User_IF user) {
 		PreparedStatement myStatement = null;
@@ -49,10 +57,10 @@ public class UserDAO extends DAO implements UserDAO_IF {
 			return true;
 		}
 	}
-	//Changes password for User.
-	/** Käyttäjän tietojen päivitys
-	 * @param user käyttäjän tiedot
-	 * @return false jos päivitys ei onnistu true jos päivitys onnistuu
+	/**
+	 * Sets an existing User's password to a new one, by comparing the email address between the object and database data.
+	 * @param user the User to be manipulated.
+	 * @return true if the User was successfully manipulated, false if something went wrong.
 	 */
 	@Override
 	public boolean updateUser(User_IF user) {
@@ -85,10 +93,10 @@ public class UserDAO extends DAO implements UserDAO_IF {
 			return true;
 		}
 	}
-	//Deletes User for Password Email pair.
-	/**poistaa käyttäjän tietokannasta
-	 * @param user poistettavan käyttäjän tiedot
-	 * @return false jos ei onnistu true jos onnistuu
+	/**
+	 * Deletes an existing User by comparing the email address between the object and database data.
+	 * @param user the User to be removed.
+	 * @return true if the User was successfully removed, false if something went wrong.
 	 */
 	@Override
 	public boolean deleteUser(User_IF user) {
@@ -119,10 +127,11 @@ public class UserDAO extends DAO implements UserDAO_IF {
 			return true;
 		}
 	}
-	/**Returns user for certain unique email address and password
+	/**
+	 * Fetches a User for email address, password combination.
 	 * @param email Email address of the searched user
 	 * @param pass Password of the user
-	 * @return returns a User
+	 * @return the specific User who has the inserted email, password combination.
 	 */
 	@Override
 	public User_IF readUser(String email, String pass) {
@@ -166,7 +175,13 @@ public class UserDAO extends DAO implements UserDAO_IF {
 
 		return user;
 	}
-	public User_IF readUserByID(int id2) {
+	
+	/** 
+	 * Fetches a User by an ID value.
+	 * @param  id Target User's ID value.
+	 * @return the User object which has the inserted ID.
+	 */
+	public User_IF readUserByID(int id) {
 		User_IF user = null;
 		PreparedStatement myStatement = null;
 		ResultSet myRs = null;
@@ -174,7 +189,7 @@ public class UserDAO extends DAO implements UserDAO_IF {
 		try{
 			String sqlSelect = "Select * from Account where ID = ?";
 			myStatement = myCon.prepareStatement(sqlSelect);
-			myStatement.setInt(1, id2);
+			myStatement.setInt(1, id);
 			myRs = myStatement.executeQuery();
 
 			if(myRs.next()) {

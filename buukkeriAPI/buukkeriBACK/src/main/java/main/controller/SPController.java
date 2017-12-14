@@ -13,6 +13,11 @@ import main.entity.SP_IF;
 import main.entity.User_IF;
 import main.service.SPService;
 
+/**
+ * Controls the received REST API calls made for Service Providers and maps them forward to service layer.
+ * @author Ville
+ *
+ */
 @RestController
 @RequestMapping("/SP")
 public class SPController {

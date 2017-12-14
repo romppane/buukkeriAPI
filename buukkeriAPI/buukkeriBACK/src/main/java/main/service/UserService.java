@@ -5,6 +5,12 @@ import main.entity.User_IF;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+/**
+ * Routes the REST api calls made to UserController to UserDAO.
+ * @author Ville
+ *
+ */
 @Service
 public class UserService {
 	@Autowired

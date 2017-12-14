@@ -121,30 +121,5 @@ public class User implements User_IF  {
 		this.email = email;
 	}
 
-
-/**
- * Fills the data of bookings user has made
- *
-	public void fillBookingData() {
-		// gets bookings array
-		bookings = dao.readBookingsByUserId(id);
-		shifts = new ArrayList<>();
-		// gets shifts with information of bookings
-		for (int i = 0; i<bookings.length; i++) {
-			shifts.add(dao.readShiftById(bookings[i].getShiftid()));
-		}
-		// creates temporary array of activity_id:s of booked shifts
-		ArrayList<Integer> uniques = new ArrayList<>();
-		for (int i = 0; i<shifts.size(); i++) {
-			if(!uniques.contains(shifts.get(i).getActivityid()))
-				uniques.add(shifts.get(i).getActivityid());
-		}
-		// creates a list of activities user has reservations for.
-		activities = new ArrayList<>();
-		for (int i = 0; i<uniques.size(); i++) {
-			activities.add(dao.readActivityById(id));
-		}
-		}*/
-
 	}
 

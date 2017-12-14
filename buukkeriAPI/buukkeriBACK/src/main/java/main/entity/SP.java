@@ -94,41 +94,13 @@ public class SP implements SP_IF{
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
-/**getter for ID number
- * @return id
- */
+	/**getter for ID number
+	 * @return id
+	 */
 	public int getId() {
 		return id;
 	}
 
-/**Creates a set of shifts for an Activity
- * @param starth
- * @param startmin
- * @param endh
- * @param endmin
- * @param lenght
- * @param price
- * @param act
- *
-	public void createSetOfShifts(int starth, int startmin, int endh, int endmin, int length, double price, Activity_IF act) {
-		boolean done = true;
-		System.out.println("Looppi alkaa");
-		while(done) {
-			System.out.println("4Head");
-			int tempmin = startmin;
-			int temph = starth;
-			startmin = startmin + length;
-			if(startmin >= 60){
-				startmin = startmin - 60;
-				starth = starth + 1;
-			}
-			Shift_IF shift = new Shift(temph+":"+tempmin+"-"+starth+":"+startmin, price, act.getId());
-			dao.createShift(shift);
-			if(starth == endh && startmin == endmin)
-				done = false;
-
-		}
-	}*/
 
 }
 

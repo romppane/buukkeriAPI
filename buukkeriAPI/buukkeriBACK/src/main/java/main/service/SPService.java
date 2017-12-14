@@ -7,6 +7,12 @@ import main.dao.SPDAO_IF;
 import main.entity.SP;
 import main.entity.SP_IF;
 
+
+/**
+ * Routes the REST api calls made to SPController to SPDAO.
+ * @author Ville
+ *
+ */
 @Service
 public class SPService {
 	

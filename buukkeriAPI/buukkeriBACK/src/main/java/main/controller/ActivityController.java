@@ -1,5 +1,6 @@
 package main.controller;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -11,6 +12,12 @@ import org.springframework.web.bind.annotation.RestController;
 import main.entity.Activity;
 import main.entity.Activity_IF;
 import main.service.ActivityService;
+
+/**
+ * Controls the received REST API calls made for Activities and maps them forward to service layer.
+ * @author Ville
+ *
+ */
 @RestController
 @RequestMapping("/act")
 public class ActivityController {

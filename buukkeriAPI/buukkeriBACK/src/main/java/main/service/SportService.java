@@ -6,6 +6,12 @@ import org.springframework.stereotype.Service;
 import main.dao.SportDAO;
 import main.entity.Sport;
 import main.entity.Sport_IF;
+
+/**
+ * Routes the REST api calls made to SportController to SportDAO.
+ * @author Ville
+ *
+ */
 @Service
 public class SportService {
 	

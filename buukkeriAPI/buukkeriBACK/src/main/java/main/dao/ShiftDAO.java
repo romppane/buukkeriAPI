@@ -8,11 +8,22 @@ import org.springframework.stereotype.Repository;
 
 import main.entity.Shift;
 import main.entity.Shift_IF;
+
+
+/**
+ * This class consists of CRUD methods for Shift class objects.
+ * Class is a subclass of an abstract DAO.
+ * 
+ * 
+ * @author Roni, Ville
+ *
+ */
 @Repository
 public class ShiftDAO extends DAO implements ShiftDAO_IF{
-	/**Creates a shift to database
-	 * @param shift Shift object
-	 * @return False if task failed, true if task was done successfully
+	/**
+	 * Creates an Shift object to the database by inserting the object without an ID.
+	 * @param shift the Shift to be added to the database.
+	 * @return true if the Shift was successfully added to the database, false if something went wrong.
 	 */
 	public boolean createShift(Shift_IF shift) {
 		PreparedStatement myStatement = null;
@@ -45,9 +56,10 @@ public class ShiftDAO extends DAO implements ShiftDAO_IF{
 		}
 	}
 
-	/**Sets a price for a shift
-	 * @param shift Shift object which will be updated
-	 * @return False if task failed, true if task was done successfully
+	/**
+	 * Books a Shift for a User.
+	 * @param shift the Shift to be manipulated.
+	 * @return true if the Shift was successfully manipulated, false if something went wrong.
 	 */
 	public boolean updateShift(Shift_IF shift) {
 		PreparedStatement myStatement = null;
@@ -80,9 +92,10 @@ public class ShiftDAO extends DAO implements ShiftDAO_IF{
 		}
 	}
 
-	/**Deletes a shift
-	 * @param shift Shift object which will be deleted
-	 * @return False if task failed, true if task was done successfully
+	/**
+	 * Deletes an existing Shift by comparing the ID values between the object and database data.
+	 * @param shift the Shift to be removed.
+	 * @return true if the Shift was successfully removed, false if something went wrong.
 	 */
 	public boolean deleteShift(Shift_IF shift) {
 		PreparedStatement myStatement = null;
@@ -114,9 +127,9 @@ public class ShiftDAO extends DAO implements ShiftDAO_IF{
 	}
 
 	/**
-	 * Returns all shifts for activity
-	 * @param act_id ID number of the searched activity
-	 * @return returns a list of activities
+	 * Fetches all Shifts that belong to a certain Activity.
+	 * @param act_id ID number of the searched Activity.
+	 * @return Shift_IF[] that contains all the Shifts that belong to the Activity.
 	 */
 	@Override
 	public Shift_IF[] readActivityShifts(int act_id) {
@@ -167,7 +180,7 @@ public class ShiftDAO extends DAO implements ShiftDAO_IF{
 	/**
 	 * Fetches a Shift by ID
 	 * @param ID number of the shift
-	 * @return returns a Shift object
+	 * @return a Shift object
 	 */
 	@Override
 	public Shift_IF readShiftById(int ID) {
@@ -211,9 +224,10 @@ public class ShiftDAO extends DAO implements ShiftDAO_IF{
 		return shift;
 	}
 	
-	/**Returns all bookings for a specific activity
-	 * @param user_id ID number of the user who is searching
-	 * @return returns a list of bookings
+	/**
+	 * Fetches all Shifts booked by a specific User by comparing the User ID values.
+	 * @param user_id ID number of the user who is searching.
+	 * @return Shift_IF[] of User's bookings.
 	 */
 	@Override
 	public Shift_IF[] readBookingsByUserId(int user_id) {
@@ -259,6 +273,11 @@ public class ShiftDAO extends DAO implements ShiftDAO_IF{
 		return (Shift_IF[])shifts.toArray(ret);
 	}
 
+	/**
+	 * Removes the reservation made to the Shift.
+	 * @param shift the Shift to be manipulated.
+	 * @return true if the Shift was successfully manipulated, false if something went wrong.
+	 */
 	public boolean unbookShift(Shift_IF shift) {
 		PreparedStatement myStatement = null;
 		String query = null;

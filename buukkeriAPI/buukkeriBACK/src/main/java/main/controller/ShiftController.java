@@ -12,6 +12,11 @@ import main.entity.Shift;
 import main.entity.Shift_IF;
 import main.service.ShiftService;
 
+/**
+ * Controls the received REST API calls made for Shifts and maps them forward to service layer.
+ * @author Ville
+ *
+ */
 @RestController
 @RequestMapping("/shifts")
 public class ShiftController {

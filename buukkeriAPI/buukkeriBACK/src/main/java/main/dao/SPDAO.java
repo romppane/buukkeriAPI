@@ -9,13 +9,20 @@ import org.springframework.stereotype.Repository;
 import main.entity.SP;
 import main.entity.SP_IF;
 
-
+/**
+ * This class consists of CRUD methods for SP class objects.
+ * Class is a subclass of an abstract DAO.
+ * 
+ * 
+ * @author Roni, Ville
+ *
+ */
 @Repository
 public class SPDAO extends DAO implements SPDAO_IF {
 	/**
-	 * Creates Service Provider to db.
-	 * @param Sevice Provider Object which will be added to the database
-	 * @return False if task failed, true if task was done successfully
+	 * Creates an Service Provider object to the database by inserting the object without an ID.
+	 * @param sp the SP to be added to the database.
+	 * @return true if the SP was successfully added to the database, false if something went wrong.
 	 */
 	@Override
 	public boolean createSP(SP_IF sp) {
@@ -54,9 +61,9 @@ public class SPDAO extends DAO implements SPDAO_IF {
 	}
 
 	/**
-	 * Changes Service Provider password.
-	 * @param Sevice Provider Object which will be updated in the database
-	 * @return False if task failed, true if task was done successfully
+	 * Changes Service Provider password by comparing Email values.
+	 * @param sp the Sevice Provider who's password will be changed in the database.
+	 * @return true if the SP was successfully manipulated, false if something went wrong.
 	 */
 	@Override
 	public boolean updateSP(SP_IF sp) {
@@ -90,9 +97,10 @@ public class SPDAO extends DAO implements SPDAO_IF {
 		}
 	}
 
-	/**Deletes Service Provider from database
-	 * @param Service Provider object which will be deleted from the database
-	 * @return False if task failed, true if task was done successfully
+	/**
+	 * Deletes an existing Service Provider from the database by comparing ID values.
+	 * @param sp the Service Provider object which will be deleted from the database.
+	 * @return true if the SP was successfully manipulated, false if something went wrong.
 	 */
 	@Override
 	public boolean deleteSP(SP_IF sp) {
@@ -125,8 +133,8 @@ public class SPDAO extends DAO implements SPDAO_IF {
 	}
 
 	/**
-	 * Returns all Service Providers
-	 * @return All Service Providers from the database
+	 * Fetches all Service Providers from the database.
+	 * @return SP_IF[] with all Service Providers from the database.
 	 */
 	@Override
 	public SP_IF[] readSPs() {
@@ -170,10 +178,11 @@ public class SPDAO extends DAO implements SPDAO_IF {
 		return (SP_IF[])providers.toArray(palautus);
 	}
 
-	/**Searches for Service Provider by email
-	 * @param email Email of the service provider
-	 * @param pass password of the service provider
-	 * @return sp returns a specific service provider
+	/**
+	 * Fetches a Service Provider for email, password pair.
+	 * @param email Email of the Service Provider
+	 * @param pass Password of the Service Provider
+	 * @return a specific Service Provider with the right email, password combination.
 	 */
 	@Override
 	public SP_IF readSP(String email, String pass) {

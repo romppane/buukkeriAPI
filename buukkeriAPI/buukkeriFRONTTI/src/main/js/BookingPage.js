@@ -6,7 +6,6 @@ import LocalizedStrings from 'react-localization';
 import {strings} from './LocalizationStrings';
 import App from "./Application";
 import {callBookker} from "./ajaxGet";
-import {callUser} from './AjaxPutPostDelete';
 import Header from "./Header";
 import Footer from "./Footer";
 import {Redirect} from 'react-router-dom';
