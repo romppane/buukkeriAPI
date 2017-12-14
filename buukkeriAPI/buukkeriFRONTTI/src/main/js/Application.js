@@ -101,14 +101,14 @@ localStorage.setItem('sports', JSON.stringify(this.state.sports))
 	  render() {
 
 			const availableActivities = this.props.activities.map((item)=>
-			<li key={item.id} value={item.id} id="lists"  className="act-list">
+			<li key={item.id} value={item.id} id="lists"  className="list-group-item">
 			<a>{item.name}</a>{"	"+item.location+"		" + item.description}
 			<Link className="btn btn-primary btn pull-right" to={this.omgolen(item.id)}>
 			{strings.book}</Link> </li>)
 
 		 return (
 	        <app>
-	        	<ul>
+	        	<ul className="list-group">
 	        	{availableActivities}
 	        	</ul>
 	        </app>

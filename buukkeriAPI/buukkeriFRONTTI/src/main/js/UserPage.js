@@ -12,6 +12,7 @@ import {callBookker} from "./ajaxGet";
 import Header from "./Header";
 import Footer from "./Footer";
 import Input from "./Components/Input";
+import {Redirect} from 'react-router-dom';
 
 let sports;
 const LOCALHOST = 'http://localhost:8090/';
@@ -153,6 +154,7 @@ export default class UserPage extends React.Component{
 		const radios = sports.map((sport)=>
 		<Input name="radsport" key={sport.id} value={sport.id} label={sport.name} type="radio" onChange={this.handleRadios}  />
 		);
+		
 
 		if(this.state.userObject.user){
 		return(
@@ -191,13 +193,14 @@ export default class UserPage extends React.Component{
 			<li className="list-group-item"><label>{strings.description}</label></li>			 	
 			<li className="list-group-item"><textarea value={this.state.actdescription} onInput={this.handleDescription}></textarea></li>
 			<li className="list-group-item"><button className="btn btn-success btn-block"  onClick={this.handleSubmit}>{strings.submit}</button></li>
-
 			  			</ul>
-
-
 			</app>
 			<Footer />
 			</main>
-		)}
+		)}else{
+			return(
+				<Redirect to="/" />
+		)
+		}
 		}
 	}

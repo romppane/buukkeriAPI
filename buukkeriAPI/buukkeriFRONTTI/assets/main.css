@@ -33,7 +33,11 @@ footer{
 
 input{
 	border-radius: 10px;
-
+	
+}
+.list-group-item{
+	
+	height:6rem;	
 }
 
 app{
