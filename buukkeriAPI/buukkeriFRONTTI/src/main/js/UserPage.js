@@ -126,22 +126,23 @@ export default class UserPage extends React.Component{
 	  handleSubmit(){
 		  let act = {
 				  name : this.state.actname,
-				  SP_ID: this.state.userObject.id,
+				  spid: this.state.userObject.id,
 				  location : this.state.actlocation,
 				  description : this.state.actdescription,
 				 
-				  SPORT_ID : this.state.selected
+				  sportid : this.state.selected
 		  }
+		  console.log(JSON.stringify(act))
 		  
 		 console.log(act)
 		 	  callUser("POST","act/",JSON.stringify(act)).then((response)=>{
 					  console.log(response)
 					  if(response == "true"){
 						  	this.setState({success: "true"})
+						  	alert("Your activity has been added");
 					  }
 		  })
 		 
-		  
 		  
 		  
 		  
