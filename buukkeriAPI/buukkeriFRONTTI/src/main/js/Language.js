@@ -22,12 +22,12 @@ export default class Language extends React.Component {
   handleFIN() {
     this.setState({language: "fin"});
     strings.setLanguage("fin");
-    //this.refreshPage();
+    //setTimeout(this.refreshPage, 3000);
   }
   handleEN() {
     this.setState({language: "en"});
     strings.setLanguage("en");
-    //this.refreshPage();
+    //setTimeout(this.refreshPage, 6000);
   }
   //refreshPage(){
     //window.location.reload();

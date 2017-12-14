@@ -11,6 +11,7 @@ export  let strings = new LocalizedStrings({
 		password: "Salasana",
 		submit: "Vahvista",
 		close: "Sulje",
+		return: "Peruuta",
 		confirm: "Vahvista salasana",
 		login: "Kirjaudu sisään",
 		errdialpasswdmatch: "Salasana ja salasanan vahvistus täytyy olla sama",
@@ -49,6 +50,7 @@ export  let strings = new LocalizedStrings({
 		password: "Password",
 		submit: "Submit",
 		close: "Close",
+		return: "Return",
 		confirm: "Confirm Password",
 		login: "Login",
 		errdialpasswdmatch: "Passwords are not matching",
@@ -58,7 +60,7 @@ export  let strings = new LocalizedStrings({
 		nomatch: "404 page was not found.",
 		book: "book now!",
 		loginstatus: "User was not found!",
-		serveiceproviders: "Serviceproviders",
+		serveiceproviders: "Service providers",
 		spname:"Commercial name",
 		tologin:"To Login",
 		regsuccess:"You have an account now. Congratulations ",
@@ -77,6 +79,6 @@ export  let strings = new LocalizedStrings({
  		shiftdate: "Date",
  		price: "Price",
  		sport:"Sport",
- 			
+
 	}
 });

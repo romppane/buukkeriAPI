@@ -141,6 +141,7 @@ render(){
 			<main>
 			<Header user={this.state.user} />
 			<app className="modalDialog">
+				<h2>{strings.register}</h2>
 			 		<ul className="list-group">
 						<Input label={strings.firstname} type="text" onChange={this.handleFname} />
 						<Input label={strings.surname} type="text" onChange={this.handleLname} />

@@ -41,7 +41,7 @@ logout(){
 			return(
 			<header>
 				<Link to="/" className="logoarea">
-					<img src="/src/main/img/vapaatvuorot.png" alt="Vapaatvuorot.fi" className="logo"></img>
+					<img src="/src/main/img/vvlogo.png" alt="Vapaatvuorot.fi" className="logo"></img>
 				</Link>
 				<div className="loginarea">
 					<button className="btn btn-lg btn-logout" onClick={this.logout} >{strings.logout}</button>
@@ -53,7 +53,7 @@ logout(){
 	    return (
 	    	<header>
 					<Link to="/" className="logoarea">
-						<img src="/src/main/img/vapaatvuorot.png" alt="Vapaatvuorot.fi" className="logo"></img>
+						<img src="/src/main/img/vvlogo.png" alt="Vapaatvuorot.fi" className="logo"></img>
 					</Link>
 					<div className="loginarea">
 						<Link className="btn btn-lg" to="/login">{strings.login}</Link>

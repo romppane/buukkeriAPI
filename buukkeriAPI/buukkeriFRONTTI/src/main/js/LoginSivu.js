@@ -98,9 +98,10 @@ logout(value){
 				<main>
 				<Header sp={this.state.userObject.sp} user={this.state.userObject.user} logout={this.logout} />
 				  <app>
+					<h2>{strings.login}</h2>
 			      <ul className="list-group">
 			      	<li className="list-group-item"><Link className="btn btn-default btn-small" to="/UserPage">oma sivu</Link>  </li>
-			      	<li className="list-group-item"><Link className="btn btn-default btn-small" to="/">{strings.close}</Link>  </li>
+			      	<li className="list-group-item"><Link className="btn btn-default btn-small" to="/">{strings.return}</Link>  </li>
 			      </ul>
 			    </app>
 					<Footer />
@@ -112,12 +113,13 @@ logout(value){
 			<Header sp={this.state.userObject.sp} user={this.state.userObject.user} logout={this.logout} />
 
     	<app>
-      <ul className="list-group">
-       <Input label={strings.email} type="text" onChange={this.handleEmail} />
-      <Input label={strings.password} type="password" onChange={this.handlePass} />
-      <li className="list-group-item"><button className="btn btn-success" onClick={this.handleLogin}>{strings.login}</button> <Link to="/SPlogin"><button className="btn btn-success btn pull-right btn-sm">{strings.serveiceproviders}</button></Link> </li>
-      <li className="list-group-item"><Link to="/Registration" className="btn btn-primary">{strings.register}</Link> <Link to="/SPRegistration" className="btn btn-primary btn pull-right btn-sm">{strings.serveiceproviders}</Link> </li>
-      <li className="list-group-item"><Link to="/" className="btn btn-default btn-small">{strings.close}</Link>  </li>
+			<h2>{strings.login}</h2>
+	      <ul className="list-group">
+		      <Input label={strings.email} type="text" onChange={this.handleEmail} />
+		      <Input label={strings.password} type="password" onChange={this.handlePass} />
+	      <li className="list-group-item"><button className="btn btn-success" onClick={this.handleLogin}>{strings.login}</button> <Link to="/SPlogin"><button className="btn btn-success btn pull-right btn-sm">{strings.serveiceproviders}</button></Link> </li>
+	      <li className="list-group-item"><Link to="/Registration" className="btn btn-primary">{strings.register}</Link> <Link to="/SPRegistration" className="btn btn-primary btn pull-right btn-sm">{strings.serveiceproviders}</Link> </li>
+	      <li className="list-group-item"><Link to="/" className="btn btn-default btn-small">{strings.return}</Link>  </li>
       </ul>
     </app>
 		<Footer />

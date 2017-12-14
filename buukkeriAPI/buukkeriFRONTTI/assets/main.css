@@ -33,11 +33,19 @@ footer{
 
 input{
 	border-radius: 10px;
+<<<<<<< Updated upstream
 	
 }
 .list-group-item{
 	
 	height:6rem;	
+=======
+}
+
+h2{
+  text-align: center;
+  margin-bottom: 20px;
+>>>>>>> Stashed changes
 }
 
 app{

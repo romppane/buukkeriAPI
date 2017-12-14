@@ -34,7 +34,7 @@ export default class App extends React.Component {
 		  callBookker("sports").then((data)=>{
 				data = JSON.parse(data);
 				this.setState({sports: data});
-				
+
 
 		  });
 
@@ -78,6 +78,7 @@ localStorage.setItem('sports', JSON.stringify(this.state.sports))
 			<main>
 				<Header sp={this.state.userObject.sp} user={this.state.userObject.user} logout={this.logout} />
 				<app id="app" className="Appcomponent">
+					<h2>Valitse laji</h2>
 					<SportButton sportid={this.state.sportid} onClick={this.handleState} sports={this.state.sports}/>
 					<Schedule activities={this.state.activities} / >
 				</app>
